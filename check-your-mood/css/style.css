@@ -1,0 +1,164 @@
+/*Polices*/
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Montserrat&family=Varela+Round&display=swap');
+/*
+font-family: 'Hind Siliguri', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Varela Round', sans-serif;
+*/
+
+body{
+    background-color: rgba(226, 246, 255, 0.55);
+}
+
+/*Images*/
+.logo{
+    width: 20vw;
+    height: auto;
+}
+
+/*Cadre connexion*/
+.container-main{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    border-radius: 40px;
+    height: 60vh;
+    width: 62vw;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.login.right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(203deg, #008CC9 0%, rgba(0, 164, 217, 0.75) 23.65%, rgba(12, 193, 237, 0.5) 57.56%, rgba(105, 222, 255, 0.25) 97.64%, rgba(105, 222, 255, 0.25) 100%);
+    width: 45%;
+    border-radius: 40px;
+}
+
+.login{
+    width: 55%;
+    height: auto;
+    border-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login form{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    gap: 2vw;
+}
+
+.login p{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.05vw;
+}
+
+.login .login-text{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 2.5vw;
+    color: #008CC9;
+}
+
+/*Contain Mdp*/
+.contain-mdp{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Style input*/
+
+input{
+    border-radius: 30px;
+    border: 1px solid black;
+    padding-left: 2.7vw;
+    width: auto;
+    height: 4vh;
+    width: auto;
+}
+
+/*btn*/
+
+.contain-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    padding-left: 0px;
+    color: white;
+    background-color: rgba(5, 150, 214, 0.95);
+    border: none;
+    font-family: 'Hind Siliguri', sans-serif;
+    height: auto;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    transform: scale(1.05);    
+}
+
+hr{
+    color: black;
+    width: 80%;
+    margin: 10px;
+    margin-top: 25px;
+}
+
+/*Position icon input*/
+
+.user{
+    background-image: url(../images/user.png);
+    background-repeat: no-repeat;
+    background-size: 1.7vw;
+    background-position-y: center;
+    background-position-x: 5px;
+    outline-color: #008CC9;
+}
+
+.locker{
+    background-image: url(../images/cadenas.png);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 5px;
+    background-size: 1.7vw;
+    outline-color: #008CC9;
+}
+
+/*Style lien*/
+a{
+    text-decoration: none;
+    color: #008CC9;
+}
+
+/*Checkbox revele*/
+
+.contain-revele{
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 5px;
+}
+
