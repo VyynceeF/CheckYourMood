@@ -27,11 +27,23 @@ body{
 
 .container{
     border-radius: 40px;
-    height: 60vh;
+    height: 68vh;
     width: 62vw;
     background-color: white;
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.login{
+    width: 55%;
+    height: 100%;
+    border-radius: 40px;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .login.right{
@@ -44,22 +56,11 @@ body{
     border-radius: 40px;
 }
 
-.login{
-    width: 55%;
-    height: auto;
-    border-radius: 40px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .login form{
     display: flex;
     flex-direction: column;
     width: 75%;
-    gap: 2vw;
+    gap: 2vh;
 }
 
 .login p{
@@ -70,6 +71,7 @@ body{
 .login .login-text{
     font-family: 'Varela Round', sans-serif;
     font-size: 2.5vw;
+    margin-bottom: 5vw;
     color: #008CC9;
 }
 
@@ -89,6 +91,9 @@ input{
     width: auto;
     height: 4vh;
     width: auto;
+    outline-color: #008CC9;
+
+    font-family: 'Hind Siliguri', sans-serif;
 }
 
 /*btn*/
@@ -100,7 +105,6 @@ input{
 }
 
 .btn{
-    padding-left: 0px;
     color: white;
     background-color: rgba(5, 150, 214, 0.95);
     border: none;
@@ -117,11 +121,18 @@ input{
     transform: scale(1.05);    
 }
 
+.contain-bottom{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 hr{
-    color: black;
+    background-color: black;
+    height: 1px;
     width: 80%;
-    margin: 10px;
-    margin-top: 25px;
+    border: none;
 }
 
 /*Position icon input*/
@@ -132,7 +143,6 @@ hr{
     background-size: 1.7vw;
     background-position-y: center;
     background-position-x: 5px;
-    outline-color: #008CC9;
 }
 
 .locker{
@@ -141,7 +151,6 @@ hr{
     background-position-y: center;
     background-position-x: 5px;
     background-size: 1.7vw;
-    outline-color: #008CC9;
 }
 
 /*Style lien*/
@@ -162,3 +171,40 @@ a{
     gap: 5px;
 }
 
+
+/*INSCRIPTION*/
+
+.contain-double-data{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.contain-double-data input{
+    width: 11vw;
+}
+
+.contain-double-data.date input{
+    width: 50%;
+}
+
+.contain-double-data.date select{
+    border-radius: 30px;
+    border: 1px solid black;
+    width: 40%;
+    padding-left: 0.6vw;
+    outline-color: #008CC9;
+}
+
+.contain-btn.inscription{
+    gap: 5px;
+    align-items: center;
+}
+
+.login.inscription input{
+    padding-left: 1vw;
+}
+
+.contain-btn.inscription .btn{
+    padding-left: 15px;
+}
