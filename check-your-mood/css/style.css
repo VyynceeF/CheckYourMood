@@ -208,3 +208,91 @@ a{
 .contain-btn.inscription .btn{
     padding-left: 15px;
 }
+
+/*Navbar*/
+body{
+    margin: 0px;
+}
+
+.head{
+    background-color:rgba(226, 246, 255, 0.55);
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.head img{
+    width: 7vw;
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-color: white;
+}
+
+.menu-right{
+    border-right: 1px solid rgba(0, 0, 0, 0.18);
+    width: 10%;
+    height: 100vh;
+}
+
+/*TITRE ET BUTTON*/
+.head-mood{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 50px;
+    margin-top: 15px;
+}
+
+.contain-mood p{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 2vw;
+}
+
+/*HUMEUR TAB*/
+
+.contain-mood{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    height: 100vh;
+}
+
+.table-mood{
+    width: 80%;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 20px;
+    border-collapse: collapse;
+}
+
+.table-mood th,td{
+    text-align: left;
+    padding-left: 8px;
+    font-size: 1.3vw;
+    height: 5vh;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    border-right: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.table-mood tr .last-column{
+    border-right: none;
+    width: 35%;
+}
+
+.head-mood button{
+    font-size: large;
+    border: none;
+    background-color: rgba(226, 246, 255, 0.55);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.head-mood button:hover{
+    background-color: rgba(226, 246, 255, 1);
+    cursor: pointer;
+}
