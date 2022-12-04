@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Your Mood - Mes humeurs</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Check Your Mood - Humeurs</title>
+    <link rel="stylesheet" href="/check-your-mood/css/style.css">
 </head>
 <body>
 
+<?php
+spl_autoload_extensions(".php");
+spl_autoload_register();
+
+use yasmf\HttpHelper;
+
+?>
+
     <div class="head">
-        <img src="../images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
+        <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
     </div>
 
     <div class="contain">
@@ -41,6 +49,25 @@
                         Contexte
                     </th>
                 </tr>
+
+                <?php 
+                
+                    while($row = $searchStmt->fetch()){
+
+                        echo "<tr>";
+
+                        echo "<td>".$row['libelleHumeur']."</td>";
+                        echo "<td>".$row['emoji']."</td>";
+                        echo "<td>".$row['dateHumeur']."</td>";
+                        echo "<td>".$row['heure']."</td>";
+                        echo "<td class = 'last-column'>".$row['contexte']."</td>";
+            
+                        echo "</tr>";
+
+                    }
+
+                ?>
+
             </table>
 
         </div>

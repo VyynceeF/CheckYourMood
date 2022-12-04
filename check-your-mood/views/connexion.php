@@ -5,8 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckYourMood - Connexion</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/check-your-mood//css/style.css">
 </head>
+<?php
+spl_autoload_extensions(".php");
+spl_autoload_register();
+
+use yasmf\HttpHelper;
+
+?>
     <body>
         <div class="container-main">
             <div class="container">
@@ -15,7 +22,8 @@
 
                     <p class="login-text">Connexion</p>
 
-                    <form action="post">
+                    <form method="post">
+                        <input type="hidden" name="action" value="login">
                         <input class="user" type="text" name="identifiant" placeholder="Identifiant">
                         <div class="contain-mdp">
                             <input class="locker" type="text" name="motdepasse" placeholder="Mot de passe">
@@ -25,15 +33,14 @@
                     </form>
 
                     <div class="contain-bottom">
-                        <hr>
-                    
-                        <p>Vous n'avez pas de compte ? <a href="pages/inscription.html">Inscrivez-vous</a></p>
+                        <hr>                
+                        <p>Vous n'avez pas de compte ?</p><form method = "post"><input type = "hidden" name = "action" value="changeView"><input type="hidden" name="namepage" value="inscription"><input type="submit" value = "Inscrivez-vous"></form>
                     </div>
                     
                 </div>
 
                 <div class="login right">
-                    <img class="logo" src="images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
+                    <img class="logo" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
                 </div>
 
             </div>
