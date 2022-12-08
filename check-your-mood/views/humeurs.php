@@ -27,7 +27,6 @@ use yasmf\HttpHelper;
 
             <div class="head-mood">
                 <p>Humeurs</p>
-                <button>+</button>
             </div>
             
 
@@ -50,9 +49,28 @@ use yasmf\HttpHelper;
                     </th>
                 </tr>
 
+                <form action = "index.php" method="post">
+                    <tr>
+                        <input type="hidden" name="controller" value="Mood">
+                        <input type="hidden" name="codeUtil" value="<?php echo $util; ?>">
+                        <td colspan="4">
+                            <select name="humeur">
+                                <?php 
+                                while($row = $libelles->fetch()){
+                                    echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                        <td class="last-column"><input type="text" name="contexte" placeholder="Contexte..."></td>
+                        <td class="column-button"><button type="submit">+</button></td>
+
+                    <tr>
+                <form>
+
                 <?php 
                 
-                    while($row = $searchStmt->fetch()){
+                    while($row = $humeurs->fetch()){
 
                         echo "<tr>";
 
@@ -62,7 +80,7 @@ use yasmf\HttpHelper;
                         echo "<td>".$row['heure']."</td>";
                         echo "<td class = 'last-column'>".$row['contexte']."</td>";
             
-                        echo "</tr>";
+                        echo "</tr>";  
 
                     }
 

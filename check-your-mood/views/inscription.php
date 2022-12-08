@@ -24,22 +24,16 @@ use yasmf\HttpHelper;
 
                     <p class="login-text">Inscription</p>
 
-                    <form method="post">
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="controller" value="Inscription">
+                        <input type="hidden" name="action" value="signin">
+
                         <div class="contain-double-data">
                             <input type="text" name="prenom" placeholder="Prénom*">
                             <input type="text" name="nom" placeholder="Nom*">
                         </div>
-                        <div class="contain-double-data date">
-                            <select name="gender">
-                                <option value="Genre">Genre</option>
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
-                                <option value="Autre">Autre</option>
-                            </select>
-                            <input type="date" name="date" class="date">
-                        </div>
 
-                        <input type="text" name="email" placeholder="Email*">
+                        <input type="text" name="mail" placeholder="Email*">
 
                         <input type="text" name="identifiant" placeholder="Identifiant*">
 
@@ -47,14 +41,15 @@ use yasmf\HttpHelper;
                             <input type="text" name="motdepasse" placeholder="Mot de passe*">
                         </div>
 
-                        <input type="text" name="confirmation" placeholder="Confirmation*">
-
-                        <div class="contain-btn inscription">
-                            <input class="btn" type="submit" value="S'inscrire">
-                            <p>OU</p> <form method = "post"><input type = "hidden" name = "action" value="changeView"><input type="hidden" name="namepage" value="connexion"><input type="submit" value = "Connectez-vous"></form>
-                            
+                        <!--<input type="text" name="confirmation" placeholder="Confirmation*">-->
+                       
+                        <div class="contain-bottom inscription">
+                            <button class="btn" type="submit">S'inscrire</button>
+                            <p>OU</p>
+                            <a href="/check-your-mood?action=goTo&namepage=connexion">Connectez-vous</a>
                         </div>
                     </form>
+                    
                 </div>
 
                 <div class="login right">

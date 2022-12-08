@@ -98,8 +98,7 @@ input{
 
 /*btn*/
 
-.contain-btn{
-    width: 100%;
+.btn-connect{
     display: flex;
     justify-content: center;
 }
@@ -108,24 +107,14 @@ input{
     color: white;
     background-color: rgba(5, 150, 214, 0.95);
     border: none;
-    font-family: 'Hind Siliguri', sans-serif;
-    height: auto;
-    padding: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 17px;
-    cursor: pointer;
+    border-radius: 40px;
+    width: 17vh;
+    padding: 2vh;
+    font-size: 2vh;
 }
 
 .btn:hover{
     transform: scale(1.05);    
-}
-
-.contain-bottom{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 hr{
@@ -153,12 +142,6 @@ hr{
     background-size: 1.7vw;
 }
 
-/*Style lien*/
-a{
-    text-decoration: none;
-    color: #008CC9;
-}
-
 /*Checkbox revele*/
 
 .contain-revele{
@@ -184,30 +167,10 @@ a{
     width: 11vw;
 }
 
-.contain-double-data.date input{
-    width: 50%;
-}
-
-.contain-double-data.date select{
-    border-radius: 30px;
-    border: 1px solid black;
-    width: 40%;
-    padding-left: 0.6vw;
-    outline-color: #008CC9;
-}
-
-.contain-btn.inscription{
-    gap: 5px;
-    align-items: center;
-}
-
 .login.inscription input{
     padding-left: 1vw;
 }
 
-.contain-btn.inscription .btn{
-    padding-left: 15px;
-}
 
 /*Navbar*/
 body{
@@ -234,7 +197,7 @@ body{
 .menu-right{
     border-right: 1px solid rgba(0, 0, 0, 0.18);
     width: 10%;
-    height: 100vh;
+    height: 100%;
 }
 
 /*TITRE ET BUTTON*/
@@ -259,7 +222,8 @@ body{
     flex-direction: column;
     gap: 20px;
     width: 90%;
-    height: 100vh;
+    height: 100%;
+    background-color: white;
 }
 
 .table-mood{
@@ -283,16 +247,43 @@ body{
     width: 35%;
 }
 
-.head-mood button{
-    font-size: large;
-    border: none;
-    background-color: #EDEDED;
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
+/*design submit change view*/
+
+.contain-bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.head-mood button:hover{
-    background-color: grey;
+.contain-bottom.inscription{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+a{
+    color: #008CC9;
+    text-decoration: none;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.05vw;
+}
+
+/*Page mood ajout*/
+.column-button{
+    border: none;
+}
+
+.column-button button{
+    border: none;
     cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.column-button button:hover{
+    background-color: lightgrey;
 }

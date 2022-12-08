@@ -26,15 +26,18 @@ class HomeController {
             return $view;
         }
 
-        $searchStmt = $this->MoodService->viewMoods($pdo,$utilOk) ;
+        $humeurs = $this->MoodService->viewMoods($pdo,$utilOk);
+        $libelles = $this->MoodService->libelles($pdo);
+
         $view = new View("check-your-mood/views/humeurs");
         $view->setVar('util', $utilOk);
-        $view->setVar('searchStmt',$searchStmt);
+        $view->setVar('humeurs',$humeurs);
+        $view->setVar('libelles',$libelles);
         return $view;
         
     }
 
-    public function changeView(){
+    public function goTo(){
         $namepage = HttpHelper::getParam('namepage');
         $view = new View("check-your-mood/views/".$namepage);
         return $view;

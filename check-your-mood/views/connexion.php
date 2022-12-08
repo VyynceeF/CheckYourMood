@@ -22,19 +22,21 @@ use yasmf\HttpHelper;
 
                     <p class="login-text">Connexion</p>
 
-                    <form method="post">
+                    <form action="index.php" method="post">
                         <input type="hidden" name="action" value="login">
-                        <input class="user" type="text" name="identifiant" placeholder="Identifiant">
+                        <input class="user" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
                         <div class="contain-mdp">
                             <input class="locker" type="text" name="motdepasse" placeholder="Mot de passe">
                             <div class="contain-revele"><input type="checkbox" name="revele"><label>Révéler mot de passe</label></div>
                         </div>
-                        <div class="contain-btn"><input class="btn" type="submit" value="Se connecter"></div>
+                        <div class="btn-connect"><button class="btn" type="submit">Se connecter</button></div>
                     </form>
 
-                    <div class="contain-bottom">
-                        <hr>                
-                        <p>Vous n'avez pas de compte ?</p><form method = "post"><input type = "hidden" name = "action" value="changeView"><input type="hidden" name="namepage" value="inscription"><input type="submit" value = "Inscrivez-vous"></form>
+                    <br>
+                    <hr>
+
+                    <div class="contain-bottom">    
+                        <p>Vous n'avez pas de compte ? <a href="/check-your-mood?action=goTo&namepage=inscription">Inscrivez-vous</a></p>    
                     </div>
                     
                 </div>
