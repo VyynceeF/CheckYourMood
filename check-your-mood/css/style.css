@@ -286,13 +286,13 @@ body{
 .head-mood button{
     font-size: large;
     border: none;
-    background-color: rgba(226, 246, 255, 0.55);
+    background-color: #EDEDED;
     width: 50px;
     height: 50px;
     border-radius: 10px;
 }
 
 .head-mood button:hover{
-    background-color: rgba(226, 246, 255, 1);
+    background-color: grey;
     cursor: pointer;
 }
