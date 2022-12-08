@@ -27,21 +27,17 @@ class MoodService
         return $searchStmt;
     }
 
-    public function insertMood($pdo, $codeL, $contexte, $util){
+    public function insertMood($pdo, $code, $date, $heure, $contexte, $util){
 
         try{
-
-            date_default_timezone_set('Europe/Paris');
-            $date = date('y-m-d');
-            $heure = date('h:i:s');
 
             $sql = "INSERT INTO humeur(libelle,dateHumeur,heure,idUtil,contexte) VALUES(:libelle,:dateA,:heure,:id,:contexte)";
             $searchStmt = $pdo->prepare($sql);
             $searchStmt->bindParam('id', $util);
-            $searchStmt->bindParam('libelle', $codeL);
-            $searchStmt->bindParam('contexte', $contexte);
+            $searchStmt->bindParam('libelle', $code);
             $searchStmt->bindParam('dateA', $date);
             $searchStmt->bindParam('heure', $heure);
+            $searchStmt->bindParam('contexte', $contexte);
             $searchStmt->execute();
 
             return "ok";

@@ -287,3 +287,14 @@ a{
 .column-button button:hover{
     background-color: lightgrey;
 }
+
+/* Masquez la forme Popup */
+.form-popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  transform: translate(-45%, 5%);
+  border: 2px solid #666;
+  z-index: 9;
+}

@@ -16,10 +16,12 @@ class MoodController {
 
     public function index($pdo) {
         $code = (int) HttpHelper::getParam('humeur');
+        $date = HttpHelper::getParam('dateHumeur');
+        $heure = HttpHelper::getParam('heure');
         $contexte = HttpHelper::getParam('contexte');
         $util = HttpHelper::getParam('codeUtil');
 
-        $insertion = $this->MoodService->insertMood($pdo,$code,$contexte,$util);
+        $insertion = $this->MoodService->insertMood($pdo, $code, $date, $heure, $contexte, $util);
 
         $humeurs = $this->MoodService->viewMoods($pdo,$util);
         $libelles = $this->MoodService->libelles($pdo);
