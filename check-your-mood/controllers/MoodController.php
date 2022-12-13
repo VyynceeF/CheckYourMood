@@ -12,7 +12,7 @@ class MoodController {
 
     private $MoodService;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->MoodService = MoodService::getDefaultMoodService();
     }
