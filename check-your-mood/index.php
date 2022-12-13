@@ -9,7 +9,7 @@ use yasmf\Router;
 
 $dataSource = new DataSource(
     $host = 'localhost',
-    $port = '8889', # to change with the port your mySql server listen to
+    $port = '3306', # to change with the port your mySql server listen to
     $db = 'checkyourmood', # to change with your db name
     $user = 'root', # to change with your db user name
     $pass = 'root', # to change with your db password

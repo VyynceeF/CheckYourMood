@@ -1,9 +1,12 @@
 <?php
 namespace controllers;
 
+
 use services\MoodService;
 use yasmf\HttpHelper;
 use yasmf\View;
+
+session_start();
 
 class MoodController {
 
@@ -16,17 +19,17 @@ class MoodController {
 
     public function index($pdo) {
         $code = (int) HttpHelper::getParam('humeur');
+        $date = date('y-m-d');
+        $heure = date('h:i:s');
         $contexte = HttpHelper::getParam('contexte');
-        $util = HttpHelper::getParam('codeUtil');
+        $util = $_SESSION['util'];
 
-        $insertion = $this->MoodService->insertMood($pdo,$code,$contexte,$util);
+        $insertion = $this->MoodService->insertMood($pdo, $code, $date, $heure, $contexte, $util);
 
         $humeurs = $this->MoodService->viewMoods($pdo,$util);
         $libelles = $this->MoodService->libelles($pdo);
 
         $view = new View("check-your-mood/views/humeurs");
-
-        $view->setVar('util', $util);
         $view->setVar('humeurs',$humeurs);
         $view->setVar('libelles',$libelles);
 

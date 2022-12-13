@@ -5,6 +5,8 @@ use services\InscriptionService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
+session_start();
+
 class InscriptionController {
 
     private $InscriptionService;

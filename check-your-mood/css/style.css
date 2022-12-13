@@ -7,7 +7,7 @@ font-family: 'Varela Round', sans-serif;
 */
 
 body{
-    background-color: rgba(226, 246, 255, 0.55);
+    background-color: white;
 }
 
 /*Images*/
@@ -23,6 +23,75 @@ body{
     height: 100vh;
     justify-content: center;
     align-items: center;
+	background-color: rgba(226, 246, 255, 0.55);
+}
+
+/*Cadre modification*/
+.container-main2{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.FirstFrame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.SecondFrame{
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2vw;
+}
+
+.NomPrenom {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+
+
+.SecondFrame input{
+    width: 11vw;
+    padding-left: 1vw;
+}
+
+
+
+.FirdFrame input{
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.TextModifier {
+    color: #008CC9;
+    font-family: 'Varela Round';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 58px;  
+}
+
+.container2{
+    border-radius: 40px;
+    height: 90vh;
+    width: 35vw;
+    background-color: rgba(226, 246, 255, 0.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3vw;
+    
 }
 
 .container{
@@ -33,6 +102,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
+    
 }
 
 .login{
@@ -181,8 +251,15 @@ body{
     background-color:rgba(226, 246, 255, 0.55);
     padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.head .LogoDuCompte{
+    height: 7vh;
+    width: 3vw;
+}
 .head img{
     width: 7vw;
 }

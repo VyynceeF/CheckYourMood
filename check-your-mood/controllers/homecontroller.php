@@ -6,6 +6,8 @@ use services\MoodService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
+session_start();
+
 class HomeController {
 
     private $HomeService;
@@ -25,12 +27,17 @@ class HomeController {
             $view = new View("check-your-mood/views/connexion");
             return $view;
         }
+			
+			// Stockage dans la session //
+		$_SESSION['id'] = $id;		// Stockage nom dans la session
+		$_SESSION['util'] = $utilOk;// Stockage prénom dans la session
+		$_SESSION['mdp'] = $mdp;
+		$_SESSION['numeroSession']=session_id();// Stockage numéro de session pour éviter les piratages.
 
         $humeurs = $this->MoodService->viewMoods($pdo,$utilOk);
         $libelles = $this->MoodService->libelles($pdo);
 
         $view = new View("check-your-mood/views/humeurs");
-        $view->setVar('util', $utilOk);
         $view->setVar('humeurs',$humeurs);
         $view->setVar('libelles',$libelles);
         return $view;

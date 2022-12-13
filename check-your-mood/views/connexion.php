@@ -1,3 +1,12 @@
+<?php
+	// Test si on est bien connecté (session existante et bon numéro de session
+	/*if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
+		// Renvoi vers la page de connexion
+  		header('Location: humeurs.php');
+  		exit();
+	}*/
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

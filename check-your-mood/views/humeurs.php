@@ -14,11 +14,11 @@ spl_autoload_extensions(".php");
 spl_autoload_register();
 
 use yasmf\HttpHelper;
-
 ?>
 
     <div class="head">
         <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
+        <a href="/check-your-mood?controller=Donnees&action=goToMood&namepage=modification&namepage=modification"><img src="/check-your-mood/images/compte.png" alt="Logo Du Compte" class="LogoDuCompte"></a><!--Relier le bouton à la nouvelle vue--> 
     </div>
 
     <div class="contain">
@@ -52,7 +52,6 @@ use yasmf\HttpHelper;
                 <form action = "index.php" method="post">
                     <tr>
                         <input type="hidden" name="controller" value="Mood">
-                        <input type="hidden" name="codeUtil" value="<?php echo $util; ?>">
                         <td colspan="4">
                             <select name="humeur">
                                 <?php 
