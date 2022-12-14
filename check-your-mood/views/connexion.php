@@ -45,7 +45,7 @@ use yasmf\HttpHelper;
                     <hr>
 
                     <div class="contain-bottom">    
-                        <p>Vous n'avez pas de compte ? <a href="/check-your-mood?action=goTo&namepage=inscription">Inscrivez-vous</a></p>    
+                        <p>Vous n'avez pas de compte ? <a class="lien" href="/check-your-mood?action=goTo&namepage=inscription">Inscrivez-vous</a></p>    
                     </div>
                     
                 </div>

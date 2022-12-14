@@ -47,7 +47,7 @@ use yasmf\HttpHelper;
                         <div class="contain-bottom inscription">
                             <button class="btn" type="submit">S'inscrire</button>
                             <p>OU</p>
-                            <a href="/check-your-mood?action=goTo&namepage=connexion">Connectez-vous</a>
+                            <a class="lien" href="/check-your-mood?action=goTo&namepage=connexion">Connectez-vous</a>
                         </div>
                     </form>
                     

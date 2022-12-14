@@ -31,7 +31,19 @@ use yasmf\HttpHelper;
     </div>
 
     <div class="contain">
-        <div class="menu-right"></div>
+        <div class="menu-right">
+			<!-- Navbar du haut -->
+			<div></div>
+			<!-- Navbar du bas -->
+			<div>
+				<!-- Formulaire de déconnexion -->
+                <form method="post" action="index.php">
+					<input type="hidden" name="controller" id="deconnexion">
+					<input type="hidden" name="deconnexion" id="deconnexion" value="1">
+					<input type="submit" value="Déconnexion">
+				</form>
+			</div>
+		</div>
         <div class="contain-mood">
 
             <div class="head-mood">
@@ -46,32 +58,32 @@ use yasmf\HttpHelper;
 				<!-- N'est affiché que lorsque  -->
 				<!-- l'utilisateur clique sur   -->
 				<!-- le +                       -->
-				<div class="form-popup" id="popupForm">
+				<div id="popupForm">
 				  <form action = "index.php" method="post">
 					<input type="hidden" name="controller" value="Mood">
-					<input type="hidden" name="codeUtil" value="<?php echo $util; ?>">
-					<h2>Veuillez vous rentrer votre humeur</h2>
-					<!-- Libellé de l'humeur -->
-					<label for="humeur">Libellé</label>
-					<select name="humeur">
-						<?php
-						while($row = $libelles->fetch()){
-							echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
-						}
-						?>
-					</select><br />
-					<!-- Date de l'humeur -->
-					<label for="dateHumeur">Date</label>
-					<input type="date" name="dateHumeur" required /><br />
-					<!-- Heure de l'humeur -->
-					<label for="heure">Heure</label>
-					<input type="time" name="heure" required /><br />
-					<!-- Contexte de l'humeur -->
-					<label for="contexte">Contexte</label>
-					<input type="text" name="contexte" placeholder="Contexte..."><br />
+					<input type="hidden" name="codeUtil" value="<?php echo $_SESSION['util']; ?>">
+					<p class="sansBordure">Création humeur</p>
+					<div class="ajoutHumeurForm">
+						<!-- Libellé de l'humeur -->
+						<select name="humeur">
+							<?php
+							while($row = $libelles->fetch()){
+								echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
+							}
+							?>
+						</select>
+						<!-- Date de l'humeur -->
+						<input type="date" name="dateHumeur" required />
+						<!-- Heure de l'humeur -->
+						<input type="time" name="heure" required />
+						<!-- Contexte de l'humeur -->
+						<input type="text" name="contexte" placeholder="Contexte...">
+					</div
 					<!-- Boutons d'ajout et d'annulation de l'humeur -->
-					<button type="submit" class="btn">Ajouter</button><br />
-					<button type="submit" class="btn cancel" onclick="closeForm()">Annuler</button><br />
+					<div class="btnNav">
+						<button type="submit" class="btn">Ajouter</button><br />
+						<button type="submit" class="lien" onclick="closeForm()">Annuler</button>
+					</div>
 				  </form>
 				</div>
             </div>
