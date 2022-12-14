@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 21 Novembre 2022 à 09:10
+-- Généré le :  Mar 13 Décembre 2022 à 13:17
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -67,25 +67,25 @@ INSERT INTO `libelle` (`codeLibelle`, `libelleHumeur`, `emoji`) VALUES
 (6, 'Anxiété', '😰'),
 (7, 'Émerveillement', '🥰'),
 (8, 'Malaise (embarrassement)', '😅'),
-(9, 'Ennui', 'TODO : insérer emoji'),
-(10, 'Calme (sérénité)', 'TODO : insérer emoji'),
-(11, 'Confusion', 'TODO : insérer emoji'),
-(12, 'Envie (craving)', 'TODO : insérer emoji'),
-(13, 'Dégoût', 'TODO : insérer emoji'),
-(14, 'Douleur empathique', 'TODO : insérer emoji'),
-(15, 'Intérêt étonné, intrigué', 'TODO : insérer emoji'),
+(9, 'Ennui', '🥱'),
+(10, 'Calme (sérénité)', '😎'),
+(11, 'Confusion', '🤨'),
+(12, 'Envie (craving)', '🤤'),
+(13, 'Dégoût', '🤮'),
+(14, 'Douleur empathique', '💔'),
+(15, 'Intérêt étonné, intrigué', '🤔'),
 (16, 'Excitation (montée d’adrénaline)', 'TODO : insérer emoji'),
-(17, 'Peur', 'TODO : insérer emoji'),
-(18, 'Horreur', 'TODO : insérer emoji'),
+(17, 'Peur', '😨'),
+(18, 'Horreur', '😱'),
 (19, 'Intérêt', 'TODO : insérer emoji'),
-(20, 'Joie', 'TODO : insérer emoji'),
-(21, 'Nostalgie', 'TODO : insérer emoji'),
-(22, 'Soulagement', 'TODO : insérer emoji'),
-(23, 'Romance', 'TODO : insérer emoji'),
-(24, 'Tristesse', 'TODO : insérer emoji'),
-(25, 'Satisfaction', 'TODO : insérer emoji'),
-(26, 'Désir sexuel', 'TODO : insérer emoji'),
-(27, 'Surprise', 'TODO : insérer emoji');
+(20, 'Joie', '😀'),
+(21, 'Nostalgie', '💭'),
+(22, 'Soulagement', '😌'),
+(23, 'Romance', '👩‍❤️‍💋‍👨'),
+(24, 'Tristesse', '🥺'),
+(25, 'Satisfaction', '😊'),
+(26, 'Désir sexuel', '😏'),
+(27, 'Surprise', '😮');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `utilisateur` (
   `codeUtil` int(11) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `nom` varchar(30) NOT NULL,
-  `identifiant` varchar(30) NOT NULL,
+  `identifiant` varchar(30) NOT NULL UNIQUE,
   `mail` varchar(30) NOT NULL,
   `motDePasse` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
