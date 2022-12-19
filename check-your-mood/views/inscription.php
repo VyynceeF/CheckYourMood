@@ -26,7 +26,7 @@ use yasmf\HttpHelper;
                     <p class="login-text">Inscription</p>
 
                     <form action="index.php" method="post">
-                        <input type="hidden" name="controller" value="Inscription">
+                        <input type="hidden" name="controller" value="inscription">
                         <input type="hidden" name="action" value="signin">
 
                         <div class="contain-double-data">
@@ -47,7 +47,7 @@ use yasmf\HttpHelper;
                         <div class="contain-bottom inscription">
                             <button class="btn" type="submit">S'inscrire</button>
                             <p>OU</p>
-                            <a class="lien" href="/check-your-mood?action=goTo&namepage=connexion">Connectez-vous</a>
+                            <a href="/check-your-mood?action=goTo&namepage=connexion">Connectez-vous</a>
                         </div>
                     </form>
                     

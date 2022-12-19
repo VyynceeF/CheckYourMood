@@ -21,17 +21,10 @@ namespace yasmf;
 
 use controllers;
 
-session_start();
-
 class Router
 {
     public function route($dataSource = null)
     {
-		if (!isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
-			// Renvoi vers la page de connexion
-			header('Location: index.php');
-			exit();
-		}	
         // set the controller to enrole
         $controllerName = HttpHelper::getParam('controller') ?: 'Home';
         $controllerQualifiedName = "controllers\\" . $controllerName . "Controller";

@@ -49,7 +49,6 @@ class DataSource
             PDO::ATTR_EMULATE_PREPARES => false,
             PDO::ATTR_PERSISTENT => true
         ];
-
         $pdo = new PDO($dsn, $this->user, $this->pass, $options);
         return $pdo;
     }

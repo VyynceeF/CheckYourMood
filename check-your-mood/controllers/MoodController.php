@@ -19,7 +19,8 @@ class MoodController {
 
     public function index($pdo) {
         $code = (int) HttpHelper::getParam('humeur');
-        $date = date('y-m-d');
+        $date  = HttpHelper::getParam('dateHumeur');
+        $date = date('y-m-d',strtotime($date));
         $heure = date('h:i:s');
         $contexte = HttpHelper::getParam('contexte');
         $util = $_SESSION['util'];

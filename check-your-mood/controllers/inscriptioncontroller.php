@@ -9,22 +9,24 @@ session_start();
 
 class InscriptionController {
 
-    private $InscriptionService;
+    private $inscriptionService;
 
     public function __construct()
     {
-        $this->InscriptionService = InscriptionService::getDefaultInscriptionService();
+        $this->inscriptionService = InscriptionService::getDefaultInscriptionService();
     }
 
     public function signin($pdo) {
 
         $id = htmlspecialchars(HttpHelper::getParam('identifiant')) != "" ? htmlspecialchars(HttpHelper::getParam('identifiant')) : null;
         $mdp = htmlspecialchars(HttpHelper::getParam('motdepasse')) != "" ? htmlspecialchars(HttpHelper::getParam('motdepasse')) : null;
+        $mdp = md5($mdp);
         $mail = htmlspecialchars(HttpHelper::getParam('mail')) != "" ? htmlspecialchars(HttpHelper::getParam('mail')) : null;
         $nom = htmlspecialchars(HttpHelper::getParam('nom')) != "" ? htmlspecialchars(HttpHelper::getParam('nom')) : null;
         $prenom = htmlspecialchars(HttpHelper::getParam('prenom')) != "" ? htmlspecialchars(HttpHelper::getParam('prenom')) : null;
+        
 
-        $insertOk = $this->InscriptionService->inscription($pdo,$id,$mdp,$mail,$nom,$prenom);
+        $insertOk = $this->inscriptionService->inscription($pdo,$id,$mdp,$mail,$nom,$prenom);
 
         if($insertOk == "nOk"){
             $view = new View("check-your-mood/views/inscription");

@@ -6,7 +6,7 @@ use services\MoodService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
-// session_start();
+session_start();
 
 class HomeController {
 
