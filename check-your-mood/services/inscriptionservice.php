@@ -11,15 +11,23 @@ class InscriptionService
      * @param $pdo \PDO the pdo object
      * @return \PDOStatement the statement referencing the result set
      */
-    public function Inscription($pdo, $idUtil, $mdpUtil)
+    public function inscription($pdo, $id, $mdp, $mail, $nom, $prenom)
     {
-        $sql = "SELECT codeUtil FROM utilisateur WHERE identifiant = :idUtil AND motDePasse = :mdpUtil" ;
-        $searchStmt = $pdo->prepare($sql);
-        $searchStmt->bindParam('idUtil', $idUtil);
-        $searchStmt->bindParam('mdpUtil', $mdpUtil);
-        $searchStmt->execute();
-        
-        return $searchStmt;
+        try{
+
+            $searchStmt = $pdo->prepare("INSERT INTO utilisateur(prenom,nom,identifiant,mail,motdePasse) VALUES(:prenom,:nom,:id,:mail,:mdp)" );
+            $searchStmt->bindParam('id', $id);
+            $searchStmt->bindParam('mdp', $mdp);
+            $searchStmt->bindParam('mail', $mail);
+            $searchStmt->bindParam('nom', $nom);
+            $searchStmt->bindParam('prenom', $prenom);
+            $searchStmt->execute();
+
+            return "ok";
+
+        }catch(PDOException $e){
+            return "nOk";
+        }
     }
 
 

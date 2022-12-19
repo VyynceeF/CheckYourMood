@@ -1,3 +1,12 @@
+<?php
+	// Test si on est bien connecté (session existante et bon numéro de session
+	/*if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
+		// Renvoi vers la page de connexion
+  		header('Location: humeurs.php');
+  		exit();
+	}*/
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,6 +24,7 @@ use yasmf\HttpHelper;
 
 ?>
     <body>
+        <script src="script\script.js"></script>
         <div class="container-main">
             <div class="container">
                 <!---Cadre de connexion-->
@@ -22,19 +32,21 @@ use yasmf\HttpHelper;
 
                     <p class="login-text">Connexion</p>
 
-                    <form method="post">
+                    <form action="index.php" method="post">
                         <input type="hidden" name="action" value="login">
-                        <input class="user" type="text" name="identifiant" placeholder="Identifiant">
+                        <input class="user" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
                         <div class="contain-mdp">
-                            <input class="locker" type="text" name="motdepasse" placeholder="Mot de passe">
-                            <div class="contain-revele"><input type="checkbox" name="revele"><label>Révéler mot de passe</label></div>
+                            <input class="locker" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput"><br>
+                            <div class="contain-revele"><input type="checkbox" name="revele" onclick="myFunction()"><label><h3>Révéler mot de passe</h3></label></div>
                         </div>
-                        <div class="contain-btn"><input class="btn" type="submit" value="Se connecter"></div>
+                        <div class="btn-connect"><button class="btn" type="submit">Se connecter</button></div>
                     </form>
 
-                    <div class="contain-bottom">
-                        <hr>                
-                        <p>Vous n'avez pas de compte ?</p><form method = "post"><input type = "hidden" name = "action" value="changeView"><input type="hidden" name="namepage" value="inscription"><input type="submit" value = "Inscrivez-vous"></form>
+                    <br>
+                    <hr>
+
+                    <div class="contain-bottom">    
+                        <p>Vous n'avez pas de compte ? <a href="/check-your-mood?action=goTo&namepage=inscription">Inscrivez-vous</a></p>    
                     </div>
                     
                 </div>

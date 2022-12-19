@@ -13,6 +13,7 @@ class HomeService
      */
     public function connexion($pdo, $idUtil, $mdpUtil)
     {
+        $mdpUtil = md5($mdpUtil);
         $sql = "SELECT codeUtil FROM utilisateur WHERE identifiant = :idUtil AND motDePasse = :mdpUtil" ;
         $searchStmt = $pdo->prepare($sql);
         $searchStmt->bindParam('idUtil', $idUtil);
