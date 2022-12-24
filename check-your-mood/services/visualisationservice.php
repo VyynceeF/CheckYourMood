@@ -45,9 +45,37 @@ class VisualisationService
     
     }
 
+
+    public function visualisationHumeurAnnee($pdo, $idUtil, $annee, $libelle){
+        $tableauAnnee=array();
+        $tabMois = array( 1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril', 5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Août', 9 => 'Septembre', 10 => 'Octobre', 11 => 'Novembre', 12 => 'Décembre');
+        for($mois = 1 ; $mois <= 12; $mois ++){
+            $sql="SELECT count(libelle) as nbrHumeurs from humeur where libelle = :libelle and humeur.idUtil = :id and YEAR(dateHumeur) = :annee and month(dateHumeur) = :mois";
+            $searchStmt = $pdo->prepare($sql);
+            $searchStmt->bindParam('id', $idUtil);
+            $searchStmt->bindParam('libelle', $libelle);
+            $searchStmt->bindParam('annee', $annee);
+            $searchStmt->bindParam('mois', $mois);
+            $searchStmt->execute();
+            while($row = $searchStmt->fetch()){
+                $resultat = $row['nbrHumeurs'];
+            }
+            array_push($tableauAnnee,array("label"=> $tabMois[$mois], "y"=> $resultat));
+        }
+        return $tableauAnnee;
+    }
+
     
     public function getCurrentWeek($pdo){
         $sql="Select week(curdate()) as week";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->execute();
+        return $searchStmt;
+    }
+
+
+    public function getCurrentYear($pdo){
+        $sql="Select Year(curdate()) as year";
         $searchStmt = $pdo->prepare($sql);
         $searchStmt->execute();
         return $searchStmt;

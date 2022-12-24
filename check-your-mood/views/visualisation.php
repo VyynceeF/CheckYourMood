@@ -6,6 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Your Mood - Humeurs</title>
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
+
+    <?php
+    var_dump($anneeComparaison);
+    var_dump($anneeActuelle);
+    ?>
+    <script>
+        window.onload = function () {
+    
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            title:{
+                text: "Diagramme de comparaison par année"
+            },
+            axisY:{
+                includeZero: true
+            },
+            legend:{
+                cursor: "pointer",
+                verticalAlign: "center",
+                horizontalAlign: "right",
+                itemclick: toggleDataSeries
+            },
+            data: [{
+                type: "column",
+                name: <?php echo '"'.$anneeComparaison.'"';?>,
+                indexLabel: "{y}",
+                showInLegend: true,
+                dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+            },{
+                type: "column",
+                name: <?php echo '"'.$anneeActuelle.'"';?>,
+                indexLabel: "{y}",
+                showInLegend: true,
+                dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
+        
+        function toggleDataSeries(e){
+            if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            }
+            else{
+                e.dataSeries.visible = true;
+            }
+            chart.render();
+            }   
+        }
+    </script>
+
+
 </head>
 <body>
 	<script>
@@ -36,6 +88,7 @@ use yasmf\HttpHelper;
                 <input type="hidden" name="controller" value="donnees">
                 <input type="hidden" name="action" value="goToMood">
                 <input type="hidden" name="namepage" value="visualisation">
+                <input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
                 <!-- Formulaire pour le graphe radar-->
                 <select id="humeur" name="humeur"> 
                 <?php
@@ -90,7 +143,6 @@ use yasmf\HttpHelper;
                 <form action="index.php" method="post">
                     <input type="hidden" name="humeur" value="<?php echo $humeurRadar; ?>">
                     <input type="hidden" name="week" value="<?php echo $semaineRadar; ?>">
-                    
                     <input type="hidden" name="controller" value="donnees">
                     <input type="hidden" name="action" value="goToMood">
                     <input type="hidden" name="namepage" value="visualisation">
@@ -100,12 +152,14 @@ use yasmf\HttpHelper;
                         for($i = 1; $i <= $currentWeek; $i++){
                             if(isset($_POST['weekTableau'])){
                                 if($_POST['weekTableau'] == $i){
+                                    $weekTableau = $_POST['weekTableau'];
                                     echo "<option value = '".$_POST['weekTableau']."' selected >Semaine ".$_POST['weekTableau']."</option>";
                                 } else {
                                     echo "<option value = '".$i."' >Semaine ".$i."</option>";
                                 }
                             } else {
                                 if($i == $currentWeek){
+                                    $weekTableau = $i;
                                     echo "<option value = '".$i."' selected >Semaine ".$i."</option>";
                                 } else {
                                     echo "<option value = '".$i."' >Semaine ".$i."</option>";
@@ -177,8 +231,48 @@ use yasmf\HttpHelper;
         echo "var dataHumeur = '".implode(",", $visualisationRadar)."'.split(',');"; 
         echo 'console.table(dataHumeur);';
         echo '</script>';
-    ?>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="script/script.js"></script>
-</body>
+        ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script/script.js"></script>
+
+    <span>Choisissez l'annee à comparer</span>
+    <form action="index.php" method="post">
+        <input type="hidden" name="humeur" value="<?php echo $humeurRadar; ?>">
+        <input type="hidden" name="week" value="<?php echo $semaineRadar; ?>">
+        <input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
+        <input type="hidden" name="controller" value="donnees">
+        <input type="hidden" name="action" value="goToMood">
+        <input type="hidden" name="namepage" value="visualisation">
+        <select name="anneeAComparer" >
+            <?php
+            for($nbr = 2021; $nbr <= $anneeActuelle; $nbr ++){
+                if(isset($_POST['anneeAComparer'])){
+                    if($_POST['anneeAComparer'] == $nbr){
+                        ?>
+                        <option value="<?php echo $_POST['anneeAComparer'];?>" selected><?php echo $_POST['anneeAComparer'];?></option>
+                        <?php
+                    } else {
+                        ?>
+                        <option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
+                        <?php
+                    }
+                } else {
+                    if($anneeActuelle == $nbr){
+                        ?>
+                        <option value="<?php echo $anneeActuelle;?>" selected><?php echo $anneeActuelle ;?></option>
+                        <?php
+                    } else {
+                        ?>
+                        <option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
+                        <?php
+                    }
+                }
+            }
+            ?>
+        </select>
+        <button type="submit">OK</button>
+    </form>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>  
+    </body>
 </html>

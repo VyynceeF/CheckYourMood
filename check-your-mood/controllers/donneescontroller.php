@@ -37,6 +37,17 @@ class DonneesController {
         $weekTableau = (int) htmlspecialchars(HttpHelper::getParam('weekTableau')) ?: $currentWeek;
         $idUtil = $_SESSION['util'];
         $code = (int) HttpHelper::getParam('humeur') ?: 1;
+
+        $requeteAnneeActuelle = $this->visualisationService->getCurrentYear($pdo);
+        while($row = $requeteAnneeActuelle->fetch()){
+            $anneeActuelle = $row['year'];
+        }
+        $anneeComparaison = (int) htmlspecialchars(HttpHelper::getParam('anneeAComparer')) ?: $anneeActuelle;
+
+        $tabAnneeActuelle = $this->visualisationService->visualisationHumeurAnnee($pdo, $idUtil, $anneeActuelle,$code);
+        $tabAnneeComparaison = $this->visualisationService->visualisationHumeurAnnee($pdo, $idUtil, $anneeComparaison,$code);
+
+
         
         $humeursRadar = $this->MoodService->viewMoods($pdo,$_SESSION['util']);
         $libellesRadar = $this->MoodService->libelles($pdo);
@@ -54,6 +65,13 @@ class DonneesController {
         $view->setVar('visualisationRadar',$visualisationRadar);
         $view->setVar('visualisationTableau',$visualisationTableau);
         $view->setVar('humeursLaPlusFrequente',$humeursLaPlusFrequente);
+        $view->setVar('dataPoints2',$tabAnneeComparaison);
+        $view->setVar('dataPoints1',$tabAnneeActuelle);
+        $view->setVar('anneeActuelle',$anneeActuelle);
+        $view->setVar('anneeComparaison',$anneeComparaison);
+        $view->setVar('weekTableau',$weekTableau);
+        
+        
         return $view;
     }
 
