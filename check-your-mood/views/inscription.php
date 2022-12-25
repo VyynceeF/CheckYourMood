@@ -18,8 +18,8 @@ use yasmf\HttpHelper;
 ?>
 
     <body>
-        <div class="container-main">
-            <div class="container">
+        <div class="conteneur-main">
+            <div class="conteneur">
                 <!---Cadre de connexion-->
                 <div class="login inscription">
 

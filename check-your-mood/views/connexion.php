@@ -25,8 +25,8 @@ use yasmf\HttpHelper;
 ?>
     <body>
         <script src="script\script.js"></script>
-        <div class="container-main">
-            <div class="container">
+        <div class="conteneur-main">
+            <div class="conteneur">
                 <!---Cadre de connexion-->
                 <div class="login">
 

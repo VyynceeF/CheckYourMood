@@ -17,7 +17,7 @@ body{
 }
 
 /*Cadre connexion*/
-.container-main{
+.conteneur-main{
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -25,7 +25,7 @@ body{
     align-items: center;
 }
 
-.container{
+.conteneur{
     border-radius: 40px;
     height: 68vh;
     width: 62vw;
@@ -331,4 +331,26 @@ a{
 
 .btnNav {
 	display: flex;
+}
+
+
+.row,  [class^="col-"]{
+	border-style:solid ; 	/* Bordure double */
+	border-width:3px;		/* Epaisseur bordure */
+	border-color:#0099ff;	/* Couleur de la bordure */
+	border-radius: 5px;		/* Arrondissement des angles */
+	/*margin :5px;*/
+	padding:5px;
+	text-align:center;  /* Centrage du texte */
+}
+
+.contain1 {
+    background-color: rgb(255, 175, 175);
+}
+
+.head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
 }

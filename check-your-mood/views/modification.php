@@ -23,8 +23,8 @@ use yasmf\HttpHelper;
             <a href="/check-your-mood?controller=Donnees&action=goToMood&namepage=humeurs&namepage=humeurs"><img src="/check-your-mood/images/Home.png" alt="Logo Du Compte" class="LogoDuCompte"></a>
         </div>
 
-        <div class="container-main2">
-            <div class="container2">
+        <div class="conteneur-main2">
+            <div class="conteneur2">
                 <div class="FirstFrame">
                     <img src="/check-your-mood/images/pencil.png" alt="Logo Pencil"><br>
                     <span class="TextModifier">Modifier</span>
