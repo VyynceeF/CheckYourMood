@@ -23,7 +23,9 @@ class DonneesController {
     }
 
     public function goToMood($pdo){
-        
+
+        $anneeAComparer = (int) HttpHelper::getParam('anneeChoisi') ?: 2023; 
+        $typeDeRpresentation = (int) HttpHelper::getParam('typeDeRpresentation') ?: 1;
         $namepage = htmlspecialchars(HttpHelper::getParam('namepage'));
         $requeteCurrentWeek = $this->visualisationService->getCurrentWeek($pdo);
         while($row = $requeteCurrentWeek->fetch()){
@@ -31,12 +33,13 @@ class DonneesController {
         }
         $week = (int) htmlspecialchars(HttpHelper::getParam('week')) ?: $currentWeek;
 
+
         while($row = $requeteCurrentWeek->fetch()){
             $currentWeek = $row['weekTableau'];
         }
         $weekTableau = (int) htmlspecialchars(HttpHelper::getParam('weekTableau')) ?: $currentWeek;
         $idUtil = $_SESSION['util'];
-        $code = (int) HttpHelper::getParam('humeur') ?: 1;
+        $code = (int) HttpHelper::getParam('humeur') ?: 1;  
 
         $requeteAnneeActuelle = $this->visualisationService->getCurrentYear($pdo);
         while($row = $requeteAnneeActuelle->fetch()){
@@ -44,7 +47,7 @@ class DonneesController {
         }
         $anneeComparaison = (int) htmlspecialchars(HttpHelper::getParam('anneeAComparer')) ?: $anneeActuelle;
 
-        $tabAnneeActuelle = $this->visualisationService->visualisationHumeurAnnee($pdo, $idUtil, $anneeActuelle,$code);
+        $tabAnneeActuelle = $this->visualisationService->visualisationHumeurAnnee($pdo, $idUtil, $anneeAComparer,$code);
         $tabAnneeComparaison = $this->visualisationService->visualisationHumeurAnnee($pdo, $idUtil, $anneeComparaison,$code);
 
 
@@ -52,8 +55,8 @@ class DonneesController {
         $humeursRadar = $this->MoodService->viewMoods($pdo,$_SESSION['util']);
         $libellesRadar = $this->MoodService->libelles($pdo);
         $libellesTableau = $this->MoodService->libelles($pdo);
-        $visualisationRadar = $this->visualisationService->visualisationRadar($pdo, $idUtil, $code, $week);
-        $visualisationTableau = $this->visualisationService->visualisationTableau($pdo, $idUtil, $weekTableau);
+        $visualisationRadar = $this->visualisationService->visualisationRadar($pdo, $idUtil, $code, $week, $anneeAComparer);
+        $visualisationTableau = $this->visualisationService->visualisationTableau($pdo, $idUtil, $weekTableau, $anneeAComparer);
         $humeursLaPlusFrequente = $this->visualisationService->visualisationHumeurSemaine($pdo, $idUtil, $weekTableau);
 
 
@@ -69,7 +72,12 @@ class DonneesController {
         $view->setVar('dataPoints1',$tabAnneeActuelle);
         $view->setVar('anneeActuelle',$anneeActuelle);
         $view->setVar('anneeComparaison',$anneeComparaison);
+        $view->setVar('anneeChoisi',$anneeAComparer);
         $view->setVar('weekTableau',$weekTableau);
+        $view->setVar('anneeAComparerGraph',$anneeComparaison);
+        $view->setVar('typeDeRpresentation',$typeDeRpresentation);
+        $view->setVar('week',$week);
+
         
         
         return $view;

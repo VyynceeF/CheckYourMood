@@ -35,6 +35,11 @@ body{
     align-items: center;
 }
 
+.sansCadre{
+	border-width:0px;
+}
+
+
 .login{
     width: 55%;
     height: 100%;
@@ -334,7 +339,7 @@ a{
 }
 
 
-.row,  [class^="col-"]{
+[class^="col-"]{
 	border-style:solid ; 	/* Bordure double */
 	border-width:3px;		/* Epaisseur bordure */
 	border-color:#0099ff;	/* Couleur de la bordure */
