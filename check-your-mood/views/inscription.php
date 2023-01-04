@@ -1,4 +1,3 @@
-<?php ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,6 +23,10 @@ use yasmf\HttpHelper;
                 <div class="login inscription">
 
                     <p class="login-text">Inscription</p>
+
+                    <?php if(!$errData){?>
+                        <p class = "err">Une ou plusieurs données incorrectes</p>
+                    <?php } ?>
 
                     <form action="index.php" method="post">
                         <input type="hidden" name="controller" value="inscription">

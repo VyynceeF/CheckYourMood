@@ -7,7 +7,6 @@ use yasmf\HttpHelper;
 use yasmf\View;
 use services\VisualisationService;
 
-session_start();
 
 class DonneesController {
 
@@ -22,6 +21,7 @@ class DonneesController {
         $this->visualisationService = VisualisationService::getDefaultVisualisationService();
     }
 
+    //TODO : Etablir l'utilité -> Potentiellement separer en plusieur fonction et resitué dans le bon controller
     public function goToMood($pdo){
         
         $namepage = htmlspecialchars(HttpHelper::getParam('namepage'));
@@ -75,21 +75,38 @@ class DonneesController {
         return $view;
     }
 
+
+    //TODO : Modification des données personnelles
     public function updateData($pdo){
-        $tab['id'] = htmlspecialchars(HttpHelper::getParam('identifiant'));
+        $tab['identifiant'] = htmlspecialchars(HttpHelper::getParam('identifiant'));
         $tab['nom'] = htmlspecialchars(HttpHelper::getParam('nom'));
         $tab['prenom'] = htmlspecialchars(HttpHelper::getParam('prenom'));
-        $tab['motDePasse'] = htmlspecialchars(HttpHelper::getParam('motdepasse'));
+        $mdp = htmlspecialchars(HttpHelper::getParam('motdepasse'));
+        $tab['motDePasse'] = md5($mdp);
         $tab['mail'] = htmlspecialchars(HttpHelper::getParam('mail'));
         $util = $_SESSION['util'];
 
-        $donnees = $this->DonneesService->updateData($pdo,$tab,$util);
-		
-		if($donnees == "ok"){
-			echo "cest good";
-		}
+        $updateNo = true;
+
+        foreach($tab as $key => $value){
+            if($value == ""){
+                $updateNo = false;
+            }
+        }
+
+        if($updateNo){$donnees = $this->DonneesService->updateData($pdo,$tab,$util);}else{$donnees = "nOk";}
 		
 		$view = new View("check-your-mood/views/modification");
+        if($donnees == "nOk"){
+			$view->setVar('updateOk',1); 
+		}else{
+           $view->setVar('updateOk',2);
+           $_SESSION['id'] = $tab['identifiant'];
+           $_SESSION['mdp'] = $mdp;
+           $_SESSION['nom'] = $tab['nom'];
+           $_SESSION['prenom'] = $tab['prenom'];
+           $_SESSION['mail'] = $tab['mail'];
+        }
 		return $view;
     }
 

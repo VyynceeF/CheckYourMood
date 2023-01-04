@@ -1,3 +1,11 @@
+<?php
+    // Test si on est bien connecté (session existante et bon numéro de session)
+	if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
+		// Renvoi vers la page de connexion
+  		header("Location: /check-your-mood/index.php");
+        exit();
+	}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -61,14 +69,6 @@
 
 </head>
 <body>
-	<script>
-	function openForm() {
-		document.getElementById("popupForm").style.display = "block";
-	}
-	function closeForm() {
-		document.getElementById("popupForm").style.display = "none";
-	}
-	</script>
 
 <?php
 spl_autoload_extensions(".php");

@@ -1,12 +1,3 @@
-<?php
-	// Test si on est bien connecté (session existante et bon numéro de session
-	/*if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
-		// Renvoi vers la page de connexion
-  		header('Location: humeurs.php');
-  		exit();
-	}*/
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,6 +23,10 @@ use yasmf\HttpHelper;
 
                     <p class="login-text">Connexion</p>
 
+                    <?php if(!$errData){?>
+                        <p class = "err">Mot de passe ou identifiant incorrecte</p>
+                    <?php } ?>
+
                     <form action="index.php" method="post">
                         <input type="hidden" name="action" value="login">
                         <input class="user" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
@@ -50,6 +45,7 @@ use yasmf\HttpHelper;
                     </div>
                     
                 </div>
+
 
                 <div class="login right">
                     <img class="logo" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">

@@ -71,7 +71,7 @@ body{
 .login .login-text{
     font-family: 'Varela Round', sans-serif;
     font-size: 2.5vw;
-    margin-bottom: 5vw;
+    margin-bottom: 3vh;
     color: #008CC9;
 }
 
@@ -84,14 +84,6 @@ body{
     width: 100%;
     display: flex;
     flex-direction: column;
-}
-
-.contain1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    gap: 20px;
 }
 
 
@@ -124,6 +116,7 @@ input{
     width: 17vh;
     padding: 2vh;
     font-size: 2vh;
+    cursor: pointer;
 }
 
 .btn:hover{
@@ -207,11 +200,6 @@ body{
     background-color: white;
 }
 
-.menu-right{
-    border-right: 1px solid rgba(0, 0, 0, 0.18);
-    width: 10%;
-    height: 100%;
-}
 .menu-left{
     display: flex;
     flex-direction: column;
@@ -313,15 +301,43 @@ a{
 	position: fixed;
 	left: 50%;
 	top: 30%;
+    width: 70%;
 	transform: translate(-45%, 5%);
-	border: 2px solid #666;
+	border: 1px solid lightgray;
 	z-index: 9;
-	padding: 20px;
+	padding: 15px;
+
+    color: #008CC9;
+    font-family: 'Varela Round', sans-serif;
 }
 
-.ajoutHumeurForm.input {
+#popupForm hr{
+    background-color: rgba(0, 0, 0, 0.18);
+    width: 100%;
+}
+
+.ajoutHumeurForm{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.ajoutHumeurForm input {
 	text-align:center;
-	padding: 2px;
+	padding: 0px;
+    border-radius: 0px;
+    border: 1px solide black;
+    outline-color: #008CC9;
+}
+
+.time-input{
+    width: 7vw;
+}
+
+.ajoutHumeurForm select{
+    border-radius: 0px;
+    border: 1px solide black;
+    outline-color: #008CC9;
 }
 
 .sansBordure {
@@ -329,8 +345,45 @@ a{
 	margin: 0;
 }
 
+.annuler{
+    background-color: white;
+    color: red;
+    border: red solid 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.annuler:hover{
+    background-color: red;
+    color: white;
+    border: white solid 1px;
+}
+
+.btn-ajout{
+    background-color: #008CC9;
+    color: white;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-ajout:hover{
+    background-color: white;
+    border: #008CC9 1px solid;
+    color: #008CC9;
+}
+
 .btnNav {
 	display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 
@@ -344,13 +397,108 @@ a{
 	text-align:center;  /* Centrage du texte */
 }
 
-.contain1 {
-    background-color: rgb(255, 175, 175);
-}
-
 .head {
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
     align-items: center;
+}
+
+/*Message erreur connexion*/
+
+.err{
+    font-family: 'Hind Siliguri', sans-serif;
+    color: red;
+}
+
+.ok{
+    font-family: 'Hind Siliguri', sans-serif;
+    color: lightgreen;
+}
+
+/*Style Menu*/
+.menu{
+    border-right: 1px solid rgba(0, 0, 0, 0.18);
+    width: 10%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+}
+
+.menu div{
+    background-color: #ECF0F1;
+    padding: 5px;
+    text-align: center;
+}
+
+.menu div a{
+    color: black;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+
+.menu div:hover{
+    background-color: white;
+}
+
+/*Bouton de déconnexion*/
+
+.btn-deco{
+    padding: 10px;
+    background-color: #ECF0F1;
+    border: solid black 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/*Modification.php*/
+.contain-modif{
+    padding-top: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content:first baseline;
+    gap: 20px;
+
+    font-family: 'Varela Round', sans-serif;
+    color: #008CC9 ;
+}
+
+.FirstFrame{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SecondFrame{
+    text-align: center;
+}
+
+.SecondFrame form{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.NomPrenom input {
+    padding: 0px;
+    padding-left: 5%;
+    width: 43.5%;
+}
+
+.FirdFrame{
+    display: flex;
+    flex-direction: column;
+}
+
+.FirdFrame input{
+    padding: 0px;
+    padding-left: 5%;
+    width: 95%;
 }
