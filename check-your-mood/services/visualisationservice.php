@@ -25,6 +25,23 @@ class VisualisationService
         return $tabJour;
     
     }
+	
+	public function visualisationDoughnut($pdo, $idUtil, $date){
+        $sql="SELECT COUNT(*) as nombreHumeur, libelleHumeur as libelle FROM humeur JOIN libelle ON humeur.libelle = libelle.codeLibelle WHERE idUtil = :id and dateHumeur = :date GROUP BY libelleHumeur";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->bindParam('id', $idUtil);
+        $searchStmt->bindParam('date', $date);
+        $searchStmt->execute();
+
+        if ($searchStmt ->rowCount() == 0) {
+            $tableauDoughnut[] = null; 
+        }  
+        while($countLibelle = $searchStmt->fetch()){
+            $tableauDoughnut[$countLibelle['libelle']] = $countLibelle['nombreHumeur'];
+        }
+        return $tableauDoughnut;
+    
+    }
 
     public function visualisationTableau($pdo, $idUtil, $week, $anneeAComparer){
         $sql="SELECT DAYOFWEEK(humeur.dateHumeur) as jourDeLaSemaine, libelle.libelleHumeur as libelle, libelle.emoji as emoji, humeur.dateHumeur as date, humeur.heure as heure, humeur.contexte as contexte from humeur join libelle on humeur.libelle = libelle.codeLibelle where humeur.idUtil = :id and WEEK(humeur.dateHumeur) = :date and YEAR( dateHumeur ) = :year order by humeur.dateHumeur";
@@ -66,6 +83,13 @@ class VisualisationService
         }
         return $tableauAnnee;
     }
+	
+	public function getCurrentDay($pdo){
+		$sql="Select curdate() as day ";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->execute();
+        return $searchStmt;
+	}
 
     
     public function getCurrentWeek($pdo){
