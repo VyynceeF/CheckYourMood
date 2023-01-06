@@ -257,10 +257,6 @@ hr{
     background-color: red;
 }
 
-.sansCadre{
-    border-width:0px;
-    width: 100%;
-}
 /*Position icon input*/
 
 .user{
@@ -452,6 +448,18 @@ a{
     width: 100%;
 }
 
+.popupHumeur {
+	background: white;
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 30%;
+    width: 20vw;
+	transform: translate(-45%, 5%);
+	z-index: 9;
+
+}
+
 .ajoutHumeurForm{
     display: flex;
     flex-direction: row;
@@ -520,17 +528,6 @@ a{
     justify-content: end;
     gap: 10px;
     margin-top: 10px;
-}
-
-
-[class^="col-"]{
-	border-style:solid ; 	/* Bordure double */
-	border-width:3px;		/* Epaisseur bordure */
-	border-color:#0099ff;	/* Couleur de la bordure */
-	border-radius: 5px;		/* Arrondissement des angles */
-	/*margin :5px;*/
-	padding:5px;
-	text-align:center;  /* Centrage du texte */
 }
 
 .head {
@@ -637,4 +634,46 @@ a{
     padding: 0px;
     padding-left: 5%;
     width: 95%;
+}
+
+/* Visualisation humeur (petit cadre) */
+
+.containCadre {
+	
+	padding: 2vh;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: auto;
+    border: 1px solid black;
+	border-radius: 10px;
+	margin-top: 2vw;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.containPopup {
+	
+	padding: 2vh;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: auto;
+    border: 1px solid black;
+	border-radius: 10px;
+}
+
+.containCadre span {
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 18px;
+	color:darkblue;
+}
+
+.containCadre:hover {
+	transform: scale(1.05);
 }

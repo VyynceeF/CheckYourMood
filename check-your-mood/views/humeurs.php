@@ -20,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Your Mood - Humeurs</title>
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 </head>
 <body>
 
@@ -29,6 +30,13 @@
 	}
 	function closeForm() {
 		document.getElementById("popupForm").style.display = "none";
+	}
+	
+	function openPopupHumeur(id) {
+		document.getElementById("popupHumeur" + id).style.display = "block";
+	}
+	function closePopupHumeur(id) {
+		document.getElementById("popupHumeur" + id).style.display = "none";
 	}
 	</script>
 
@@ -69,73 +77,90 @@ use yasmf\HttpHelper;
                 <!-- l'utilisateur clique sur   -->
                 <!-- le +                       -->
                 <div id="popupForm">
-                <form action = "index.php" method="post">
-                    <input type="hidden" name="controller" value="Mood">
-                    <p class="sansBordure">Création humeur</p>
-                    <hr>
-                    <div class="ajoutHumeurForm">
-                        <!-- Libellé de l'humeur -->
-                        <select name="humeur">
-                            <?php
-                            while($row = $libelles->fetch()){
-                                echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
-                            }
-                            ?>
-                        </select>
-                        <!-- Date de l'humeur -->
-                        <input type="date" name="dateHumeur" value="<?php echo date('Y-m-d'); ?>" required />
-                        <!-- Heure de l'humeur -->
-                        <input class="time-input" type="time" name="heure" value="<?php echo date('H:i'); ?>" required />
-                        <!-- Contexte de l'humeur -->
-                        <input type="text" name="contexte" placeholder="Contexte...">
-                    </div
-                    <!-- Boutons d'ajout et d'annulation de l'humeur -->
-                    <div class="btnNav">
-                        <button type="button" class="annuler" onclick="closeForm()">Annuler</button>
-                        <button type="submit" class="btn-ajout">Ajouter</button>
-                    </div>
-                </form>
+					<form action = "index.php" method="post">
+						<input type="hidden" name="controller" value="Mood">
+						<p class="sansBordure">Création humeur</p>
+						<hr>
+						<div class="ajoutHumeurForm">
+							<!-- Libellé de l'humeur -->
+							<select name="humeur">
+								<?php
+								while($row = $libelles->fetch()){
+									echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
+								}
+								?>
+							</select>
+							<!-- Date de l'humeur -->
+							<input type="date" name="dateHumeur" value="<?php echo date('Y-m-d'); ?>" required />
+							<!-- Heure de l'humeur -->
+							<input class="time-input" type="time" name="heure" value="<?php echo date('H:i'); ?>" required />
+							<!-- Contexte de l'humeur -->
+							<input type="text" name="contexte" placeholder="Contexte...">
+						</div
+						<!-- Boutons d'ajout et d'annulation de l'humeur -->
+						<div class="btnNav">
+							<button type="button" class="annuler" onclick="closeForm()">Annuler</button>
+							<button type="submit" class="btn-ajout">Ajouter</button>
+						</div>
+					</form>
                 </div>
             </div>
 
-            <table class="table-mood">
-                <tr>
-                    <th>
-                        Libelle
-                    </th>
-                    <th>
-                        Emoji
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Heure
-                    </th>
-                    <th class="last-column">
-                        Contexte
-                    </th>
-                </tr>
+            <div class="container"> 
+				<div class="row">
+				<?php
+					
+					$i = 0;
+					while($row = $humeurs->fetch()){
 
-                <?php
+						echo '<div class="col-md-4 col-xs-12">';
+							echo '<button class="containCadre" onclick="openPopupHumeur('.$i.')">';
+								echo '<span>'.$row['emoji'].'  '.$row['libelleHumeur'].'</span><br/>';
+								echo '<span>'.$row['dateHumeur'].'  '.$row['heure'].'</span>';
+							echo '</button>';
+						echo '</div>';
+						
+						/**
+						 * Popup d'ajout d'une humeur
+					     * --------------------------
+                		 * N'est affiché que lorsque 
+                		 * l'utilisateur clique sur  
+                		 * le +                      
+						 */
+						echo '<div id="popupHumeur'.$i.'" class="popupHumeur">';
+							echo '<form class="containPopup">';
+								echo '<p class="sansBordure">Humeur</p>';
+								echo '<span>'.$row['emoji'].'  '.$row['libelleHumeur'].'</span><br/>';
+								echo '<span>'.$row['dateHumeur'].'  '.$row['heure'].'</span><br/>';
+								echo '<span>Contexte</span><br/>';
+								echo '<span>'.$row['contexte'].'</span>';
+								echo '<div class="btnNav">';
+									echo '<button type="button" class="annuler" onclick="closePopupHumeur('.$i.')">Fermer</button>';
+									echo '<button type="submit" class="btn-ajout">Modifier</button>';
+								echo '</div>';
+							echo '</form>';
+						echo '</div>';
+						$i++;
+					}
 
-                    while($row = $humeurs->fetch()){
+				?>
+				</div>
+				<!-------------------------------->
+                <!-- Popup d'ajout d'une humeur -->
+                <!-------------------------------->
+                <!-- N'est affiché que lorsque  -->
+                <!-- l'utilisateur clique sur   -->
+                <!-- le +                       -->
+                <div id="popupForm">
+					<form action = "index.php" method="post">
+						<input type="hidden" name="controller" value="Mood">
+						<p class="sansBordure">Humeur</p>
+					</form>
+                </div>
+				
+			</div>
 
-                        echo "<tr>";
-
-                        echo "<td>".$row['libelleHumeur']."</td>";
-                        echo "<td>".$row['emoji']."</td>";
-                        echo "<td>".$row['dateHumeur']."</td>";
-                        echo "<td>".$row['heure']."</td>";
-                        echo "<td class = 'last-column'>".$row['contexte']."</td>";
-
-                        echo "</tr>";
-
-                    }
-
-                ?>
-
-            </table>
+               
             <div class="affichage">
               <canvas id="myChart"></canvas>
             </div>
