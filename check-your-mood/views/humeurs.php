@@ -45,7 +45,6 @@ spl_autoload_extensions(".php");
 spl_autoload_register();
 
 use yasmf\HttpHelper;
-
 ?>
 
     <div class="head">
@@ -62,7 +61,7 @@ use yasmf\HttpHelper;
             <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
             <div><a href="/check-your-mood?controller=mood&action=goTo&namepage=modification">Parametre</a></div>
         </div>
-        <div class="contain-mood">
+        <div id="contain-contenu" class="contain-mood">
 
             <div class="head-mood">
 
@@ -83,20 +82,20 @@ use yasmf\HttpHelper;
 						<hr>
 						<div class="ajoutHumeurForm">
 							<!-- Libellé de l'humeur -->
-							<select name="humeur">
+							<select name="humeur" class="form-control">
 								<?php
 								while($row = $libelles->fetch()){
-									echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
+									echo "<option value = '".$row['codeLibelle']."'>".$row['emoji']." ".$row['libelleHumeur']."</option>";
 								}
 								?>
 							</select>
 							<!-- Date de l'humeur -->
-							<input type="date" name="dateHumeur" value="<?php echo date('Y-m-d'); ?>" required />
+							<input type="date" name="dateHumeur" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
 							<!-- Heure de l'humeur -->
-							<input class="time-input" type="time" name="heure" value="<?php echo date('H:i'); ?>" required />
-							<!-- Contexte de l'humeur -->
-							<input type="text" name="contexte" placeholder="Contexte...">
-						</div
+							<input type="time" class="form-control" name="heure" value="<?php echo date('H:i'); ?>" required /><br/>
+						</div>
+						<!-- Contexte de l'humeur -->
+						<input type="textarea" name="contexte" class="form-control" placeholder="Contexte...">
 						<!-- Boutons d'ajout et d'annulation de l'humeur -->
 						<div class="btnNav">
 							<button type="button" class="annuler" onclick="closeForm()">Annuler</button>
@@ -105,11 +104,13 @@ use yasmf\HttpHelper;
 					</form>
                 </div>
             </div>
-
             <div class="container"> 
 				<div class="row">
 				<?php
-					
+					if (!$updateOk) {
+						
+						echo '<span class="col-xs-12">La modification n\'a pu être effectué, veuillez réessayer ultérieurement.</span>';
+					}
 					$i = 0;
 					while($row = $humeurs->fetch()){
 
@@ -129,11 +130,13 @@ use yasmf\HttpHelper;
 						 */
 						echo '<div id="popupHumeur'.$i.'" class="popupHumeur">';
 							echo '<form class="containPopup">';
-								echo '<p class="sansBordure">Humeur</p>';
-								echo '<span>'.$row['emoji'].'  '.$row['libelleHumeur'].'</span><br/>';
+								echo '<input type="hidden" name="controller" value="donnees">';
+								echo '<input type="hidden" name="action" value="updateHumeur">';
+								echo '<input type="hidden" name="codeHumeur" value="'.$row['codeHumeur'].'">';
+								echo '<span class="title">'.$row['emoji'].'  '.$row['libelleHumeur'].'</span>';
 								echo '<span>'.$row['dateHumeur'].'  '.$row['heure'].'</span><br/>';
 								echo '<span>Contexte</span><br/>';
-								echo '<span>'.$row['contexte'].'</span>';
+								echo '<input type="textarea" class="form-control" name="contexte" value="'.$row['contexte'].'">';
 								echo '<div class="btnNav">';
 									echo '<button type="button" class="annuler" onclick="closePopupHumeur('.$i.')">Fermer</button>';
 									echo '<button type="submit" class="btn-ajout">Modifier</button>';

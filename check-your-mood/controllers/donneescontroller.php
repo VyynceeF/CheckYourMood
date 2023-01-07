@@ -135,5 +135,28 @@ class DonneesController {
         }
 		return $view;
     }
+	
+	/**
+	 * Permet la modification du contexte d'une humeur
+	 */
+	public function updateHumeur($pdo) {
+		
+        $tab['contexte'] = htmlspecialchars(HttpHelper::getParam('contexte'));
+        $tab['codeHumeur'] = htmlspecialchars(HttpHelper::getParam('codeHumeur'));
+        $tab['id'] = $_SESSION['util'];
+		
+        $util = $_SESSION['util'];
+
+		$updateOk = $this->DonneesService->updateHumeur($pdo,$tab);
+        $humeurs = $this->MoodService->viewMoods($pdo,$_SESSION['util']);
+        $libelles = $this->MoodService->libelles($pdo);
+		
+        $view = new View("check-your-mood/views/humeurs");
+        $view->setVar('libelles',$libelles);
+        $view->setVar('updateOk',$updateOk);
+        $view->setVar('humeurs',$humeurs);
+        
+		return $view;
+    }
 
 }

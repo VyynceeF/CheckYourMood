@@ -60,6 +60,7 @@ class MoodController {
         $view = new View("check-your-mood/views/humeurs");
         $view->setVar('humeurs',$humeurs);
         $view->setVar('libelles',$libelles);
+        $view->setVar('updateOk',true);
 
         return $view;
     }

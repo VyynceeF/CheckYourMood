@@ -156,13 +156,6 @@ body{
 /*Style input*/
 
 input{
-    border-radius: 30px;
-    border: 1px solid black;
-    padding-left: 2.7vw;
-    width: auto;
-    height: 4vh;
-    width: auto;
-    outline-color: #008CC9;
 
     font-family: 'Hind Siliguri', sans-serif;
 }
@@ -454,34 +447,21 @@ a{
 	position: fixed;
 	left: 50%;
 	top: 30%;
-    width: 20vw;
+    width: 40vw;
 	transform: translate(-45%, 5%);
 	z-index: 9;
 
 }
 
-.ajoutHumeurForm{
+.ajoutHumeurForm {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    justify-content: space-between;
+	margin-bottom: 10px;
 }
 
 .ajoutHumeurForm input {
-	text-align:center;
-	padding: 0px;
-    border-radius: 0px;
-    border: 1px solide black;
-    outline-color: #008CC9;
-}
-
-.time-input{
-    width: 7vw;
-}
-
-.ajoutHumeurForm select{
-    border-radius: 0px;
-    border: 1px solide black;
-    outline-color: #008CC9;
+	margin-left: 10px;
 }
 
 .sansBordure {
@@ -674,6 +654,20 @@ a{
 	color:darkblue;
 }
 
+.containCadre .title {
+    font-size: 26px;
+}
+
+.containPopup .title {
+    font-size: 26px;
+}
+
 .containCadre:hover {
 	transform: scale(1.05);
+}
+
+textarea {
+	overflow-y: scroll;
+	height: 100px;
+	resize: none;
 }
