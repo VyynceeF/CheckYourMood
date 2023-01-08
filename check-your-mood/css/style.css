@@ -25,7 +25,10 @@ body{
     font-size: 1.05vw;
 }
 
-
+.revelerMDP {
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 14px;
+}
 
 
 /*Cadre connexion*/
@@ -61,7 +64,6 @@ body{
 .sansCadre{
 	border-width:0px!important;
 }
-
 
 .login{
     width: 55%;
@@ -150,6 +152,12 @@ body{
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.checkInput {
+
+    margin: 0px;
+
 }
 
 
@@ -250,26 +258,6 @@ hr{
     background-color: red;
 }
 
-/*Position icon input*/
-
-.user{
-    background-image: url(../images/user.png);
-    background-repeat: no-repeat;
-    background-size: 1.7vw;
-    background-position-y: center;
-    background-position-x: 5px;
-}
-
-
-
-.locker{
-    background-image: url(../images/cadenas.png);
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: 5px;
-    background-size: 1.7vw;
-}
-
 .row-btn{
     padding-right: 5vw;
 }
@@ -285,8 +273,19 @@ hr{
     gap: 5px;
 }
 
+.logoInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoConnexion {
+    font-size: large;
+}
 
 /*INSCRIPTION*/
+
 
 .contain-double-data{
     display: flex;
@@ -680,4 +679,9 @@ textarea {
 .bt-pagination {
     width: 40px;
     height: 30px;
+}
+
+/* Classes pour flouter l'arrière plan */
+.flou{
+    filter: blur(10px);
 }

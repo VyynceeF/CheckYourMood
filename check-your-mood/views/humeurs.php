@@ -19,11 +19,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Your Mood - Humeurs</title>
-    <link rel="stylesheet" href="/check-your-mood/css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/check-your-mood/css/style.css">
 </head>
 <body>
-
+	
+	<?php
+		// Permet de récupérer le nombre d'humeur en JS
+		echo '<script>var nbHumeur = '.$humeurs->rowCount().'</script>'
+	?>
 	<script>
 	function openForm() {
 		document.getElementById("popupForm").style.display = "block";
@@ -34,9 +38,17 @@
 	
 	function openPopupHumeur(id) {
 		document.getElementById("popupHumeur" + id).style.display = "block";
+		// Ajout du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.add("flou");
+		}
 	}
 	function closePopupHumeur(id) {
 		document.getElementById("popupHumeur" + id).style.display = "none";
+		// Suppression du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.remove("flou");
+		}
 	}
 	</script>
 
@@ -114,7 +126,7 @@ use yasmf\HttpHelper;
 					$i = 0;
 					while($row = $humeurs->fetch()){
 
-						echo '<div class="col-md-4 col-xs-12">';
+						echo '<div class="col-md-4 col-xs-12" id="containHumeur'.$i.'">';
 							echo '<button class="containCadre" onclick="openPopupHumeur('.$i.')">';
 								echo '<span>'.$row['emoji'].'  '.$row['libelleHumeur'].'</span><br/>';
 								echo '<span>'.$row['dateHumeur'].'  '.$row['heure'].'</span>';

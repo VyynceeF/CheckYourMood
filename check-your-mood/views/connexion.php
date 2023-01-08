@@ -30,10 +30,16 @@ use yasmf\HttpHelper;
 
                     <form action="index.php" method="post">
                         <input type="hidden" name="action" value="login">
-                        <input class="user form-control" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
+                        <div class="logoInput">
+                            <span class="glyphicon glyphicon-user logoConnexion"></span>
+                            <input class="form-control" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
+                        </div>
                         <div class="contain-mdp">
-                            <input class="locker form-control" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput"><br>
-                            <div class="contain-revele"><input type="checkbox" name="revele" onclick="myFunction()"><label><h3>Révéler mot de passe</h3></label></div>
+                            <div class="logoInput">
+                                <span class="glyphicon glyphicon-lock logoConnexion"></span>
+                                <input class="form-control" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput"><br>
+                            </div>
+                            <div class="contain-revele"><input class="checkInput" type="checkbox" name="revele" onclick="myFunction()"><span class="revelerMDP">Révéler mot de passe</span></div>
                         </div>
                         <div class="btn-connect"><button class="btn" type="submit">Se connecter</button></div>
                     </form>
