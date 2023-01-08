@@ -151,12 +151,62 @@ class DonneesController {
         $humeurs = $this->MoodService->viewMoods($pdo,$_SESSION['util']);
         $libelles = $this->MoodService->libelles($pdo);
 		
-        $view = new View("check-your-mood/views/humeurs");
-        $view->setVar('libelles',$libelles);
-        $view->setVar('updateOk',$updateOk);
-        $view->setVar('humeurs',$humeurs);
+		return $this->changementPage($pdo);
+    }
+
+    //Insertion d'une humeur
+    //TODO : Verifier que la date Entree est valide
+    public function insertHumeur($pdo){
+        $code = (int) HttpHelper::getParam('humeur');
+        $date  = HttpHelper::getParam('dateHumeur');
+        $heure  = HttpHelper::getParam('heure');
+        $contexte = HttpHelper::getParam('contexte');
+        $util = $_SESSION['util'];
+
+        $insertion = $this->MoodService->insertMood($pdo, $code, $date, $heure, $contexte, $util);
+
+        $humeurs = $this->MoodService->viewMoods($pdo,$util);
+        $libelles = $this->MoodService->libelles($pdo);
+
+        return $this->changementPage($pdo);
+    }
+
+    public function changementPage($pdo)
+    {
+        //Libelle disponible
+        $libelles = $this->MoodService->libelles($pdo);
+
+        // Nombre d'humeurs global
+        $nbHumeur = $this->DonneesService->nombreHumeur($pdo, $_SESSION['util'])->fetchColumn(0);
+
+        // On détermine le nombre d'humeurs par page
+        $parPage = 9;
+
+        // On calcule le nombre de pages total
+        $pages = ceil($nbHumeur / $parPage);
+
+        // Page actuelle
+        $currentPage = HttpHelper::getParam('noPage');
+
+        if ($currentPage == "<<") {
+            $currentPage = 1;
+        } else if ($currentPage == ">>") {
+            $currentPage = $pages;
+        }
         
-		return $view;
+        // Calcul du 1er article de la page
+        $premier = ($currentPage * $parPage) - $parPage;
+
+        // On récupère les humeurs à afficher sur la page no 1
+        $humeurs = $this->DonneesService->viewMoodsPagination($pdo, $_SESSION['util'], $premier, $parPage);
+
+        //Création de la vue et set vraiable
+        $view = new View("check-your-mood/views/humeurs");
+        $view->setVar('humeurs',$humeurs);
+        $view->setVar('libelles',$libelles);
+        $view->setVar('pages',$pages);
+        $view->setVar('noPage',$currentPage);
+        return $view;
     }
 
 }

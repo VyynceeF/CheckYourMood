@@ -77,7 +77,11 @@ use yasmf\HttpHelper;
                 <!-- le +                       -->
                 <div id="popupForm">
 					<form action = "index.php" method="post">
-						<input type="hidden" name="controller" value="Mood">
+						<input type="hidden" name="controller" value="donnees">
+						<input type="hidden" name="action" value="insertHumeur">
+						<?php
+							echo '<input type="hidden" name="noPage" value="'.$noPage.'">';
+						?>
 						<p class="sansBordure">Création humeur</p>
 						<hr>
 						<div class="ajoutHumeurForm">
@@ -107,10 +111,6 @@ use yasmf\HttpHelper;
             <div class="container"> 
 				<div class="row">
 				<?php
-					if (!$updateOk) {
-						
-						echo '<span class="col-xs-12">La modification n\'a pu être effectué, veuillez réessayer ultérieurement.</span>';
-					}
 					$i = 0;
 					while($row = $humeurs->fetch()){
 
@@ -132,6 +132,7 @@ use yasmf\HttpHelper;
 							echo '<form class="containPopup">';
 								echo '<input type="hidden" name="controller" value="donnees">';
 								echo '<input type="hidden" name="action" value="updateHumeur">';
+								echo '<input type="hidden" name="noPage" value="'.$noPage.'">';
 								echo '<input type="hidden" name="codeHumeur" value="'.$row['codeHumeur'].'">';
 								echo '<span class="title">'.$row['emoji'].'  '.$row['libelleHumeur'].'</span>';
 								echo '<span>'.$row['dateHumeur'].'  '.$row['heure'].'</span><br/>';
@@ -148,30 +149,28 @@ use yasmf\HttpHelper;
 
 				?>
 				</div>
-				<!-------------------------------->
-                <!-- Popup d'ajout d'une humeur -->
-                <!-------------------------------->
-                <!-- N'est affiché que lorsque  -->
-                <!-- l'utilisateur clique sur   -->
-                <!-- le +                       -->
-                <div id="popupForm">
-					<form action = "index.php" method="post">
-						<input type="hidden" name="controller" value="Mood">
-						<p class="sansBordure">Humeur</p>
+				<!-- Numéro de pagination -->
+				<div class="row">
+					<form action = "index.php" method="post" class="col-xs-12">
+						<input type="hidden" name="controller" value="donnees">
+						<input type="hidden" name="action" value="changementPage">
+						<ul class="pager">
+							<li><input class="bt-pagination" type="submit" name="noPage" value="<<"></li>
+						<?php
+
+							for ($i = ($noPage - 5 < 1 ? 1 : $noPage - 5) ; $i <= ($noPage + 5 > $pages ? $pages : $noPage + 5) ; $i++) {
+							echo '<li><input class="bt-pagination '. ($i == $noPage ? ' active' : '').'" type="submit" name="noPage" value="' . $i . '"></li>';
+							}
+						?>
+							<li><input class="bt-pagination" type="submit" name="noPage" value=">>"></li>
+						</ul>
 					</form>
-                </div>
+				</div>
 				
 			</div>
 
-               
-            <div class="affichage">
-              <canvas id="myChart"></canvas>
-            </div>
         </div>
       </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="script/script.js"></script>
 </body>
 </html>

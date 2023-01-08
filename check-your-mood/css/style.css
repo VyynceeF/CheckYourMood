@@ -450,7 +450,6 @@ a{
     width: 40vw;
 	transform: translate(-45%, 5%);
 	z-index: 9;
-
 }
 
 .ajoutHumeurForm {
@@ -670,4 +669,15 @@ textarea {
 	overflow-y: scroll;
 	height: 100px;
 	resize: none;
+}
+
+/* Activation du button pour la pagination */
+.active {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.bt-pagination {
+    width: 40px;
+    height: 30px;
 }

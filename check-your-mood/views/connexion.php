@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckYourMood - Connexion</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood//css/style.css">
 </head>
 <?php
@@ -29,9 +30,9 @@ use yasmf\HttpHelper;
 
                     <form action="index.php" method="post">
                         <input type="hidden" name="action" value="login">
-                        <input class="user" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
+                        <input class="user form-control" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
                         <div class="contain-mdp">
-                            <input class="locker" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput"><br>
+                            <input class="locker form-control" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput"><br>
                             <div class="contain-revele"><input type="checkbox" name="revele" onclick="myFunction()"><label><h3>Révéler mot de passe</h3></label></div>
                         </div>
                         <div class="btn-connect"><button class="btn" type="submit">Se connecter</button></div>
