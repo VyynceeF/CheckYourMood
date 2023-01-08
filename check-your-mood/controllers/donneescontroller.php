@@ -74,6 +74,7 @@ class DonneesController {
         }
         $humeursLaPlusFrequente = $this->visualisationService->visualisationHumeurSemaine($pdo, $idUtil, $weekGeneral);
 		$humeursLaPlusFrequenteAnnee = $this->visualisationService->visualisationHumeurAnneeLaPlus($pdo, $idUtil, $anneeAComparer);
+		$humeursLaPlusFrequenteJour = $this->visualisationService->visualisationHumeurJour($pdo, $idUtil, $dateDonught);
         
 
         $view = new View("check-your-mood/views/".$namepage);
@@ -89,6 +90,7 @@ class DonneesController {
         $view->setVar('dataPoints2',$tabAnneeComparaison);
         $view->setVar('dataPoints1',$tabAnneeActuelle);
         $view->setVar('anneeActuelle',$anneeActuelle);
+		$view->setVar('currentDay',$currentDay);
         $view->setVar('anneeComparaison',$anneeComparaison);
         $view->setVar('anneeChoisi',$anneeAComparer);
         $view->setVar('weekGeneral',$weekGeneral);
@@ -97,6 +99,7 @@ class DonneesController {
 		$view->setVar('dateDonught',$dateDonught);
         $view->setVar('tableauLibelleDonught',$tableauLibelleDonught);
         $view->setVar('tableauCountDonught',$tableauCountDonught);
+		$view->setVar('humeursLaPlusFrequenteJour',$humeursLaPlusFrequenteJour);
 
         
         
