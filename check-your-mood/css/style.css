@@ -450,6 +450,7 @@ a{
 	border: 1px solid lightgray;
 	z-index: 9;
 	padding: 15px;
+	border-radius: 10px;
 
     color: #008CC9;
     font-family: 'Varela Round', sans-serif;
@@ -487,7 +488,8 @@ a{
 	margin: 0;
 }
 
-.annuler{
+.annuler {
+    font-family: 'Varela Round', sans-serif;
     background-color: white;
     color: red;
     border: red solid 1px;
@@ -496,6 +498,7 @@ a{
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    font-size: medium;
 }
 
 .annuler:hover{
@@ -505,14 +508,16 @@ a{
 }
 
 .btn-ajout{
+    font-family: 'Varela Round', sans-serif;
     background-color: #008CC9;
     color: white;
-    border: white 1px solid;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    font-size: medium;
 }
 
 .btn-ajout:hover{
@@ -590,53 +595,58 @@ a{
 }
 
 /*Modification.php*/
-.contain-modif{
-    padding-top: 20px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content:first baseline;
-    gap: 20px;
 
+.contain .container {
+
+    margin-top: 5vh;
+}
+
+.textModifier {
+    
+    color: #008CC9;
     font-family: 'Varela Round', sans-serif;
-    color: #008CC9 ;
+    font-size: xx-large;
 }
 
-.FirstFrame{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.containModification {
+
+    text-align: left;    
+    color: #008CC9;
+    font-family: 'Varela Round', sans-serif;
+    font-size: large;
 }
 
-.SecondFrame{
-    text-align: center;
+.containModification input {
+
+    margin-bottom: 10px;
 }
 
-.SecondFrame form{
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+.containModificationEnregistrer {
+    text-align: right;   
 }
 
-.NomPrenom input {
-    padding: 0px;
-    padding-left: 5%;
-    width: 43.5%;
+
+/* Taille du logo (crayon) */
+.logoModifier {
+
+    width: 10vw;
 }
 
-.FirdFrame{
-    display: flex;
-    flex-direction: column;
-}
+#popupFormModification {
+	background: white;
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 30%;
+    width: 50%;
+	transform: translate(-45%, 5%);
+	border: 1px solid lightgray;
+	z-index: 9;
+	padding: 15px;
+	border-radius: 10px;
 
-.FirdFrame input{
-    padding: 0px;
-    padding-left: 5%;
-    width: 95%;
+    color: #008CC9;
+    font-family: 'Varela Round', sans-serif;
 }
 
 /* Visualisation humeur (petit cadre) */

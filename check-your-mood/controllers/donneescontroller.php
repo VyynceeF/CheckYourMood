@@ -176,6 +176,11 @@ class DonneesController {
         return $this->changementPage($pdo);
     }
 
+    /**
+     * Permet la pagination de la page de visualisation des humeurs
+     * @param $pdo 
+     * @return View 
+     */
     public function changementPage($pdo)
     {
         //Libelle disponible
@@ -191,7 +196,7 @@ class DonneesController {
         $pages = ceil($nbHumeur / $parPage);
 
         // Page actuelle
-        $currentPage = HttpHelper::getParam('noPage');
+        $currentPage = HttpHelper::getParam('noPage') ?: 1;
 
         if ($currentPage == "<<") {
             $currentPage = 1;
@@ -214,4 +219,67 @@ class DonneesController {
         return $view;
     }
 
+    /**
+     * Permet la pagination de la page de visualisation des humeurs
+     * @param $pdo 
+     * @return View 
+     */
+    public function viewModification($pdo) {
+
+        $donnees = $this->DonneesService->donneesUser($pdo, $_SESSION['util'])->fetchAll();
+        
+        //Création de la vue et set vraiable
+        $view = new View("check-your-mood/views/modification");
+        $view->setVar('prenom',$donnees[0]['prenom']);
+        $view->setVar('nom',$donnees[0]['nom']);
+        $view->setVar('identifiant',$donnees[0]['identifiant']);
+        $view->setVar('courriel',$donnees[0]['mail']);
+        $view->setVar('tentativeModificationMDP',false);
+        $view->setVar('mdpOk','');
+        $view->setVar('mdpNouveauOk','');
+        $view->setVar('modificationMDPOk',false);
+        $view->setVar('modificationMDPOk',true);
+        return $view;
+    }
+        
+    /**
+     * Permet la modification du mdp
+     * @param $pdo 
+     * @return View 
+     */
+    public function updateMDP($pdo) {
+
+        $MDP = HttpHelper::getParam('ancienMDP');
+
+        /* Controle que le mot de passe est bon */
+        if ($this->DonneesService->mdp($pdo, $_SESSION['util'])->fetchAll()[0]['motDePasse'] == md5($MDP)) {
+            
+            $mdpOk = true;
+            $nouveauMDP = HttpHelper::getParam('nouveauMDP');
+            $confirmationNouveauMDP = HttpHelper::getParam('confirmationNouveauMDP');
+
+            /* Controle que le nouveau mot est valide */
+            if (strlen($nouveauMDP) != 0 && $nouveauMDP == $confirmationNouveauMDP) {
+                $this->DonneesService->updateMDP($pdo, $_SESSION['util'], md5($nouveauMDP));
+                $mdpNouveauOk = true;
+                $modificationMDPOk = true;
+            } else {
+                $mdpNouveauOk = false;
+                $modificationMDPOk = false;
+            }
+        
+        } else {
+            // Mauvais mot de passe
+            $mdpOk = false;
+            $modificationMDPOk = false;
+            $mdpNouveauOk = false;
+        }
+        //Création de la vue et set vraiable
+        $view = $this->viewModification($pdo);
+        $view->setVar('tentativeModificationMDP',true);
+        $view->setVar('mdpOk',$mdpOk);
+        $view->setVar('modificationMDPOk',$modificationMDPOk);
+        $view->setVar('mdpNouveauOk',$mdpNouveauOk);
+        return $view;
+    }
 }

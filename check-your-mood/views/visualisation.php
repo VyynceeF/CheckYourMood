@@ -88,7 +88,7 @@ use yasmf\HttpHelper;
     <div class="head">
         <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
         <!-- lien pour aller sur la page des humeurs : (ne marche pas pour l'instant) -->
-        <a href="/check-your-mood?controller=Mood&action=index">Humeurs</a>
+        <a href="/check-your-mood?controller=donnees&action=changementPage">Humeurs</a>
     </div>
     <?php
     if(!isset($_POST['premiereCo'])){
