@@ -1,3 +1,11 @@
+<?php
+    // Test si on est bien connecté (session existante et bon numéro de session)
+	if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
+		// Renvoi vers la page de connexion
+  		header("Location: /check-your-mood/index.php");
+        exit();
+	}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,11 +21,11 @@
     <?php
     $ChoixTypeDeRepresentation = ['Choissez votre représentation','Jour','Semaine','Année']
     ?>
-    
+
 	<!-- Création du srcipt js pour le digramme de comparaison d'humeur par année-->
     <script>
         window.onload = function () {
-    
+
         var chart = new CanvasJS.Chart("chartconteneur", {
             animationEnabled: true,
             theme: "light2",
@@ -41,14 +49,14 @@
                 dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
             },{
                 type: "column",
-                name: <?php echo '"'.$anneeActuelle.'"';?>,
+                name: <?php echo '"'.$anneeChoisi.'"';?>,
                 indexLabel: "{y}",
                 showInLegend: true,
                 dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
             }]
         });
         chart.render();
-        
+
         function toggleDataSeries(e){
             if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
                 e.dataSeries.visible = false;
@@ -57,14 +65,14 @@
                 e.dataSeries.visible = true;
             }
             chart.render();
-            }   
+            }
         }
     </script>
 
 
 </head>
 <body>
-    
+
 
 <?php
 spl_autoload_extensions(".php");
@@ -78,17 +86,17 @@ use yasmf\HttpHelper;
     <div class="head">
         <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
         <!-- lien pour aller sur la page des humeurs : (ne marche pas pour l'instant) -->
-        <a href="/check-your-mood?controller=Mood&action=index">Humeurs</a> 
+        <a href="/check-your-mood?controller=Mood&action=index">Humeurs</a>
     </div>
-    
-    <?php 
+
+    <?php
     if(!isset($_POST['premiereCo'])){
         ?>
         <div class="conteneur-main">
             <div class="conteneurVisu">
                 <div class="loginVisu left">
                     <img class="logo" src="/check-your-mood/images/visualisation.png" alt="Logo Check Your Mood">
-                </div>  
+                </div>
                 <div class="loginVisu ">
                     <div class="row">
                         <p class="login-textVisu">Prêt à visualiser vos données ?</p>
@@ -98,17 +106,13 @@ use yasmf\HttpHelper;
                         <form action="index.php" method="post">
                             <input type="hidden" name="premiereCo" value="1">
                             <input type="hidden" name="controller" value="donnees">
-                            <input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
-                            <input type="hidden" name="week" value="<?php echo $week; ?>">
-                            <input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
-                            <input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
                             <input type="hidden" name="action" value="goToMood">
                             <input type="hidden" name="namepage" value="visualisation">
-                            
+
                             <!-- Choisir l'année dont on souhaite visualiser les données-->
-                                
+
                                 <div class="btn-connect">
-                                    <select name="anneeChoisi" class = "btnVisu" > 
+                                    <select name="anneeChoisi" class = "btnVisu" >
                                         <?php
                                         for($nbr = 2021; $nbr <= $anneeActuelle; $nbr ++){
                                             if(isset($_POST['anneeChoisi'])){
@@ -136,12 +140,12 @@ use yasmf\HttpHelper;
                                         ?>
                                     </select>
                                 </div>
-                                
-                            
+
+
                                 <br>
                                 <!-- Choisir si on veut afficher les données par jur semaine mois ou année dont on souhaite visualiser les données-->
                                 <div class="btn-connect">
-                                    <select name="typeDeRpresentation" class = "btnVisu "> 
+                                    <select name="typeDeRpresentation" class = "btnVisu ">
                                         <?php
                                         for($nbr = 1; $nbr <= 3; $nbr ++){
                                             if(isset($_POST['typeDeRpresentation'])){
@@ -164,7 +168,7 @@ use yasmf\HttpHelper;
                                     </select>
                                 </div>
                             <br>
-                            <input type="submit" value ="valider 😉" class = "btnVisu">
+                            <input type="submit" value ="Valider😉" class = "btnVisu">
                         </form>
                     </div>
                 </div>
@@ -172,8 +176,8 @@ use yasmf\HttpHelper;
         </div>
         <?php
     } else {
-                
-                
+
+
 		?>
 		<div class="container-fluid">
 			<div class="col-md-12 bG sansCadre">
@@ -184,15 +188,19 @@ use yasmf\HttpHelper;
 					<form action="index.php" method="post">
 						<input type="hidden" name="premiereCo" value="1">
 						<input type="hidden" name="controller" value="donnees">
-						<input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
-						<input type="hidden" name="week" value="<?php echo $week; ?>">
-						<input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
-						<input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
+						<?php
+						if(isset($humeurRadar)){
+							?>
+							<input type="hidden" name="humeur" value="<?php echo $humeurRadar; ?>">
+							<?php
+						}
+						?>
+						<input type="hidden" name="anneeAComparer" value="<?php echo $anneeComparaison; ?>">
 						<input type="hidden" name="action" value="goToMood">
 						<input type="hidden" name="namepage" value="visualisation">
-						
-						<div class="col-md-4  sansCadre">
-							<select name="anneeChoisi" class = "btnVisu2" > 
+
+						<div class="col-md-3  sansCadre">
+							<select name="anneeChoisi" class = "btnVisu2" >
 								<?php
 								for($nbr = 2021; $nbr <= $anneeActuelle; $nbr ++){
 									if(isset($_POST['anneeChoisi'])){
@@ -220,8 +228,8 @@ use yasmf\HttpHelper;
 								?>
 							</select>
 						</div>
-						<div class="col-md-4 sansCadre">
-							<select name="typeDeRpresentation" class = "btnVisu2"> 
+						<div class="col-md-3 sansCadre">
+							<select name="typeDeRpresentation" class = "btnVisu2">
 								<?php
 								for($nbr = 1; $nbr <= 3; $nbr ++){
 									if(isset($_POST['typeDeRpresentation'])){
@@ -243,10 +251,61 @@ use yasmf\HttpHelper;
 								?>
 							</select>
 						</div>
-						<div class="col-md-4  sansCadre">
-							<input type="submit" value ="valider 😉" class = "btnVisu2">
+						<?php
+						if($_POST['typeDeRpresentation'] == 2){
+							?>
+							<div class="col-md-3  sansCadre">
+								<select name="weekGeneral" class = "btnVisu2">
+									<?php
+									if($anneeActuelle == $anneeChoisi){
+										for($i = 1; $i <= $currentWeek ; $i++){
+											if(isset($_POST['weekGeneral'])){
+												if($_POST['weekGeneral'] == $i){
+													$weekGeneral = $_POST['weekGeneral'];
+													echo "<option value = '".$_POST['weekGeneral']."' selected >Semaine ".$_POST['weekGeneral']."</option>";
+												} else {
+													echo "<option value = '".$i."' >Semaine ".$i."</option>";
+												}
+											} else {
+												if($i == $currentWeek){
+													$weekGeneral = $i;
+													echo "<option value = '".$i."' selected >Semaine ".$i."</option>";
+												} else {
+													echo "<option value = '".$i."' >Semaine ".$i."</option>";
+												}
+											}
+										}
+									} else {
+										for($i = 1; $i <= 52 ; $i++){
+											if($_POST['weekGeneral'] == $i){
+												$weekGeneral = $_POST['weekGeneral'];
+												echo "<option value = '".$_POST['weekGeneral']."' selected >Semaine ".$_POST['weekGeneral']."</option>";
+											} else {
+												echo "<option value = '".$i."' >Semaine ".$i."</option>";
+											}
+										}
+									}
+
+									?>
+								</select>
+							</div>
+							<?php
+						}
+						?>
+						<?php
+						if($_POST['typeDeRpresentation'] == 1){
+							?>
+							<div class="col-md-3  sansCadre">
+								<!-- Choisir la semaine dont on souhaite visualiser les données pour le graph Radar-->
+								<input class = "btnVisu2" type="date" name="dateChoisiDonught" value="<?php echo $dateDonught; ?>" min="2021-01-01" max="<?php echo $dateDonught; ?>">
+							</div>
+							<?php
+						}
+						?>
+						<div class="col-md-3  sansCadre">
+							<input type="submit" value ="Valider😉" class = "btnVisu2">
 						</div>
-					</form>	
+					</form>
 				</div>
 			</div>
 			<br>
@@ -258,186 +317,102 @@ use yasmf\HttpHelper;
 					<div class="radarPlus">
 						<!-- partie du formulaire pour faire le graphe radar -->
 						<form action="index.php" method="post">
-						<input type="hidden" name="anneeChoisi" value="<?php echo $anneeChoisi; ?>">
-						<input type="hidden" name="premiereCo" value="1">
-						<input type="hidden" name="typeDeRpresentation" value="<?php echo $typeDeRpresentation; ?>">
-						<input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
-						<input type="hidden" name="controller" value="donnees">
-						<input type="hidden" name="action" value="goToMood">
-						<input type="hidden" name="namepage" value="visualisation">
-						<input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
-						<!-- Formulaire pour le graphe radar-->
-						<select id="humeur" name="humeur"> 
-						<?php
-							/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-							/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-							/* mettre un selected qui fonctionne parce que sah j y arrive pas et j ai pas envi */
-							while($row = $libellesRadar->fetch()){
-								if(isset($_POST['humeur']) && $_POST['humeur'] == $row['codeLibelle']){
-									$humeurRadar = $_POST['humeur'];
-									echo "<option value = '".$row['codeLibelle']."' selected >".$row['libelleHumeur']." ".$row['emoji']."</option>";  
-								}else{
-									$humeurRadar = isset($humeurRadar) ? $humeurRadar: $row['codeLibelle'];
-								echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";  
-								}         
-							}
-						?>
-						</select>
-						<!-- Choisir la semaine dont on souhaite visualiser les données pour le graph Radar-->
-						<select name="week">
+							<input type="hidden" name="anneeChoisi" value="<?php echo $anneeChoisi; ?>">
+							<input type="hidden" name="premiereCo" value="1">
+							<input type="hidden" name="typeDeRpresentation" value="<?php echo $typeDeRpresentation; ?>">
+							<input type="hidden" name="weekGeneral" value="<?php echo $weekGeneral; ?>">
+							<input type="hidden" name="controller" value="donnees">
+							<input type="hidden" name="action" value="goToMood">
+							<input type="hidden" name="namepage" value="visualisation">
+							<!-- Formulaire pour le graphe radar-->
+							<select id="humeur" name="humeur" class="selectFormGraph">
 							<?php
-							if($anneeActuelle == $anneeChoisi){
-								for($i = 1; $i <= $currentWeek ; $i++){
-									if(isset($_POST['week'])){
-										if($_POST['week'] == $i){
-											$semaineRadar = $_POST['week'];
-											echo "<option value = '".$_POST['week']."' selected >Semaine ".$_POST['week']."</option>";
-										} else {
-											echo "<option value = '".$i."' >Semaine ".$i."</option>";
-										}
-									} else {
-										if($i == $currentWeek){
-											$semaineRadar = $i;
-											echo "<option value = '".$i."' selected >Semaine ".$i."</option>";
-										} else {
-											echo "<option value = '".$i."' >Semaine ".$i."</option>";
-										}
+								/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+								/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+								/* mettre un selected qui fonctionne parce que sah j y arrive pas et j ai pas envi */
+								while($row = $libellesRadar->fetch()){
+									if(isset($_POST['humeur']) && $_POST['humeur'] == $row['codeLibelle']){
+										$humeurRadar = $_POST['humeur'];
+										echo "<option value = '".$row['codeLibelle']."' selected >".$row['libelleHumeur']." ".$row['emoji']."</option>";
+									}else{
+										$humeurRadar = isset($humeurRadar) ? $humeurRadar: $row['codeLibelle'];
+									echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
 									}
 								}
-							} else {
-								for($i = 1; $i <= 52 ; $i++){
-									if($_POST['week'] == $i){
-										$semaineRadar = $_POST['week'];
-										echo "<option value = '".$_POST['week']."' selected >Semaine ".$_POST['week']."</option>";
-									} else {
-										echo "<option value = '".$i."' >Semaine ".$i."</option>";
-									}
-								}
-							}
-							
 							?>
-						</select>
-						<button type="submit">OK</button>                    
+							</select>
+							
+							<button type="submit" class="btn-ajout"><span class="text">OK</span></button>
 						</form>
 						<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
 						<!-- fin de la partie du formulaire pour le graphe radar  -->
-						<!-- affichage du graphe radar --> 
-						<div class="nimport">
+						<!-- affichage du graphe radar -->
+						<br>
+						<div class="contourViz nimport">
 							<canvas id="myChart" ></canvas>
 						</div>
 					</div>
 				</div>
 				<div class = "col-md-6">
-					<!-- Formulaire choix semaine pour le tableau des humeurs-->  
-					<form action="index.php" method="post">
-						<?php
-						if($typeDeRpresentation == 2){
-							?>
-							<input type="hidden" name="humeur" value="<?php echo $humeurRadar; ?>">
+					<div class="table-responsive card" >
+						<!-- partie affichage du tableau des humeurs -->
+						<table class="table-mood rounded-scrollbar table-striped table ">
+							<thead>
+								<th>
+									Jour
+								</th>
+								<th>
+									Emoji
+								</th>
+								<th>
+									Libelle
+								</th>
+								<th>
+									Heure
+								</th>
+								<th class="last-column">
+									Contexte
+								</th>
+							</thead>
+
 							<?php
-						}
-						?>
-						<input type="hidden" name="week" value="<?php echo $week; ?>">
-						<input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
-						<input type="hidden" name="premiereCo" value="1">
-						<input type="hidden" name="anneeChoisi" value="<?php echo $anneeChoisi; ?>">
-						<input type="hidden" name="typeDeRpresentation" value="<?php echo $typeDeRpresentation; ?>">
-						<input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
-						<input type="hidden" name="controller" value="donnees">
-						<input type="hidden" name="action" value="goToMood">
-						<input type="hidden" name="namepage" value="visualisation">
-						
-						<!-- Choisir la semaine dont on souhaite visualiser les données pour le tableau-->
-						<select name="weekTableau">
-							<?php
-							if($anneeActuelle == $anneeChoisi){
-								for($i = 1; $i <= $currentWeek ; $i++){
-									if(isset($_POST['weekTableau'])){
-										if($_POST['weekTableau'] == $i){
-											$weekTableau = $_POST['weekTableau'];
-											echo "<option value = '".$_POST['weekTableau']."' selected >Semaine ".$_POST['weekTableau']."</option>";
-										} else {
-											echo "<option value = '".$i."' >Semaine ".$i."</option>";
-										}
+								$ancienneDate = NULL;
+								while($row = $visualisationTableau->fetch()){
+									echo "<tr>";
+									if ($row['jourDeLaSemaine'] == $ancienneDate) {
+										echo "<td> </td>";
 									} else {
-										if($i == $currentWeek){
-											$weekTableau = $i;
-											echo "<option value = '".$i."' selected >Semaine ".$i."</option>";
-										} else {
-											echo "<option value = '".$i."' >Semaine ".$i."</option>";
-										}
+										echo "<td>".$day[$row['jourDeLaSemaine']]."</td>";
 									}
+									echo "<td>".$row['emoji']."</td>";
+									echo "<td>".$row['libelle']."</td>";
+									echo "<td>".$row['heure']."</td>";
+									echo "<td class = 'last-column'>".$row['contexte']."</td>";
+									echo "</tr>";
+									$ancienneDate = $row['jourDeLaSemaine'];
 								}
-							} else {
-								for($i = 1; $i <= 52 ; $i++){
-									if($_POST['weekTableau'] == $i){
-										$semaineRadar = $_POST['weekTableau'];
-										echo "<option value = '".$_POST['weekTableau']."' selected >Semaine ".$_POST['weekTableau']."</option>";
-									} else {
-										echo "<option value = '".$i."' >Semaine ".$i."</option>";
-									}
-								}
-							}
+
 							?>
-						</select>
-						<button type="submit">OK</button>
-					</form>
-
-					<!-- partie affichage du tableau des humeurs -->
-					<table class="table-mood">
-						<tr>
-							<th>
-								Jour
-							</th>
-							<th>
-								Emoji
-							</th>
-							<th>
-								Libelle
-							</th>
-							<th>
-								Heure
-							</th>
-							<th class="last-column">
-					
-							Contexte
-							</th>
-						</tr>
-
-						<?php
-							$ancienneDate = NULL;
-							while($row = $visualisationTableau->fetch()){
-								echo "<tr>";
-								if ($row['jourDeLaSemaine'] == $ancienneDate) {
-									echo "<td> </td>";
-								} else {
-									echo "<td>".$day[$row['jourDeLaSemaine']]."</td>";
-								}
-								echo "<td>".$row['emoji']."</td>";
-								echo "<td>".$row['libelle']."</td>";
-								echo "<td>".$row['heure']."</td>";
-								echo "<td class = 'last-column'>".$row['contexte']."</td>";
-								echo "</tr>";
-								$ancienneDate = $row['jourDeLaSemaine'];
-							}
-
-						?>
-					</table>
+						</table>
+					</div>
 				</div>
 			</div>
+			
 			<div class = "row">
-				<div class = "col-md-12">
+				<div class = "col-md-12 humeurPlusFrequente borderTop">
 					<div class="enBleu">
-						<span>Voici l'humeur qui est revenu le plus cette semaine :</span> 
+						<span>Voici l'humeur qui est revenu le plus cette semaine :</span>
 					</div>
-					<br>
 					<?php
 					while($row = $humeursLaPlusFrequente->fetch()){
 						?>
-						<div class="enBleu">
-							<span><?php echo $row['libelle']; ?></span>
+						<div class=" container emojiFrequent">
+							<span class="emojie shadowEmoji "><?php echo $row['emoji'] ; ?></span>
+							<br>
+							<div class="emojiFrequentLibelle">
+								<span><?php echo $row['libelle']; ?></span>
+							</div>
 						</div>
-						<span class="emojie"><?php echo $row['emoji']; ?></span>
 						<?php
 					}
 					?>
@@ -445,23 +420,23 @@ use yasmf\HttpHelper;
 			</div>
 		</div>
 		<?php
-		}
-		echo '<script type="text/javascript">';
-		echo "var dataHumeur = '".implode(",", $visualisationRadar)."'.split(',');"; 
-		echo 'console.table(dataHumeur);';
-		echo '</script>';
+			}
+			echo '<script type="text/javascript">';
+			echo "var dataHumeur = '".implode(",", $visualisationRadar)."'.split(',');";
+			echo 'console.table(dataHumeur);';
+			echo '</script>';
 		?>
-                
-                            
-                    
-                    
-			<!-- Affichage de du diagramme batton qui permet de visualiser un humeur en fonciton des mois et années-->
+
+
+
+
+			<!-- Affichage de du diagramme batton qui permet de visualiser un humeur en fonction des mois et années-->
 			<?php
 			if($typeDeRpresentation == 3){
 				?>
 			<!-- carré du bas à droite -->
 					<div class="col-md-6">
-						
+
 							<span>Choisissez l'annee à comparer</span>
 							<form action="index.php" method="post">
 							<?php
@@ -471,12 +446,9 @@ use yasmf\HttpHelper;
 									<?php
 								}
 								?>
-								<input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
 								<input type="hidden" name="anneeChoisi" value="<?php echo $anneeChoisi; ?>">
 								<input type="hidden" name="typeDeRpresentation" value="<?php echo $typeDeRpresentation; ?>">
 								<input type="hidden" name="premiereCo" value="1">
-								<input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
-								<input type="hidden" name="week" value="<?php echo $week; ?>">
 								<input type="hidden" name="controller" value="donnees">
 								<input type="hidden" name="action" value="goToMood">
 								<input type="hidden" name="namepage" value="visualisation">
@@ -507,17 +479,17 @@ use yasmf\HttpHelper;
 									}
 									?>
 								</select>
-								
-								<select id="humeurDigrammeBatton" name="humeurDigrammeBatton"> 
+
+								<select id="humeurDigrammeBatton" name="humeurDigrammeBatton">
 								<?php
 									while($row = $libellesRadar->fetch()){
 										if(isset($_POST['humeurDigrammeBatton']) && $_POST['humeurDigrammeBatton'] == $row['codeLibelle']){
 											$humeurDigrammeBatton = $_POST['humeurDigrammeBatton'];
-											echo "<option value = '".$row['codeLibelle']."' selected >".$row['libelleHumeur']." ".$row['emoji']."</option>";  
+											echo "<option value = '".$row['codeLibelle']."' selected >".$row['libelleHumeur']." ".$row['emoji']."</option>";
 										}else{
 											$humeurDigrammeBatton = isset($humeurDigrammeBatton) ? $humeurDigrammeBatton: $row['codeLibelle'];
-										echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";  
-										}         
+										echo "<option value = '".$row['codeLibelle']."'>".$row['libelleHumeur']." ".$row['emoji']."</option>";
+										}
 									}
 								?>
 								</select>
@@ -525,33 +497,29 @@ use yasmf\HttpHelper;
 							</form>
 						<div id="chartconteneur" style="height: 370px; width: 100%;"></div>
 					</div>
+					<div class = "col-md-6">
+						<div class="enBleu">
+							<span>Voici l'humeur qui est revenu le plus cette année :</span>
+							<?php
+								while($row = $humeursLaPlusFrequenteAnnee->fetch()){
+									?>
+									<span><?php echo $row['libelle']; ?></span>
+									<span class="emojie emojiFrequent"><?php echo $row['emoji']; ?></span>
+									<?php
+								}
+							?>
+						</div>
+						<br>
+					</div>
 				<?php
 			}
 			if($typeDeRpresentation == 1){
 				?>
 				<div class="col-md-6">
-					<!-- partie du formulaire pour faire le graphe radar -->
-					<form action="index.php" method="post">
-							<input type="hidden" name="weekTableau" value="<?php echo $weekTableau; ?>">
-							<input type="hidden" name="anneeChoisi" value="<?php echo $anneeChoisi; ?>">
-							<input type="hidden" name="typeDeRpresentation" value="<?php echo $typeDeRpresentation; ?>">
-							<input type="hidden" name="anneeAComparer" value="<?php echo $anneeAComparerGraph; ?>">
-							<input type="hidden" name="premiereCo" value="1">
-							<input type="hidden" name="week" value="<?php echo $week; ?>">
-							<input type="hidden" name="controller" value="donnees">
-							<input type="hidden" name="action" value="goToMood">
-							<input type="hidden" name="namepage" value="visualisation">
-						<!-- Formulaire pour le graphe radar-->
-						
-						<!-- Choisir la semaine dont on souhaite visualiser les données pour le graph Radar-->
-						<label for="start">Start date:</label>	
-						<input type="date" name="dateChoisiDonught" value="<?php echo $dateDonught; ?>" min="2021-01-01" max="<?php echo $dateDonught; ?>">
-						<button type="submit">OK</button>                    
-					</form>
 					<?php
 					echo '<script type="text/javascript">';
 					echo "var dataCountDonught = '".implode(",", $tableauCountDonught)."'.split(',');";
-					echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');"; 
+					echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');";
 					echo 'console.table(dataHumeur);';
 					echo '</script>';
 					if($tableauCountDonught[0] == 0){
@@ -570,16 +538,38 @@ use yasmf\HttpHelper;
 			?>
 		</div>
 	</div>
+	<button onclick="scrollToBottom()" id="top-button" title="Go to bottom"><i class="fa fa-arrow-down"></i></button>
+	
+	<script>
+		window.onscroll = function() {scrollFunction()};
 
+		function scrollFunction() {
+
+			document.getElementById("top-button").style.display = "block";
+
+			if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+				document.getElementById("top-button").style.display = "none";
+			}
+		}
+
+
+		function scrollToBottom() {
+			window.scrollTo({
+				top: document.body.scrollHeight,
+				behavior: "smooth"
+			});
+		}
+	</script>
 
 
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="script/script.js"></script>
         <script src="script/scriptjs2.js"></script>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> 
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <?php
     }
-    ?> 
+	include("footer.php");
+    ?>
     </body>
 </html>

@@ -8,24 +8,26 @@ use PDOException;
 class DonneesService
 {
     
+    //TODO : Finir la modif des données
     public function updateData($pdo,$tab,$util){
         
         $setter = "";
         $tabExec = [];
 		
-        foreach($tab as $value => $cle){
+        foreach($tab as $cle => $value){
             if($value != ""){
                 if($setter == ""){
                     $setter .= " SET ";
                 }else{
-                    $setter .= " and ";
+                    $setter .= " , ";
                 }
-                $setter .= " ".$cle." = :nom ";
+                $setter .= " ".$cle." = :".$cle." ";
                 $tabExec[$cle]=$value;
             }
             
         }
-        $setter .= " where codeUtil = :util ";
+        $setter .= "  where codeUtil = :util ";
+        $tabExec['util'] = $util;
 
 
         try{
@@ -36,6 +38,7 @@ class DonneesService
             return "ok";
 
         }catch(PDOException $e){
+            echo $e->getMessage();
             return "nOk";
         }
 

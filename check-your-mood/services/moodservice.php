@@ -41,7 +41,7 @@ class MoodService
             $searchStmt->execute();
 
             return "ok";
-        }catch(Exception $e){
+        }catch(PDOException $e){
             return "nOk";
         }
         

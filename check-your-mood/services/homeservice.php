@@ -8,25 +8,32 @@ use PDOException;
 class HomeService
 {
     /**
+     * Connexion d'un utilisateur
      * @param $pdo \PDO the pdo object
      * @return \PDOStatement the statement referencing the result set
      */
     public function connexion($pdo, $idUtil, $mdpUtil)
     {
         $mdpUtil = md5($mdpUtil);
-        $sql = "SELECT codeUtil FROM utilisateur WHERE identifiant = :idUtil AND motDePasse = :mdpUtil" ;
+        $sql = "SELECT codeUtil, prenom, nom, mail FROM utilisateur WHERE identifiant = :idUtil AND motDePasse = :mdpUtil" ;
         $searchStmt = $pdo->prepare($sql);
         $searchStmt->bindParam('idUtil', $idUtil);
         $searchStmt->bindParam('mdpUtil', $mdpUtil);
         $searchStmt->execute();
 
-        $util = 0;
+        $infos = ["util" => 0];
 
         while($row = $searchStmt->fetch()){
-            $util = $row['codeUtil'];
+            $infos = [
+                "util" => $row['codeUtil'],
+                "nom" => $row['nom'],
+                "prenom" => $row['prenom'],
+                "mail" => $row['mail']
+            ];
         }
-        
-        return $util;
+
+        //Renvoie un tableau avec les infos de l'utilisateur si le id et mdp sont corrects
+        return $infos;
     }
 
 

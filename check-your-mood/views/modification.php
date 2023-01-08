@@ -1,4 +1,11 @@
-<?php ?>
+<?php 
+    // Test si on est bien connecté (session existante et bon numéro de session)
+	if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
+		// Renvoi vers la page de connexion
+  		header("Location: /check-your-mood/index.php");
+        exit();
+	}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,40 +27,51 @@ use yasmf\HttpHelper;
 
         <div class="head">
             <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
-            <a href="/check-your-mood?controller=Donnees&action=goToMood&namepage=humeurs&namepage=humeurs"><img src="/check-your-mood/images/Home.png" alt="Logo Du Compte" class="LogoDuCompte"></a>
+            <form action="index.php" method="post">
+                <input type="hidden" name="deconnexion" value = "1">
+                <button class='btn-deco' type="submit">Se deconnecter</button>
+            </form>
         </div>
 
-        <div class="conteneur-main2">
-            <div class="conteneur2">
+        <div class="contain">
+
+            <div class="menu">
+                <div><a href="/check-your-mood?controller=mood&action=goTo&namepage=humeurs">Humeurs</a></div>
+                <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
+                <div><a href="#">Parametre</a></div>
+            </div>
+            <div class="contain-modif">
                 <div class="FirstFrame">
                     <img src="/check-your-mood/images/pencil.png" alt="Logo Pencil"><br>
                     <span class="TextModifier">Modifier</span>
                 </div>
                 <div class="SecondFrame">
-                    <div>
-                        <form action="index.php" method="post">
+                    <?php if($updateOk == 1){ ?>
+                    <p class = "err">La changements des données n'a pas pu etre effectuer</p>
+                    <?php }else if($updateOk == 2){ ?>
+                    <p class="ok">Le changement à été effectuer</p>
+                    <?php } ?>
+                    <form action="index.php" method="post">
+                        <div>
                             <input type="hidden" name="controller" value="donnees">
                             <input type="hidden" name="action" value="updateData">
 
                             <div class="NomPrenom">
-                                <input type="text" name="prenom" placeholder="Prénom*">
-                                <input type="text" name="nom" placeholder="Nom*">
+                                <input type="text" name="prenom" placeholder="Prénom*" value="<?php echo $_SESSION['prenom'] ?>">
+                                <input type="text" name="nom" placeholder="Nom*" value="<?php echo $_SESSION['nom'] ?>">
                             </div><br>  
                             <div class="FirdFrame">
-                                <input type="text" name="mail" placeholder="Email*"><br>    
-                                <input type="text" name="identifiant" placeholder="Identifiant*"><br>
-                                <input type="text" name="motdepasse" placeholder="Mot de passe*"><br>
-                                <input type="text" name="motdepasse" placeholder="Mot de passe*">
+                                <input type="text" name="mail" placeholder="Email*" value="<?php echo $_SESSION['mail'] ?>"><br>    
+                                <input type="text" name="identifiant" placeholder="Identifiant*" value="<?php echo $_SESSION['id'] ?>"><br>
+                                <input type="text" name="motdepasse" placeholder="Mot de passe*" value="<?php echo $_SESSION['mdp'] ?>"><br>
                             </div>
-                    </div>
-                    <div>
-                            <!--<input type="text" name="confirmation" placeholder="Confirmation*">-->
-                        
+                        </div>
+                        <div>
                             <div class="Register">
                                 <button class="btn" type="submit">Enregistrer</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,12 +1,11 @@
 <?php
 namespace controllers;
 
-
+use services\HomeService;
 use services\MoodService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
-session_start();
 
 class MoodController {
 
@@ -15,13 +14,41 @@ class MoodController {
     public function __construct()
     {
         $this->MoodService = MoodService::getDefaultMoodService();
+        $this->HomeService = HomeService::getDefaultHomeService();
     }
 
-    public function index($pdo) {
+    /**
+     * Déplacement entre la page de parametre et des humeurs
+     */
+    public function goTo($pdo){
+
+        $namepage = htmlspecialchars(HttpHelper::getParam('namepage'));
+
+        $view = new View("check-your-mood/views/".$namepage);
+
+        if($namepage == "modification"){
+            $view->setVar('updateOk',0);
+        }else if($namepage == "humeurs"){
+
+            //Humeurs de l'utilisateur
+            $humeurs = $this->MoodService->viewMoods($pdo,$_SESSION['util']);
+
+            //Libelle disponible
+            $libelles = $this->MoodService->libelles($pdo);
+            
+            $view->setVar('humeurs',$humeurs);
+            $view->setVar('libelles',$libelles);
+        }
+        
+        return $view;
+    }
+
+    //Insertion d'une humeur
+    //TODO : Verifier que la date Entree est valide
+    public function index($pdo){
         $code = (int) HttpHelper::getParam('humeur');
         $date  = HttpHelper::getParam('dateHumeur');
-        $date = date('y-m-d',strtotime($date));
-        $heure = date('h:i:s');
+        $heure  = HttpHelper::getParam('heure');
         $contexte = HttpHelper::getParam('contexte');
         $util = $_SESSION['util'];
 
