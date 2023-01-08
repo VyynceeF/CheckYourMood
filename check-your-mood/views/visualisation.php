@@ -83,12 +83,13 @@ $day = [2 => 'Lundi',3 => 'Mardi',4 => 'Mercredi',5 => 'Jeudi',6 => 'Vendredi',7
 use yasmf\HttpHelper;
 ?>
 
+
+
     <div class="head">
         <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
         <!-- lien pour aller sur la page des humeurs : (ne marche pas pour l'instant) -->
         <a href="/check-your-mood?controller=Mood&action=index">Humeurs</a>
     </div>
-
     <?php
     if(!isset($_POST['premiereCo'])){
         ?>
@@ -199,36 +200,42 @@ use yasmf\HttpHelper;
 						<input type="hidden" name="action" value="goToMood">
 						<input type="hidden" name="namepage" value="visualisation">
 
-						<div class="col-md-3  sansCadre">
-							<select name="anneeChoisi" class = "btnVisu2" >
-								<?php
-								for($nbr = 2021; $nbr <= $anneeActuelle; $nbr ++){
-									if(isset($_POST['anneeChoisi'])){
-										if($_POST['anneeChoisi'] == $nbr){
-											?>
-											<option value="<?php echo $_POST['anneeChoisi'];?>" selected><?php echo $_POST['anneeChoisi'];?></option>
-											<?php
+						<?php
+						if($_POST['typeDeRpresentation'] != 1 ){
+							?>
+							<div class="col-md-3  sansCadre">
+								<select name="anneeChoisi" class = "btnVisu2" >
+									<?php
+									for($nbr = 2021; $nbr <= $anneeActuelle; $nbr ++){
+										if(isset($_POST['anneeChoisi'])){
+											if($_POST['anneeChoisi'] == $nbr){
+												?>
+												<option value="<?php echo $_POST['anneeChoisi'];?>" selected><?php echo $_POST['anneeChoisi'];?></option>
+												<?php
+											} else {
+												?>
+												<option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
+												<?php
+											}
 										} else {
-											?>
-											<option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
-											<?php
-										}
-									} else {
-										if($anneeActuelle == $nbr){
-											?>
-											<option value="<?php echo $anneeActuelle;?>" selected><?php echo $anneeActuelle ;?></option>
-											<?php
-										} else {
-											?>
-											<option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
-											<?php
+											if($anneeActuelle == $nbr){
+												?>
+												<option value="<?php echo $anneeActuelle;?>" selected><?php echo $anneeActuelle ;?></option>
+												<?php
+											} else {
+												?>
+												<option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
+												<?php
+											}
 										}
 									}
-								}
-								?>
-							</select>
-						</div>
-						<div class="col-md-3 sansCadre">
+									?>
+								</select>
+							</div>
+							<?php
+							}
+						?>
+						<div class="<?php echo $typeDeRpresentation == 1 ? "col-md-4 sansCadre": "col-md-3 sansCadre"; ?> ">
 							<select name="typeDeRpresentation" class = "btnVisu2">
 								<?php
 								for($nbr = 1; $nbr <= 3; $nbr ++){
@@ -254,7 +261,7 @@ use yasmf\HttpHelper;
 						<?php
 						if($_POST['typeDeRpresentation'] == 2){
 							?>
-							<div class="col-md-3  sansCadre">
+							<div class="<?php echo $typeDeRpresentation == 1 ? "col-md-4 sansCadre": "col-md-3 sansCadre"; ?>">
 								<select name="weekGeneral" class = "btnVisu2">
 									<?php
 									if($anneeActuelle == $anneeChoisi){
@@ -295,14 +302,14 @@ use yasmf\HttpHelper;
 						<?php
 						if($_POST['typeDeRpresentation'] == 1){
 							?>
-							<div class="col-md-3  sansCadre">
+							<div class="<?php echo $typeDeRpresentation == 1 ? "col-md-4 sansCadre": "col-md-3 sansCadre"; ?>">
 								<!-- Choisir la semaine dont on souhaite visualiser les données pour le graph Radar-->
-								<input class = "btnVisu2" type="date" name="dateChoisiDonught" value="<?php echo $dateDonught; ?>" min="2021-01-01" max="<?php echo $dateDonught; ?>">
+								<input class = "btnVisu2" type="date" name="dateChoisiDonught" value="<?php echo $dateDonught; ?>" min="2021-01-01" max="<?php echo $anneeChoisi == $anneeActuelle ? $currentDay : $anneeChoisi + "-12-31";?>">
 							</div>
 							<?php
 						}
 						?>
-						<div class="col-md-3  sansCadre">
+						<div class="<?php echo $typeDeRpresentation == 1 ? "col-md-4 sansCadre": "col-md-3 sansCadre"; ?>">
 							<input type="submit" value ="Valider😉" class = "btnVisu2">
 						</div>
 					</form>
@@ -348,7 +355,7 @@ use yasmf\HttpHelper;
 						<!-- fin de la partie du formulaire pour le graphe radar  -->
 						<!-- affichage du graphe radar -->
 						<br>
-						<div class="contourViz nimport">
+						<div class="nimport">
 							<canvas id="myChart" ></canvas>
 						</div>
 					</div>
@@ -387,7 +394,8 @@ use yasmf\HttpHelper;
 									echo "<td>".$row['emoji']."</td>";
 									echo "<td>".$row['libelle']."</td>";
 									echo "<td>".$row['heure']."</td>";
-									echo "<td class = 'last-column'>".$row['contexte']."</td>";
+									echo "<td class = 'last-column'>".$row['contexte']."<button type=\"submit\" class=\"form-control btn btn-info boutonEye\" name=\"AddMedoc\" value=\"AddMedoc\" /><span
+									class='fas fa-solid fa-eye'></button></td>";
 									echo "</tr>";
 									$ancienneDate = $row['jourDeLaSemaine'];
 								}
@@ -400,13 +408,14 @@ use yasmf\HttpHelper;
 			
 			<div class = "row">
 				<div class = "col-md-12 humeurPlusFrequente borderTop">
-					<div class="enBleu">
-						<span>Voici l'humeur qui est revenu le plus cette semaine :</span>
-					</div>
 					<?php
 					while($row = $humeursLaPlusFrequente->fetch()){
 						?>
-						<div class=" container emojiFrequent">
+						<div class="container emojiFrequent">
+							<div class="texteGrossi">
+							<span>Voici l'humeur qui est revenu le plus cette semaine :</span>
+							</div>
+							<br>
 							<span class="emojie shadowEmoji "><?php echo $row['emoji'] ; ?></span>
 							<br>
 							<div class="emojiFrequentLibelle">
@@ -500,35 +509,62 @@ use yasmf\HttpHelper;
 					<div class = "col-md-6">
 						<div class="enBleu">
 							<span>Voici l'humeur qui est revenu le plus cette année :</span>
-							<?php
-								while($row = $humeursLaPlusFrequenteAnnee->fetch()){
-									?>
-									<span><?php echo $row['libelle']; ?></span>
-									<span class="emojie emojiFrequent"><?php echo $row['emoji']; ?></span>
-									<?php
-								}
-							?>
 						</div>
-						<br>
-					</div>
+					<br>
+					<?php
+					while($row = $humeursLaPlusFrequenteAnnee->fetch()){
+						?>
+						<div class="enBleu">
+							<span><?php echo $row['libelle']; ?></span>
+						</div>
+						<span class="emojie"><?php echo $row['emoji']; ?></span>
+						<?php
+					}
+					?>
+				</div>
 				<?php
 			}
 			if($typeDeRpresentation == 1){
 				?>
 				<div class="col-md-6">
-					<?php
-					echo '<script type="text/javascript">';
-					echo "var dataCountDonught = '".implode(",", $tableauCountDonught)."'.split(',');";
-					echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');";
-					echo 'console.table(dataHumeur);';
-					echo '</script>';
-					if($tableauCountDonught[0] == 0){
-						?>
-						<p>Vous n'avez pas d'humeur aujourd'hui</p>
+					<div class="donutGraph">
 						<?php
-					} else {
+						echo '<script type="text/javascript">';
+						echo "var dataCountDonught = '".implode(",", $tableauCountDonught)."'.split(',');";
+						echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');";
+						echo 'console.table(dataHumeur);';
+						echo '</script>';
+						if($tableauCountDonught[0] == 0){
+							?>
+							<p class="texteGrossi">Vous n'avez pas d'humeur aujourd'hui</p>
+							<?php
+						} else {
+							?>
+							<div class="nimport">
+								<canvas id="myChart2" class="containGraph"></canvas>
+							</div>
+							<?php
+						}
 						?>
-						<canvas id="myChart2" class="containGraph"></canvas>
+					</div>
+					
+				</div>
+			
+				<div class = "col-md-6">
+					<?php
+					while($row = $humeursLaPlusFrequenteJour->fetch()){
+						?>
+						<div class=" emojiFrequent">
+							<div class="texteGrossi">
+							<span class>Voici l'humeur qui est revenu le plus ce jour-ci :</span>
+							</div>
+							<br>
+							<span class="emojie shadowEmoji"><?php echo $row['emoji']; ?></span>
+							<br>
+							<div class="emojiFrequentLibelle">
+								<span><?php echo $row['libelle']; ?></span>
+							</div>
+						</div>
 						<?php
 					}
 					?>

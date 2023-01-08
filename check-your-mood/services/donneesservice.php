@@ -43,7 +43,69 @@ class DonneesService
         }
 
     }
+	
+	/**
+	 * Permet la modification du contexte de l'humeur
+	 * appartenant à l'utilisateur $util
+	 */
+	public function updateHumeur($pdo,$tab){
+		
+        try {
 
+            $requete = "UPDATE humeur SET contexte = :contexte WHERE idUtil = :id AND codeHumeur = :codeHumeur " ;
+            $sql = $pdo->prepare($requete);
+            $sql->execute($tab);
+			
+            return true;
+
+        } catch (PDOException $e) {
+			
+            return false;
+        }
+    }
+	
+	/**
+     * @param $pdo \PDO the pdo object
+     * @return \PDOStatement the statement referencing the result set
+     */
+    public function viewMoods($pdo, $idUtil)
+    {
+        $sql = "SELECT h.codeHumeur, h.dateHumeur, h.heure, h.contexte, l.libelleHumeur, l.emoji, h.idUtil FROM humeur h, libelle l WHERE h.libelle = l.codeLibelle AND idUtil = :id ORDER BY h.dateHumeur DESC, h.heure DESC";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->bindParam('id', $idUtil);
+        $searchStmt->execute();
+        return $searchStmt;
+    }
+
+    /**
+     * @param $pdo \PDO the pdo object
+     * @return \PDOStatement the statement referencing the result set
+     */
+    public function nombreHumeur($pdo, $idUtil)
+    {
+        $sql = "SELECT COUNT(codeHumeur) FROM humeur h WHERE idUtil = :id";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->bindParam('id', $idUtil);
+        $searchStmt->execute();
+        return $searchStmt;
+    }
+
+    /**
+     * @param $pdo \PDO the pdo object
+     * @param $premier Numero de la 1ere humeur de la page
+     * @param $parPage Nombre d'humeurs par page
+     * @return \PDOStatement the statement referencing the result set
+     */
+    public function viewMoodsPagination($pdo, $idUtil, $premier, $parPage)
+    {
+        $sql = "SELECT h.codeHumeur, h.dateHumeur, h.heure, h.contexte, l.libelleHumeur, l.emoji, h.idUtil FROM humeur h, libelle l WHERE h.libelle = l.codeLibelle AND idUtil = :id ORDER BY h.dateHumeur DESC, h.heure DESC LIMIT :premier, :parpage;";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->bindParam('id', $idUtil);
+        $searchStmt->bindParam('premier', $premier);
+        $searchStmt->bindParam('parpage', $parPage);
+        $searchStmt->execute();
+        return $searchStmt;
+    }
 
     private static $defaultDonneesService ;
     public static function getDefaultDonneesService()

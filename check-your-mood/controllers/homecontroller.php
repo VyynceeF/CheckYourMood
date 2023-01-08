@@ -3,6 +3,7 @@ namespace controllers;
 
 use services\HomeService;
 use services\MoodService;
+use services\DonneesService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
@@ -14,6 +15,7 @@ class HomeController {
     public function __construct()
     {
         $this->HomeService = HomeService::getDefaultHomeService();
+        $this->DonneesService = DonneesService::getDefaultDonneesService();
         $this->MoodService = MoodService::getDefaultMoodService();
     }
 
@@ -40,16 +42,34 @@ class HomeController {
 		$_SESSION['mdp'] = $mdp;
 		$_SESSION['numeroSession']=session_id();// Stockage numéro de session pour éviter les piratages.
 
-        //Humeurs de l'utilisateur
-        $humeurs = $this->MoodService->viewMoods($pdo,$infos['util']);
-
         //Libelle disponible
         $libelles = $this->MoodService->libelles($pdo);
+
+        // Nombre d'humeurs global
+        $nbHumeur = $this->DonneesService->nombreHumeur($pdo, $infos['util'])->fetchColumn(0);
+
+        // On détermine le nombre d'humeurs par page
+        $parPage = 9;
+
+        // On calcule le nombre de pages total
+        $pages = ceil($nbHumeur / $parPage);
+
+        // Page actuelle
+        $currentPage = 1;
+        
+        // Calcul du 1er article de la page
+        $premier = ($currentPage * $parPage) - $parPage;
+
+        // On récupère les humeurs à afficher sur la page no 1
+        $humeurs = $this->DonneesService->viewMoodsPagination($pdo, $infos['util'], $premier, $parPage);
 
         //Création de la vue et set vraiable
         $view = new View("check-your-mood/views/humeurs");
         $view->setVar('humeurs',$humeurs);
         $view->setVar('libelles',$libelles);
+        $view->setVar('updateOk',true);
+        $view->setVar('pages',$pages);
+        $view->setVar('noPage',$currentPage);
         return $view;
     }
 

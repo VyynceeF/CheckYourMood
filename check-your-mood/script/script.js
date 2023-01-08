@@ -22,12 +22,12 @@ const data = {
     data: dataHumeur,
     fill: true,
 
-    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    borderColor: 'rgb(255, 99, 132)',
-    pointBackgroundColor: 'rgb(255, 99, 132)',
+    backgroundColor: 'rgba(0, 197, 255, 0.2)',
+    borderColor: 'rgb(0, 197, 255)',
+    pointBackgroundColor: 'rgb(0, 197, 255)',
     pointBorderColor: '#fff',
     pointHoverBackgroundColor: 'rgb(0,0,0)',
-    pointHoverBorderColor: 'rgb(255, 99, 132)'
+    pointHoverBorderColor: 'rgb(0, 197, 255)'
   }]
 };
 

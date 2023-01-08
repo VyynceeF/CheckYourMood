@@ -9,6 +9,7 @@ font-family: 'Varela Round', sans-serif;
 
 body{
     background-color: rgba(226, 246, 255, 0.55);
+    height: 100%;
 }
 
 /*Images*/
@@ -16,16 +17,18 @@ body{
     width: 20vw;
     height: auto;
 }
-.enBleu{
-	color:darkblue;
-}
 
-.enBleu span{
+.enBleu, .enBleu span{
     font-family: 'Signika Negative', sans-serif;
     font-size: 1.05vw;
+    color:darkblue;
+
 }
 
-
+.revelerMDP {
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 14px;
+}
 
 
 /*Cadre connexion*/
@@ -57,7 +60,6 @@ body{
     flex-direction: row;
     align-items: center;
 }
-
 
 
 
@@ -140,7 +142,11 @@ body{
 }
 
 .radarPlus {
-    height: 70vh;
+    height: 71vh;
+}
+
+.donutGraph {
+    height: 85vh;
 }
 
 /*Contain Mdp*/
@@ -150,17 +156,16 @@ body{
     flex-direction: column;
 }
 
+.checkInput {
+
+    margin: 0px;
+
+}
+
 
 /*Style input*/
 
 input{
-    border-radius: 30px;
-    border: 1px solid black;
-    padding-left: 2.7vw;
-    width: auto;
-    height: 4vh;
-    width: auto;
-    outline-color: #008CC9;
 
     font-family: 'Hind Siliguri', sans-serif;
 }
@@ -206,7 +211,9 @@ input{
 	align-items: center;
 	justify-content:center;
 	padding-bottom: 2vh;
-    box-shadow: rgba(5, 150, 214, 0.4) 5px 5px, rgba(5, 150, 214, 0.3) 10px 10px, rgba(5, 150, 214, 0.2) 15px 15px, rgba(5, 150, 214, 0.1) 20px 20px, rgba(5, 150, 214, 0.05) 25px 25px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border: #0086ce 1px solid;
+    border-radius: 10px;
 
 }
 
@@ -259,25 +266,6 @@ hr{
     border-width:0px!important;
     width: 100%;
 }
-/*Position icon input*/
-
-.user{
-    background-image: url(../images/user.png);
-    background-repeat: no-repeat;
-    background-size: 1.7vw;
-    background-position-y: center;
-    background-position-x: 5px;
-}
-
-
-
-.locker{
-    background-image: url(../images/cadenas.png);
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: 5px;
-    background-size: 1.7vw;
-}
 
 .row-btn{
     padding-right: 5vw;
@@ -294,8 +282,19 @@ hr{
     gap: 5px;
 }
 
+.logoInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoConnexion {
+    font-size: large;
+}
 
 /*INSCRIPTION*/
+
 
 .contain-double-data{
     display: flex;
@@ -385,9 +384,8 @@ body{
 
 .card {
     border-radius: .9em 0 0 .9em;
-
+    border: black 1px solid;
     height: 77vh; 
-    border : 1px black solid; 
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
 }
@@ -467,28 +465,26 @@ a{
     width: 100%;
 }
 
-.ajoutHumeurForm{
+.popupHumeur {
+	background: white;
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 30%;
+    width: 40vw;
+	transform: translate(-45%, 5%);
+	z-index: 9;
+}
+
+.ajoutHumeurForm {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    justify-content: space-between;
+	margin-bottom: 10px;
 }
 
 .ajoutHumeurForm input {
-	text-align:center;
-	padding: 0px;
-    border-radius: 0px;
-    border: 1px solide black;
-    outline-color: #008CC9;
-}
-
-.time-input{
-    width: 7vw;
-}
-
-.ajoutHumeurForm select{
-    border-radius: 0px;
-    border: 1px solide black;
-    outline-color: #008CC9;
+	margin-left: 10px;
 }
 
 .sansBordure {
@@ -519,8 +515,9 @@ a{
     border: white 1px solid;
     border-radius: 5px;
     cursor: pointer;
-    padding : 10px; 
-    text-align: center;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .btn-ajout:hover{
@@ -537,13 +534,7 @@ a{
 }
 
 
-[class^="col-"]{
-	/* border-style:double ; 	Bordure double */
-	/* border-width:3px;		Epaisseur bordure */
-	/* border-color:#0099ff;	Couleur de la bordure */
-	border-radius: 5px;		/* Arrondissement des angles */
-	/*margin :5px;*/
-	padding:5px;
+[class^="col-"] {
 	text-align:center;  /* Centrage du texte */
 }
 
@@ -653,6 +644,77 @@ a{
     width: 95%;
 }
 
+/* Visualisation humeur (petit cadre) */
+
+.containCadre {
+	
+	padding: 2vh;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: auto;
+    border: 1px solid black;
+	border-radius: 10px;
+	margin-top: 2vw;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.containPopup {
+	
+	padding: 2vh;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: auto;
+    border: 1px solid black;
+	border-radius: 10px;
+}
+
+.containCadre span {
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 18px;
+	color:darkblue;
+}
+
+.containCadre .title {
+    font-size: 26px;
+}
+
+.containPopup .title {
+    font-size: 26px;
+}
+
+.containCadre:hover {
+	transform: scale(1.05);
+}
+
+textarea {
+	overflow-y: scroll;
+	height: 100px;
+	resize: none;
+}
+
+/* Activation du button pour la pagination */
+.active {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.bt-pagination {
+    width: 40px;
+    height: 30px;
+}
+
+/* Classes pour flouter l'arrière plan */
+.flou{
+    filter: blur(10px);
+}
 /* bouton pour aller en haut de la page */ 
 #top-button {
     display: none;
@@ -758,16 +820,20 @@ select::-webkit-scrollbar-thumb {
 
 
 .emojiFrequent  {
-    box-shadow: rgba(5, 150, 214, 0.4) 5px 5px, rgba(5, 150, 214, 0.3) 10px 10px, rgba(5, 150, 214, 0.2) 15px 15px, rgba(5, 150, 214, 0.1) 20px 20px, rgba(5, 150, 214, 0.05) 25px 25px;
+    height: 85vh;
+    border: #0086ce 1px solid;
+    border-radius: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .emojie{
 	font-size: 50vh;
+    font-family: 'Varela Round', sans-serif;
 }
 
 .borderTop {
-    border-top: 1px solid rgba(191, 191, 191, 0.95);
     padding-top: 3.5vh;
+    margin-bottom: 2vh;
 }
 
 .emojiFrequentLibelle {
@@ -779,4 +845,30 @@ select::-webkit-scrollbar-thumb {
 .shadowEmoji {
     text-shadow: rgba(0, 0, 0, 0.4) 5px 5px, rgba(0, 0, 0, 0.3) 10px 10px, rgba(0, 0, 0, 0.2) 15px 15px, rgba(0, 0, 0, 0.1) 20px 20px, rgba(0, 0, 0, 0.05) 25px 25px;
 
+}
+
+.texteGrossi {
+    font-size: 2vw;
+    color : darkblue; 
+    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+    0px -4px 10px rgba(33, 165, 253, 0.300);
+
+}
+
+.boutonEye {
+    background-color: #f1f1f1!important;
+    color :rgb(0, 0, 0)!important; 
+    border : 1px solid black!important; 
+}
+
+/* tr:nth-child(2n + 1) .boutonEye {
+    background-color: #d2faff!important;
+}
+
+tr:nth-child(2n) .boutonEye {
+    background-color: #ffffff!important;
+} */
+
+.boutonEye:hover {
+    transform: scale(1.03)!important;
 }

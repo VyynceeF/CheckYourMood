@@ -65,6 +65,20 @@ class VisualisationService
     
     }
 	
+	public function visualisationHumeurJour($pdo, $idUtil, $jour){
+        $sql="SELECT libelle.libelleHumeur as libelle, libelle.emoji  as emoji FROM humeur 
+		join libelle on libelle.codeLibelle = humeur.libelle 
+		where humeur.idUtil = :id  and dateHumeur = :date 
+		GROUP BY libelle 
+		ORDER BY COUNT(libelle) DESC LIMIT 1";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->bindParam('id', $idUtil);
+        $searchStmt->bindParam('date', $jour);
+        $searchStmt->execute();
+        return $searchStmt;
+    
+    }
+	
     public function visualisationHumeurSemaine($pdo, $idUtil, $week){
         $sql="SELECT libelle.libelleHumeur as libelle, libelle.emoji  as emoji FROM humeur join libelle on libelle.codeLibelle = humeur.libelle where humeur.idUtil = :id  and week(dateHumeur) = :date GROUP BY libelle ORDER BY COUNT(libelle) DESC LIMIT 1";
         $searchStmt = $pdo->prepare($sql);

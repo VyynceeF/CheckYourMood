@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <footer class="footer-distributed">
+    <footer class="footer-distributed fixed-bottom">
 
         <div class="footer-left">
 
