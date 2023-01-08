@@ -25,6 +25,7 @@ class Router
 {
     public function route($dataSource = null)
     {
+        session_start();
         // set the controller to enrole
         $controllerName = HttpHelper::getParam('controller') ?: 'Home';
         $controllerQualifiedName = "controllers\\" . $controllerName . "Controller";

@@ -1,3 +1,17 @@
+<?php 
+    // Test si on est bien connecté (session existante et bon numéro de session)
+	if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
+		// Renvoi vers la page de connexion
+  		header("Location: /check-your-mood/index.php");
+        exit();
+	}
+
+    if(isset($_POST['deconnexion']) && $_POST['deconnexion'] == "1"){
+        session_destroy();
+        header("Location: /check-your-mood/index.php");
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -28,11 +42,17 @@ use yasmf\HttpHelper;
 
     <div class="head">
         <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
+        <form action="index.php" method="post">
+            <input type="hidden" name="deconnexion" value = "1">
+            <button class='btn-deco' type="submit">Se deconnecter</button>
+        </form>
     </div>
 
     <div class="contain">
-        <div class="menu-right">
-          <a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">visualisation</a>
+        <div class="menu">
+            <div><a href="#">Humeurs</a></div>
+            <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
+            <div><a href="/check-your-mood?controller=mood&action=goTo&namepage=modification">Parametre</a></div>
         </div>
         <div class="contain-mood">
 
@@ -51,8 +71,8 @@ use yasmf\HttpHelper;
                 <div id="popupForm">
                 <form action = "index.php" method="post">
                     <input type="hidden" name="controller" value="Mood">
-                    <input type="hidden" name="codeUtil" value="<?php echo $_SESSION['util']; ?>">
                     <p class="sansBordure">Création humeur</p>
+                    <hr>
                     <div class="ajoutHumeurForm">
                         <!-- Libellé de l'humeur -->
                         <select name="humeur">
@@ -63,16 +83,16 @@ use yasmf\HttpHelper;
                             ?>
                         </select>
                         <!-- Date de l'humeur -->
-                        <input type="date" name="dateHumeur" required />
+                        <input type="date" name="dateHumeur" value="<?php echo date('Y-m-d'); ?>" required />
                         <!-- Heure de l'humeur -->
-                        <input type="time" name="heure" required />
+                        <input class="time-input" type="time" name="heure" value="<?php echo date('H:i'); ?>" required />
                         <!-- Contexte de l'humeur -->
                         <input type="text" name="contexte" placeholder="Contexte...">
                     </div
                     <!-- Boutons d'ajout et d'annulation de l'humeur -->
                     <div class="btnNav">
-                        <button type="submit" class="btn">Ajouter</button><br />
-                        <button type="submit" class="lien" onclick="closeForm()">Annuler</button>
+                        <button type="button" class="annuler" onclick="closeForm()">Annuler</button>
+                        <button type="submit" class="btn-ajout">Ajouter</button>
                     </div>
                 </form>
                 </div>
