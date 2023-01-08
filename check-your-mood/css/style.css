@@ -61,9 +61,7 @@ body{
     align-items: center;
 }
 
-.sansCadre{
-	border-width:0px!important;
-}
+
 
 .login{
     width: 55%;
@@ -144,7 +142,7 @@ body{
 }
 
 .radarPlus {
-    height: 55vh;
+    height: 70vh;
 }
 
 /*Contain Mdp*/
@@ -191,10 +189,6 @@ input{
 	background-color:rgba(226, 246, 255, 0.55);
 }
 
-.emojie{
-	font-size: 50vh;
-}
-
 .btnVisu{
     color: rgba(5, 150, 214, 0.95);
     background-color: white;
@@ -205,6 +199,7 @@ input{
     padding: 1vh;
     font-size: 2vh;
 }
+
 .nimport{
 	width : 100%;
 	height : 100%;
@@ -212,6 +207,8 @@ input{
 	align-items: center;
 	justify-content:center;
 	padding-bottom: 2vh;
+    box-shadow: rgba(5, 150, 214, 0.4) 5px 5px, rgba(5, 150, 214, 0.3) 10px 10px, rgba(5, 150, 214, 0.2) 15px 15px, rgba(5, 150, 214, 0.1) 20px 20px, rgba(5, 150, 214, 0.05) 25px 25px;
+
 }
 
 .nimport canvas{
@@ -240,6 +237,7 @@ input{
 
 .btnVisu2:hover{
 	background-color:rgb(145, 196, 219);
+    transition : 0.2s; 
     
 }
 
@@ -256,6 +254,11 @@ hr{
 
 .rouge{
     background-color: red;
+}
+
+.sansCadre{
+    border-width:0px!important;
+    width: 100%;
 }
 
 .row-btn{
@@ -359,23 +362,40 @@ body{
 .table-mood{
     width: 80%;
     font-family: 'Montserrat', sans-serif;
-    margin-left: 20px;
-    border-collapse: collapse;
+
 }
 
-.table-mood th,td{
-    text-align: left;
+.table-mood th,td {
+    text-align: center;
     padding-left: 8px;
+    padding-right: 8px;
     font-size: 1.3vw;
     height: 5vh;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
-    border-right: 1px solid rgba(0, 0, 0, 0.18);
+    border-bottom: 1px solid rgb(0, 0, 0);
+
+}
+
+
+.card {
+    border-radius: .9em 0 0 .9em;
+
+    height: 77vh; 
+    border : 1px black solid; 
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
 }
 
 .table-mood tr .last-column{
-    border-right: none;
     width: 35%;
 }
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #0086ce;
+    color : white;  
+}
+
 
 /*design submit change view*/
 
@@ -506,6 +526,11 @@ a{
     justify-content: end;
     gap: 10px;
     margin-top: 10px;
+}
+
+
+[class^="col-"] {
+	text-align:center;  /* Centrage du texte */
 }
 
 .head {
@@ -684,4 +709,131 @@ textarea {
 /* Classes pour flouter l'arrière plan */
 .flou{
     filter: blur(10px);
+}
+/* bouton pour aller en haut de la page */ 
+#top-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #55ebff;
+
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+  
+/* CSS */
+.okFormRadar {
+    background : linear-gradient(160deg, #0093E9 0%, #aff7fd 100%);    background-color: #0093E9;
+    border: 0;
+    border-radius: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+.okFormRadar:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(71, 177, 239, 0.5), .125rem .125rem 1rem rgba(90, 255, 186, 0.5);
+}
+
+.okFormRadar:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(71, 155, 239, 0.5), .125rem .125rem 1rem rgba(90, 255, 217, 0.5);
+}
+
+.selectFormGraph {
+    color: rgba(5, 150, 214, 0.95);
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 12px;
+    width: 13vh;
+    height: 4vh;
+    padding-left: 0.3vw;
+    
+}
+
+.selectFormGraph:hover {
+    border-color :rgba(5, 150, 214, 0.95);
+    transform : scale(1.05); 
+
+}
+
+select::-webkit-scrollbar {
+    width: 16px;
+    height: 5px;
+  }
+  
+select::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+
+}
+
+select::-webkit-scrollbar-thumb {
+    background-color:rgba(5, 150, 214, 0.95);
+    border-radius: 100px;
+}
+
+/* scroll bar pour le tableau de la visualisation */
+.card::-webkit-scrollbar {
+    width: 16px;
+    height: 5px;
+  }
+  
+.card::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+
+}
+
+.card::-webkit-scrollbar-thumb {
+    background-color: #0086ce;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+
+.humeurPlusFrequente {
+    margin-top: 10vh;
+}
+
+
+.emojiFrequent  {
+    box-shadow: rgba(5, 150, 214, 0.4) 5px 5px, rgba(5, 150, 214, 0.3) 10px 10px, rgba(5, 150, 214, 0.2) 15px 15px, rgba(5, 150, 214, 0.1) 20px 20px, rgba(5, 150, 214, 0.05) 25px 25px;
+}
+
+.emojie{
+	font-size: 50vh;
+}
+
+.borderTop {
+    border-top: 1px solid rgba(191, 191, 191, 0.95);
+    padding-top: 3.5vh;
+}
+
+.emojiFrequentLibelle {
+	color:darkblue;
+    font-size: 2vw;
+
+}
+
+.shadowEmoji {
+    text-shadow: rgba(0, 0, 0, 0.4) 5px 5px, rgba(0, 0, 0, 0.3) 10px 10px, rgba(0, 0, 0, 0.2) 15px 15px, rgba(0, 0, 0, 0.1) 20px 20px, rgba(0, 0, 0, 0.05) 25px 25px;
+
 }
