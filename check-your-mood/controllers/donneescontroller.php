@@ -101,8 +101,6 @@ class DonneesController {
         $view->setVar('tableauCountDonught',$tableauCountDonught);
 		$view->setVar('humeursLaPlusFrequenteJour',$humeursLaPlusFrequenteJour);
 
-        
-        
         return $view;
     }
 
@@ -112,32 +110,16 @@ class DonneesController {
         $tab['identifiant'] = htmlspecialchars(HttpHelper::getParam('identifiant'));
         $tab['nom'] = htmlspecialchars(HttpHelper::getParam('nom'));
         $tab['prenom'] = htmlspecialchars(HttpHelper::getParam('prenom'));
-        $mdp = htmlspecialchars(HttpHelper::getParam('motdepasse'));
-        $tab['motDePasse'] = md5($mdp);
         $tab['mail'] = htmlspecialchars(HttpHelper::getParam('mail'));
         $util = $_SESSION['util'];
 
-        $updateNo = true;
+        $modificationInformationOk = $this->DonneesService->updateData($pdo,$tab,$util);
 
-        foreach($tab as $key => $value){
-            if($value == ""){
-                $updateNo = false;
-            }
-        }
+        $view = $this->viewModification($pdo);
+        // Modification des Informations (hors mot de passe) 
+        $view->setVar('tentativeModificationInformation',true);
+        $view->setVar('modificationInformationOk',$modificationInformationOk);
 
-        if($updateNo){$donnees = $this->DonneesService->updateData($pdo,$tab,$util);}else{$donnees = "nOk";}
-		
-		$view = new View("check-your-mood/views/modification");
-        if($donnees == "nOk"){
-			$view->setVar('updateOk',1); 
-		}else{
-           $view->setVar('updateOk',2);
-           $_SESSION['id'] = $tab['identifiant'];
-           $_SESSION['mdp'] = $mdp;
-           $_SESSION['nom'] = $tab['nom'];
-           $_SESSION['prenom'] = $tab['prenom'];
-           $_SESSION['mail'] = $tab['mail'];
-        }
 		return $view;
     }
 	
@@ -230,15 +212,19 @@ class DonneesController {
         
         //Création de la vue et set vraiable
         $view = new View("check-your-mood/views/modification");
+        // Informations de l'utilisateur
         $view->setVar('prenom',$donnees[0]['prenom']);
         $view->setVar('nom',$donnees[0]['nom']);
         $view->setVar('identifiant',$donnees[0]['identifiant']);
         $view->setVar('courriel',$donnees[0]['mail']);
+        // Modification des Informations (hors mot de passe) 
+        $view->setVar('tentativeModificationInformation',false);
+        $view->setVar('modificationInformationOk',false);
+        // Modification du mot de passe
         $view->setVar('tentativeModificationMDP',false);
         $view->setVar('mdpOk','');
         $view->setVar('mdpNouveauOk','');
         $view->setVar('modificationMDPOk',false);
-        $view->setVar('modificationMDPOk',true);
         return $view;
     }
         

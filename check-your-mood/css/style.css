@@ -601,6 +601,11 @@ a{
     margin-top: 5vh;
 }
 
+.contain span {
+
+    font-size: large;
+}
+
 .textModifier {
     
     color: #008CC9;

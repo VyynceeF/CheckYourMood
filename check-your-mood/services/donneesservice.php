@@ -29,17 +29,16 @@ class DonneesService
         $setter .= "  where codeUtil = :util ";
         $tabExec['util'] = $util;
 
-
-        try{
+        try {
 
             $requete = "UPDATE utilisateur ".$setter ;
             $sql = $pdo->prepare($requete);
             $sql->execute($tabExec);
-            return "ok";
+            return true;
 
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
-            return "nOk";
+            return false;
         }
 
     }

@@ -64,6 +64,10 @@ use yasmf\HttpHelper;
                     if ($tentativeModificationMDP && $modificationMDPOk) {
                         echo '<span class="ok">Modification de mot de passe effectuée</span>' ;
                     }   
+                    // Vérifie s'il y a une tentative de modification réussite de mot de passe
+                    if ($tentativeModificationInformation && $modificationInformationOk) {
+                        echo '<span class="ok">Modification des informations effectuées</span>' ;
+                    }  
                 ?>
                 <div class="row">
                     <div class="col-xs-12">
@@ -125,15 +129,15 @@ use yasmf\HttpHelper;
                             <input type="hidden" name="action" value="updateMDP"><div class="containModification">
                             <div class="containModification">
                                 <span>&nbsp;&nbsp;Ancien mot de passe</span>
-                                <input class="form-control" type="text" name="ancienMDP" placeholder="Ancien mot de passe">
+                                <input class="form-control" type="password" name="ancienMDP" placeholder="Ancien mot de passe">
                             </div>
                             <div class="containModification">
                                 <span>&nbsp;&nbsp;Nouveau mot de passe</span>
-                                <input class="form-control" type="text" name="nouveauMDP" placeholder="Nouveau mot de passe">
+                                <input class="form-control" type="password" name="nouveauMDP" placeholder="Nouveau mot de passe">
                             </div>
                             <div class="containModification">
                                 <span>&nbsp;&nbsp;Confirmation du nouveau mot de passe</span>
-                                <input class="form-control" type="text" name="confirmationNouveauMDP" placeholder="Confirmation du nouveau mot de passe">
+                                <input class="form-control" type="password" name="confirmationNouveauMDP" placeholder="Confirmation du nouveau mot de passe">
                             </div>
                             <!-- Boutons d'ajout et d'annulation de l'humeur -->
                             <div class="btnNav">
