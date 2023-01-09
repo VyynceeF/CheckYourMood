@@ -7,8 +7,8 @@ font-family: 'Varela Round', sans-serif;
 */
 
 
-body{
-    background-color: rgba(226, 246, 255, 0.55);
+body, html{
+    height: 100%;
 }
 
 /*Images*/
@@ -16,13 +16,12 @@ body{
     width: 20vw;
     height: auto;
 }
-.enBleu{
-	color:darkblue;
-}
 
-.enBleu span{
+.enBleu, .enBleu span{
     font-family: 'Signika Negative', sans-serif;
     font-size: 1.05vw;
+    color:darkblue;
+
 }
 
 .revelerMDP {
@@ -142,7 +141,11 @@ body{
 }
 
 .radarPlus {
-    height: 70vh;
+    height: 71vh;
+}
+
+.donutGraph {
+    height: 85vh;
 }
 
 /*Contain Mdp*/
@@ -207,7 +210,9 @@ input{
 	align-items: center;
 	justify-content:center;
 	padding-bottom: 2vh;
-    box-shadow: rgba(5, 150, 214, 0.4) 5px 5px, rgba(5, 150, 214, 0.3) 10px 10px, rgba(5, 150, 214, 0.2) 15px 15px, rgba(5, 150, 214, 0.1) 20px 20px, rgba(5, 150, 214, 0.05) 25px 25px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border: #0086ce 1px solid;
+    border-radius: 10px;
 
 }
 
@@ -378,9 +383,8 @@ body{
 
 .card {
     border-radius: .9em 0 0 .9em;
-
+    border: black 1px solid;
     height: 77vh; 
-    border : 1px black solid; 
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
 }
@@ -830,16 +834,20 @@ select::-webkit-scrollbar-thumb {
 
 
 .emojiFrequent  {
-    box-shadow: rgba(5, 150, 214, 0.4) 5px 5px, rgba(5, 150, 214, 0.3) 10px 10px, rgba(5, 150, 214, 0.2) 15px 15px, rgba(5, 150, 214, 0.1) 20px 20px, rgba(5, 150, 214, 0.05) 25px 25px;
+    height: 85vh;
+    border: #0086ce 1px solid;
+    border-radius: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .emojie{
 	font-size: 50vh;
+    font-family: 'Varela Round', sans-serif;
 }
 
 .borderTop {
-    border-top: 1px solid rgba(191, 191, 191, 0.95);
     padding-top: 3.5vh;
+    margin-bottom: 2vh;
 }
 
 .emojiFrequentLibelle {
@@ -851,4 +859,30 @@ select::-webkit-scrollbar-thumb {
 .shadowEmoji {
     text-shadow: rgba(0, 0, 0, 0.4) 5px 5px, rgba(0, 0, 0, 0.3) 10px 10px, rgba(0, 0, 0, 0.2) 15px 15px, rgba(0, 0, 0, 0.1) 20px 20px, rgba(0, 0, 0, 0.05) 25px 25px;
 
+}
+
+.texteGrossi {
+    font-size: 2vw;
+    color : darkblue; 
+    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+    0px -4px 10px rgba(33, 165, 253, 0.300);
+
+}
+
+.boutonEye {
+    background-color: #f1f1f1!important;
+    color :rgb(0, 0, 0)!important; 
+    border : 1px solid black!important; 
+}
+
+/* tr:nth-child(2n + 1) .boutonEye {
+    background-color: #d2faff!important;
+}
+
+tr:nth-child(2n) .boutonEye {
+    background-color: #ffffff!important;
+} */
+
+.boutonEye:hover {
+    transform: scale(1.03)!important;
 }

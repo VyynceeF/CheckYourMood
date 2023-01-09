@@ -58,6 +58,21 @@
 			document.getElementById("containHumeur" + noId).classList.remove("flou");
 		}
 	}
+	
+	function openPopupHumeur(id) {
+		document.getElementById("popupHumeur" + id).style.display = "block";
+		// Ajout du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.add("flou");
+		}
+	}
+	function closePopupHumeur(id) {
+		document.getElementById("popupHumeur" + id).style.display = "none";
+		// Suppression du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.remove("flou");
+		}
+	}
 	</script>
 
 <?php
@@ -191,6 +206,9 @@ use yasmf\HttpHelper;
 
         </div>
       </div>
-
+	  <?php
+    
+	include("footer.php");
+    ?>
 </body>
 </html>

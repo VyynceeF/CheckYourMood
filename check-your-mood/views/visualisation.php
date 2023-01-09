@@ -355,7 +355,7 @@ use yasmf\HttpHelper;
 						<!-- fin de la partie du formulaire pour le graphe radar  -->
 						<!-- affichage du graphe radar -->
 						<br>
-						<div class="contourViz nimport">
+						<div class="nimport">
 							<canvas id="myChart" ></canvas>
 						</div>
 					</div>
@@ -394,7 +394,8 @@ use yasmf\HttpHelper;
 									echo "<td>".$row['emoji']."</td>";
 									echo "<td>".$row['libelle']."</td>";
 									echo "<td>".$row['heure']."</td>";
-									echo "<td class = 'last-column'>".$row['contexte']."</td>";
+									echo "<td class = 'last-column'>".$row['contexte']."<button type=\"submit\" class=\"form-control btn btn-info boutonEye\" name=\"AddMedoc\" value=\"AddMedoc\" /><span
+									class='fas fa-solid fa-eye'></button></td>";
 									echo "</tr>";
 									$ancienneDate = $row['jourDeLaSemaine'];
 								}
@@ -407,13 +408,14 @@ use yasmf\HttpHelper;
 			
 			<div class = "row">
 				<div class = "col-md-12 humeurPlusFrequente borderTop">
-					<div class="enBleu">
-						<span>Voici l'humeur qui est revenu le plus cette semaine :</span>
-					</div>
 					<?php
 					while($row = $humeursLaPlusFrequente->fetch()){
 						?>
-						<div class=" container emojiFrequent">
+						<div class="container emojiFrequent">
+							<div class="texteGrossi">
+							<span>Voici l'humeur qui est revenu le plus cette semaine :</span>
+							</div>
+							<br>
 							<span class="emojie shadowEmoji "><?php echo $row['emoji'] ; ?></span>
 							<br>
 							<div class="emojiFrequentLibelle">
@@ -525,19 +527,44 @@ use yasmf\HttpHelper;
 			if($typeDeRpresentation == 1){
 				?>
 				<div class="col-md-6">
-					<?php
-					echo '<script type="text/javascript">';
-					echo "var dataCountDonught = '".implode(",", $tableauCountDonught)."'.split(',');";
-					echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');";
-					echo 'console.table(dataHumeur);';
-					echo '</script>';
-					if($tableauCountDonught[0] == 0){
-						?>
-						<p>Vous n'avez pas d'humeur aujourd'hui</p>
+					<div class="donutGraph">
 						<?php
-					} else {
+						echo '<script type="text/javascript">';
+						echo "var dataCountDonught = '".implode(",", $tableauCountDonught)."'.split(',');";
+						echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');";
+						echo 'console.table(dataHumeur);';
+						echo '</script>';
+						if($tableauCountDonught[0] == 0){
+							?>
+							<p class="texteGrossi">Vous n'avez pas d'humeur aujourd'hui</p>
+							<?php
+						} else {
+							?>
+							<div class="nimport">
+								<canvas id="myChart2" class="containGraph"></canvas>
+							</div>
+							<?php
+						}
 						?>
-						<canvas id="myChart2" class="containGraph"></canvas>
+					</div>
+					
+				</div>
+			
+				<div class = "col-md-6">
+					<?php
+					while($row = $humeursLaPlusFrequenteJour->fetch()){
+						?>
+						<div class=" emojiFrequent">
+							<div class="texteGrossi">
+							<span class>Voici l'humeur qui est revenu le plus ce jour-ci :</span>
+							</div>
+							<br>
+							<span class="emojie shadowEmoji"><?php echo $row['emoji']; ?></span>
+							<br>
+							<div class="emojiFrequentLibelle">
+								<span><?php echo $row['libelle']; ?></span>
+							</div>
+						</div>
 						<?php
 					}
 					?>
