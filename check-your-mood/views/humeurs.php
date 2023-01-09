@@ -94,7 +94,7 @@ use yasmf\HttpHelper;
         <div class="menu">
             <div><a href="#">Humeurs</a></div>
             <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
-            <div><a href="/check-your-mood?controller=donnees&action=viewModification&namepage=modification">Parametre</a></div>
+            <div><a href="/check-your-mood?controller=donnees&action=viewModification&namepage=modification">Paramètres</a></div>
         </div>
         <div id="contain-contenu" class="contain-mood">
 

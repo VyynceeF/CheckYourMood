@@ -658,6 +658,23 @@ a{
     font-family: 'Varela Round', sans-serif;
 }
 
+#popupSupprimer {
+	background: white;
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 30%;
+    width: 50%;
+	transform: translate(-45%, 5%);
+	border: 1px solid lightgray;
+	z-index: 9;
+	padding: 15px;
+	border-radius: 10px;
+
+    color: #008CC9;
+    font-family: 'Varela Round', sans-serif;
+}
+
 /* Visualisation humeur (petit cadre) */
 
 .containCadre {

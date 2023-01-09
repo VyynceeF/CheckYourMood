@@ -146,6 +146,38 @@ class DonneesService
         return $searchStmt;
     }
 
+	public function supprimerCompte($pdo,$idUtil)
+   {
+	   try{
+		   
+			$pdo->beginTransaction();
+		   
+			$sql = "DELETE FROM humeur WHERE  idUtil = :id";
+			$searchStmt = $pdo->prepare($sql);
+			$searchStmt->bindParam('id',$idUtil);
+			$searchStmt->execute();
+			var_dump($sql);
+			$sql = "DELETE FROM utilisateur WHERE codeUtil = :id ";
+			$searchStmt = $pdo->prepare($sql);
+			$searchStmt->bindParam('id',$idUtil);
+			$searchStmt->execute();
+			
+			var_dump($idUtil);
+			
+			$pdo->commit();
+			return "ok";
+			
+	   }catch(PDOException $e){
+		   $pdo->rollBack();
+		   return "nOk";
+	   }
+	   
+	   
+	   
+
+   }
+
+
     private static $defaultDonneesService ;
     public static function getDefaultDonneesService()
     {
@@ -154,4 +186,7 @@ class DonneesService
         }
         return DonneesService::$defaultDonneesService;
     }
+	
+	
+	
 }

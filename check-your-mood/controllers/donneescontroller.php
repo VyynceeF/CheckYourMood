@@ -268,4 +268,15 @@ class DonneesController {
         $view->setVar('mdpNouveauOk',$mdpNouveauOk);
         return $view;
     }
+	
+	
+	public function supprimerCompte($pdo) {
+		
+		$this->DonneesService->supprimerCompte($pdo, $_SESSION['id']);
+		$view = new View("check-your-mood/views/connexion");
+		$view->setVar("errData",true);
+		return $view ; 
+
+	}
+
 }

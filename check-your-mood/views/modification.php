@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CheckYourMood - Inscription</title>
+    <title>CheckYourMood - Modification</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
 </head>
@@ -27,18 +27,23 @@ use yasmf\HttpHelper;
     <script>	 
     function openForm() {
 		document.getElementById("popupFormModification").style.display = "block";
-		// Ajout du flou sur toutes les humeurs
-		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
-			document.getElementById("containHumeur" + noId).classList.add("flou");
-		}
+		
+		
 	}
 	function closeForm() {
 		document.getElementById("popupFormModification").style.display = "none";
-		// Suppression du flou sur toutes les humeurs
-		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
-			document.getElementById("containHumeur" + noId).classList.remove("flou");
-		}
+		
+		
 	}
+	function openFormSupprimerCompte() {
+		document.getElementById("popupSupprimer").style.display = "block";
+	}
+	
+	function closeFormSupprimerCompte() {
+		document.getElementById("popupSupprimer").style.display = "none";
+	}
+		
+		
     </script>
 
     <body>
@@ -56,9 +61,29 @@ use yasmf\HttpHelper;
             <div class="menu">
                 <div><a href="/check-your-mood?controller=donnees&action=changementPage&namepage=humeurs">Humeurs</a></div>
                 <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
-                <div><a href="#">Parametre</a></div>
+                <div><a href="#">Paramètres</a></div>
             </div>
             <div class="container">
+			
+			    <!-- POPUP -->
+				<div id="popupSupprimer">
+					<form action = "index.php" method="post">
+						<input type="hidden" name="controller" value="donnees">
+						<input type="hidden" name="action" value="supprimerCompte">
+						<p class="sansBordure">Suppresion du compte</p>
+						<hr>
+						<!-- Boutons d'ajout et d'annulation de l'humeur -->
+						<div class="btnNav">
+							<div class = " col-xs-12 col-md-6">
+								<button type="button" class="annuler" onclick="closeFormSupprimerCompte()">Annuler</button>
+							</div>
+							<div class = "col-xs-12 col-md-6">
+								<button type="submit" class="btn-ajout">Confirmer</button>
+							</div>
+						</div>
+					</form>
+                </div>
+			
                 <?php
                     // Vérifie s'il y a une tentative de modification réussite de mot de passe
                     if ($tentativeModificationMDP && $modificationMDPOk) {
@@ -100,16 +125,20 @@ use yasmf\HttpHelper;
                                 <span>&nbsp;&nbsp;Identifiant</span>
                                 <input class="form-control" type="text" name="identifiant" placeholder="Identifiant*" value="<?php echo $identifiant ?>">
                             </div>
-                            <div class="col-xs-12 containModification">
+                            <div class="col-xs-12 col-md-4 containModification">
                                 <button class="btn-ajout" type="submit" form="rien" onclick="openForm()">Modifier le mot de passe</button>
                             </div>
+							<div class="col-md-4">
+								<button type="button" class="btn-ajout" onclick="openFormSupprimerCompte()">Supprimer mon compte</button>
+							</div>
                         </div>
                         <div class="col-xs-12 containModificationEnregistrer">
-                            
                             <a class="annuler" href="/check-your-mood?controller=donnees&action=viewModification&namepage=modification">Annuler</a>
-                            <button class="btn-ajout" type="submit">Enregistrer</button>
+                            <button class="btn-ajout" type="submit" onclick="openForm()">Enregistrer</button>
                         </div>
+						
                     </form>
+					
                     <div id="popupFormModification">
                         <?php
                             // Vérifie s'il y a une tentative de modification de mot de passe
@@ -124,31 +153,33 @@ use yasmf\HttpHelper;
                                 echo '<script>openForm()</script>';
                             }
                         ?>
-					    <form action = "index.php" method="post">
-                            <input type="hidden" name="controller" value="donnees">
-                            <input type="hidden" name="action" value="updateMDP"><div class="containModification">
-                            <div class="containModification">
-                                <span>&nbsp;&nbsp;Ancien mot de passe</span>
-                                <input class="form-control" type="password" name="ancienMDP" placeholder="Ancien mot de passe">
-                            </div>
-                            <div class="containModification">
-                                <span>&nbsp;&nbsp;Nouveau mot de passe</span>
-                                <input class="form-control" type="password" name="nouveauMDP" placeholder="Nouveau mot de passe">
-                            </div>
-                            <div class="containModification">
-                                <span>&nbsp;&nbsp;Confirmation du nouveau mot de passe</span>
-                                <input class="form-control" type="password" name="confirmationNouveauMDP" placeholder="Confirmation du nouveau mot de passe">
-                            </div>
-                            <!-- Boutons d'ajout et d'annulation de l'humeur -->
-                            <div class="btnNav">
-                                <button type="button" class="annuler" onclick="closeForm()">Annuler</button>
-                                <button type="submit" class="btn-ajout">Modifier</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+							<form action = "index.php" method="post">
+								<input type="hidden" name="controller" value="donnees">
+								<input type="hidden" name="action" value="updateMDP">
+							<div class="containModification">
+									<div class="containModification">
+										<span>&nbsp;&nbsp;Ancien mot de passe</span>
+										<input class="form-control" type="password" name="ancienMDP" placeholder="Ancien mot de passe">
+									</div>
+									<div class="containModification">
+										<span>&nbsp;&nbsp;Nouveau mot de passe</span>
+										<input class="form-control" type="password" name="nouveauMDP" placeholder="Nouveau mot de passe">
+									</div>
+									<div class="containModification">
+										<span>&nbsp;&nbsp;Confirmation du nouveau mot de passe</span>
+										<input class="form-control" type="password" name="confirmationNouveauMDP" placeholder="Confirmation du nouveau mot de passe">
+									</div>
+									<!-- Boutons d'ajout et d'annulation de l'humeur -->
+									<div class="btnNav">
+										<button type="button" class="annuler" onclick="closeForm()">Annuler</button>
+										<button type="submit" class="btn-ajout">Confirmer</button>
+									</div>
+							</form>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
         <?php
     
 	include("footer.php");
