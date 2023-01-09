@@ -7,12 +7,7 @@ font-family: 'Varela Round', sans-serif;
 */
 
 
-<<<<<<< Updated upstream
-body{
-    background-color: rgba(226, 246, 255, 0.55);
-=======
 body, html{
->>>>>>> Stashed changes
     height: 100%;
 }
 
@@ -522,6 +517,7 @@ a{
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    font-size: medium;
 }
 
 .btn-ajout:hover{
