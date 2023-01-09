@@ -7,8 +7,12 @@ font-family: 'Varela Round', sans-serif;
 */
 
 
+<<<<<<< Updated upstream
 body{
     background-color: rgba(226, 246, 255, 0.55);
+=======
+body, html{
+>>>>>>> Stashed changes
     height: 100%;
 }
 
