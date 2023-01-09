@@ -73,6 +73,15 @@
 </head>
 <body>
 
+<script>	 
+    function openPopupContexte(id) {
+		document.getElementById("popupContexte" + id).style.display = "block";
+		
+	}
+	function closePopupContexte(id) {
+		document.getElementById("popupContexte" + id).style.display = "none";
+	}
+    </script>
 
 <?php
 spl_autoload_extensions(".php");
@@ -384,6 +393,7 @@ use yasmf\HttpHelper;
 
 							<?php
 								$ancienneDate = NULL;
+								$i = 0; 
 								while($row = $visualisationTableau->fetch()){
 									echo "<tr>";
 									if ($row['jourDeLaSemaine'] == $ancienneDate) {
@@ -394,10 +404,20 @@ use yasmf\HttpHelper;
 									echo "<td>".$row['emoji']."</td>";
 									echo "<td>".$row['libelle']."</td>";
 									echo "<td>".$row['heure']."</td>";
-									echo "<td class = 'last-column'>".$row['contexte']."<button type=\"submit\" class=\"form-control btn btn-info boutonEye\" name=\"AddMedoc\" value=\"AddMedoc\" /><span
+									echo "<td class = 'last-column'>".$row['contexte']."<button onclick=\"openPopupContexte(".$i.")\"  class=\"form-control btn btn-info boutonEye\" name=\"AddMedoc\" value=\"AddMedoc\" /><span
 									class='fas fa-solid fa-eye'></button></td>";
 									echo "</tr>";
 									$ancienneDate = $row['jourDeLaSemaine'];
+
+									echo '<div id="popupContexte'.$i.'" class="popupContexte">';
+										echo '<span class="title">Contexte</span><br/>';
+										echo '<span>'. $row["contexte"] . '</span>';
+
+										echo '<div class="btnNav">';
+											echo '<button type="button" class="annuler" onclick="closePopupContexte('.$i.')">Fermer</button>';
+										echo '</div>';
+									echo '</div>';
+									$i++; 
 								}
 
 							?>

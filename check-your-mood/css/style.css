@@ -864,8 +864,7 @@ select::-webkit-scrollbar-thumb {
 .texteGrossi {
     font-size: 2vw;
     color : darkblue; 
-    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
-    0px -4px 10px rgba(33, 165, 253, 0.300);
+    text-shadow:  0px -4px 10px rgba(33, 165, 253, 0.300);
 
 }
 
@@ -885,4 +884,17 @@ tr:nth-child(2n) .boutonEye {
 
 .boutonEye:hover {
     transform: scale(1.03)!important;
+}
+
+
+.popupContexte {
+	background: white;
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 30%;
+    width: 40vw;
+	transform: translate(-45%, 5%);
+	z-index: 9;
+    border : 1px solid black; 
 }

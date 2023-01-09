@@ -54,8 +54,8 @@ use yasmf\HttpHelper;
         <div class="contain">
 
             <div class="menu">
-                <div><a href="/check-your-mood?controller=mood&action=goTo&namepage=humeurs">Humeurs</a></div>
-                <div><a href="/check-your-mood?controller=donnees&action=changementPage&namepage=visualisation">Visualisation</a></div>
+                <div><a href="/check-your-mood?controller=donnees&action=changementPage&namepage=humeurs">Humeurs</a></div>
+                <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
                 <div><a href="#">Parametre</a></div>
             </div>
             <div class="container">
