@@ -29,17 +29,16 @@ class DonneesService
         $setter .= "  where codeUtil = :util ";
         $tabExec['util'] = $util;
 
-
-        try{
+        try {
 
             $requete = "UPDATE utilisateur ".$setter ;
             $sql = $pdo->prepare($requete);
             $sql->execute($tabExec);
-            return "ok";
+            return true;
 
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
-            return "nOk";
+            return false;
         }
 
     }
@@ -88,7 +87,20 @@ class DonneesService
         $searchStmt->bindParam('id', $idUtil);
         $searchStmt->execute();
         return $searchStmt;
-    }
+    } 
+    
+    /**
+    * @param $pdo \PDO the pdo object
+    * @return \PDOStatement the statement referencing the result set
+    */
+   public function donneesUser($pdo, $idUtil)
+   {
+       $sql = "SELECT prenom, nom, identifiant, mail FROM `utilisateur` WHERE codeUtil = :id";
+       $searchStmt = $pdo->prepare($sql);
+       $searchStmt->bindParam('id', $idUtil);
+       $searchStmt->execute();
+       return $searchStmt;
+   }
 
     /**
      * @param $pdo \PDO the pdo object
@@ -103,6 +115,33 @@ class DonneesService
         $searchStmt->bindParam('id', $idUtil);
         $searchStmt->bindParam('premier', $premier);
         $searchStmt->bindParam('parpage', $parPage);
+        $searchStmt->execute();
+        return $searchStmt;
+    }    
+    
+    /**
+    * @param $pdo \PDO the pdo object
+    * @return \PDOStatement the statement referencing the result set
+    */
+   public function mdp($pdo, $idUtil)
+   {
+       $sql = "SELECT motDePasse FROM `utilisateur` WHERE codeUtil = :id";
+       $searchStmt = $pdo->prepare($sql);
+       $searchStmt->bindParam('id', $idUtil);
+       $searchStmt->execute();
+       return $searchStmt;
+   }
+   
+   /**
+    * @param $pdo \PDO the pdo object
+    * @return \PDOStatement the statement referencing the result set
+    */
+    public function updateMDP($pdo, $idUtil, $nouveauMDP)
+    {
+        $sql = "UPDATE `utilisateur` SET motDePasse=:nouveauMDP WHERE codeUtil = :id";
+        $searchStmt = $pdo->prepare($sql);
+        $searchStmt->bindParam('id', $idUtil);
+        $searchStmt->bindParam('nouveauMDP', $nouveauMDP);
         $searchStmt->execute();
         return $searchStmt;
     }

@@ -31,9 +31,32 @@
 	<script>
 	function openForm() {
 		document.getElementById("popupForm").style.display = "block";
+		// Ajout du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.add("flou");
+		}
 	}
 	function closeForm() {
 		document.getElementById("popupForm").style.display = "none";
+		// Suppression du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.remove("flou");
+		}
+	}
+	
+	function openPopupHumeur(id) {
+		document.getElementById("popupHumeur" + id).style.display = "block";
+		// Ajout du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.add("flou");
+		}
+	}
+	function closePopupHumeur(id) {
+		document.getElementById("popupHumeur" + id).style.display = "none";
+		// Suppression du flou sur toutes les humeurs
+		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
+			document.getElementById("containHumeur" + noId).classList.remove("flou");
+		}
 	}
 	
 	function openPopupHumeur(id) {
@@ -71,7 +94,7 @@ use yasmf\HttpHelper;
         <div class="menu">
             <div><a href="#">Humeurs</a></div>
             <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
-            <div><a href="/check-your-mood?controller=mood&action=goTo&namepage=modification">Parametre</a></div>
+            <div><a href="/check-your-mood?controller=donnees&action=viewModification&namepage=modification">Parametre</a></div>
         </div>
         <div id="contain-contenu" class="contain-mood">
 

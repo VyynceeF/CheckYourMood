@@ -15,7 +15,7 @@ spl_autoload_register();
 use yasmf\HttpHelper;
 
 ?>
-    <body>
+    <body class="backgroundBleu">
         <script src="script\script.js"></script>
         <div class="conteneur-main">
             <div class="conteneur">
@@ -39,7 +39,10 @@ use yasmf\HttpHelper;
                                 <span class="glyphicon glyphicon-lock logoConnexion"></span>
                                 <input class="form-control" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput"><br>
                             </div>
-                            <div class="contain-revele"><input class="checkInput" type="checkbox" name="revele" onclick="myFunction()"><span class="revelerMDP">Révéler mot de passe</span></div>
+                            <div class="contain-revele">
+                                <input class="checkInput" type="checkbox" name="revele" onclick="myFunction()">
+                                <span class="revelerMDP">Révéler mot de passe</span>
+                            </div>
                         </div>
                         <div class="btn-connect"><button class="btn" type="submit">Se connecter</button></div>
                     </form>

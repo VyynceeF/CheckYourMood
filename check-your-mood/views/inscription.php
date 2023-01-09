@@ -16,7 +16,7 @@ use yasmf\HttpHelper;
 
 ?>
 
-    <body>
+    <body class="backgroundBleu">
         <div class="conteneur-main">
             <div class="conteneur">
                 <!---Cadre de connexion-->

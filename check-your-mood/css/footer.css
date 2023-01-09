@@ -11,6 +11,7 @@ font-family: 'Varela Round', sans-serif;
 
 footer {
     margin-top: 3vh;
+	width: 100%;
 }
 .footer-distributed{
 	background: rgb(220, 241, 255);

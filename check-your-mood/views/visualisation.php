@@ -73,6 +73,18 @@
 </head>
 <body>
 
+<script>	 
+    function openPopupContexte(id) {
+		document.getElementById("popupContexte" + id).style.display = "block";
+		document.getElementById("popupContexte" + id).classList.add("noFlou");
+		
+	}
+	function closePopupContexte(id) {
+		document.getElementById("popupContexte" + id).style.display = "none";
+		document.querySelector("body").classList.remove("flou");
+
+	}
+    </script>
 
 <?php
 spl_autoload_extensions(".php");
@@ -88,7 +100,7 @@ use yasmf\HttpHelper;
     <div class="head">
         <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
         <!-- lien pour aller sur la page des humeurs : (ne marche pas pour l'instant) -->
-        <a href="/check-your-mood?controller=Mood&action=index">Humeurs</a>
+        <a href="/check-your-mood?controller=donnees&action=changementPage">Humeurs</a>
     </div>
     <?php
     if(!isset($_POST['premiereCo'])){
@@ -331,8 +343,8 @@ use yasmf\HttpHelper;
 							<input type="hidden" name="controller" value="donnees">
 							<input type="hidden" name="action" value="goToMood">
 							<input type="hidden" name="namepage" value="visualisation">
-							<!-- Formulaire pour le graphe radar-->
-							<select id="humeur" name="humeur" class="selectFormGraph">
+							<!-- Formulaire pour le graphe radar -->
+							<select id="humeur" name="humeur" class="selectAutoWidth selectFormGraph">
 							<?php
 								/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 								/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -384,6 +396,7 @@ use yasmf\HttpHelper;
 
 							<?php
 								$ancienneDate = NULL;
+								$i = 0; 
 								while($row = $visualisationTableau->fetch()){
 									echo "<tr>";
 									if ($row['jourDeLaSemaine'] == $ancienneDate) {
@@ -394,10 +407,20 @@ use yasmf\HttpHelper;
 									echo "<td>".$row['emoji']."</td>";
 									echo "<td>".$row['libelle']."</td>";
 									echo "<td>".$row['heure']."</td>";
-									echo "<td class = 'last-column'>".$row['contexte']."<button type=\"submit\" class=\"form-control btn btn-info boutonEye\" name=\"AddMedoc\" value=\"AddMedoc\" /><span
+									echo "<td class = 'last-column'>".$row['contexte']."<button onclick=\"openPopupContexte(".$i.")\"  class=\"form-control btn btn-info boutonEye\" name=\"AddMedoc\" value=\"AddMedoc\" /><span
 									class='fas fa-solid fa-eye'></button></td>";
 									echo "</tr>";
 									$ancienneDate = $row['jourDeLaSemaine'];
+
+									echo '<div id="popupContexte'.$i.'" class="popupContexte">';
+										echo '<span class="title">Contexte</span><br/>';
+										echo '<span>'. $row["contexte"] . '</span>';
+
+										echo '<div class="btnNav">';
+											echo '<button type="button" class="annuler" onclick="closePopupContexte('.$i.')">Fermer</button>';
+										echo '</div>';
+									echo '</div>';
+									$i++; 
 								}
 
 							?>
@@ -416,7 +439,7 @@ use yasmf\HttpHelper;
 							<span>Voici l'humeur qui est revenu le plus cette semaine :</span>
 							</div>
 							<br>
-							<span class="emojie shadowEmoji "><?php echo $row['emoji'] ; ?></span>
+							<span class="emojie emojiGrossi "><?php echo $row['emoji'] ; ?></span>
 							<br>
 							<div class="emojiFrequentLibelle">
 								<span><?php echo $row['libelle']; ?></span>
@@ -506,22 +529,26 @@ use yasmf\HttpHelper;
 							</form>
 						<div id="chartconteneur" style="height: 370px; width: 100%;"></div>
 					</div>
+
 					<div class = "col-md-6">
-						<div class="enBleu">
-							<span>Voici l'humeur qui est revenu le plus cette année :</span>
-						</div>
-					<br>
-					<?php
-					while($row = $humeursLaPlusFrequenteAnnee->fetch()){
+						<?php
+							while($row = $humeursLaPlusFrequenteAnnee->fetch()){
 						?>
-						<div class="enBleu">
-							<span><?php echo $row['libelle']; ?></span>
+						<div class="emojiFrequent">
+							<div class="texteGrossi">
+								<span>Voici l'humeur la plus récurrente cette année : </span>
+							</div>
+							<br>
+							<span class="emojie emojiGrossi"><?php echo $row['emoji']; ?></span>
+							<br>
+							<div class="emojiFrequentLibelle">
+								<span><?php echo $row['libelle']; ?></span>
+							</div>
 						</div>
-						<span class="emojie"><?php echo $row['emoji']; ?></span>
 						<?php
 					}
 					?>
-				</div>
+					</div>
 				<?php
 			}
 			if($typeDeRpresentation == 1){
@@ -559,7 +586,7 @@ use yasmf\HttpHelper;
 							<span class>Voici l'humeur qui est revenu le plus ce jour-ci :</span>
 							</div>
 							<br>
-							<span class="emojie shadowEmoji"><?php echo $row['emoji']; ?></span>
+							<span class="emojie emojiGrossi"><?php echo $row['emoji']; ?></span>
 							<br>
 							<div class="emojiFrequentLibelle">
 								<span><?php echo $row['libelle']; ?></span>
@@ -569,6 +596,7 @@ use yasmf\HttpHelper;
 					}
 					?>
 				</div>
+				
 				<?php
 			}
 			?>
