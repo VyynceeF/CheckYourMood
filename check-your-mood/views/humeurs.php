@@ -5,12 +5,6 @@
   		header("Location: /check-your-mood/index.php");
         exit();
 	}
-
-    if(isset($_POST['deconnexion']) && $_POST['deconnexion'] == "1"){
-        session_destroy();
-        header("Location: /check-your-mood/index.php");
-        exit();
-    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">

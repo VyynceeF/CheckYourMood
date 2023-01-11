@@ -6,15 +6,14 @@ use services\MoodService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
-session_start();
-
 class DeconnexionController {
 
     public function index() {
 		
 		session_destroy();
 
-        $view = new View("check-your-mood/views/connexion");
+		session_start();
+        $view = new View("check-your-mood/views/accueil");
         return $view;
     }
 
