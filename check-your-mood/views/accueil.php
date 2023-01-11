@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CheckYourMood - Connexion</title>
+    <title>CheckYourMood - Accueil</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/accueil.css">
     <link rel="stylesheet" href="/check-your-mood/css/header.css">
@@ -29,9 +29,6 @@ use yasmf\HttpHelper;
                 </div>
                 <div class="big-center-div text-center">
                     <span>Cette application  permet à un utilisateur enregistré sur la plateforme d’indiquer son humeur à différents moments de la journée afin de pouvoir disposer de visualisations sur son humeur au fil du temps en fonction de différents paramètres comme la période, le type d’humeur, etc.</span>
-                </div>
-                <div class="seConnecter">
-                    <button class="connect"><i class="fa fa-sign-in" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>

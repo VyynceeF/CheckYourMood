@@ -11,6 +11,8 @@ use yasmf\View;
 class HomeController {
 
     private $HomeService;
+    private $DonneesService;
+    private $MoodService;
 
     public function __construct()
     {
@@ -39,7 +41,6 @@ class HomeController {
         }
 
 		$_SESSION['id'] = $id;		
-		$_SESSION['mdp'] = $mdp;
 		$_SESSION['numeroSession']=session_id();// Stockage numéro de session pour éviter les piratages.
 
         //Libelle disponible

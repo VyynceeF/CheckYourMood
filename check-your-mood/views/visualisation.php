@@ -1,20 +1,16 @@
-<?php
-    // Test si on est bien connecté (session existante et bon numéro de session)
-	if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
-		// Renvoi vers la page de connexion
-  		header("Location: /check-your-mood/index.php");
-        exit();
-	}
-?>
+<?php include("session.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta HTTP-EQUIV="Pragma" content="no-cache">
+<meta HTTP-EQUIV="Expires" content="-1">
     <title>Check Your Mood - Humeurs</title>
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="/check-your-mood/css/header.css">
 	<!-- Police Font Awesome pour les icônes -->
 	<link href="fontawesome-free-6.2.1-web/css/all.css" rel="stylesheet">
 
@@ -72,7 +68,7 @@
 
 </head>
 <body>
-
+	<?php include("header.php"); ?>
 <script>	 
 	let popupIsActive = false;
 	
@@ -99,14 +95,6 @@ $day = [2 => 'Lundi',3 => 'Mardi',4 => 'Mercredi',5 => 'Jeudi',6 => 'Vendredi',7
 
 use yasmf\HttpHelper;
 ?>
-
-
-
-    <div class="head">
-        <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
-        <!-- lien pour aller sur la page des humeurs : (ne marche pas pour l'instant) -->
-        <a href="/check-your-mood?controller=donnees&action=changementPage">Humeurs</a>
-    </div>
     <?php
     if(!isset($_POST['premiereCo'])){
         ?>
@@ -197,12 +185,9 @@ use yasmf\HttpHelper;
 
 
 		?>
-		<div class="container-fluid" id="testPourLeFlou">
-			<div class="col-md-12 bG sansCadre">
-				<span class="enBleu"><i class="fa-sharp fa-solid fa-face-smile-beam enBleu"> Vous pouvez modifier l'annee ou le temps </i></span> <i class="enBleu fa-sharp fa-solid fa-face-smile-beam"></i>
-			</div>
+		<div class="container-fluid page">
 			<div class="row visu">
-				<div class="col-md-12 container-fluid sansCadre visu">
+				<div class="col-md-12 container-fluid sansCadre">
 					<form action="index.php" method="post">
 						<input type="hidden" name="premiereCo" value="1">
 						<input type="hidden" name="controller" value="donnees">
@@ -419,7 +404,7 @@ use yasmf\HttpHelper;
 									?>
 									<?php
 									echo '<fieldset id="popupContexte'.$i.'" class="containerPopup">';
-										echo '<legend class="title ">Contexte de l\'humeur</legend><br/>';
+										echo '<legend class="title text-center">Contexte de l\'humeur</legend><br/>';
 										echo '<div class="contextePopup">'. $row["contexte"] . '</div>';
 
 										echo '<div class="btnNav">';
@@ -538,7 +523,7 @@ use yasmf\HttpHelper;
 
 					<div class = "col-md-6">
 						<?php
-							while($row = $humeursLaPlusFrequenteAnnee->fetch()){
+						while($row = $humeursLaPlusFrequenteAnnee->fetch()){
 						?>
 						<div class="emojiFrequent">
 							<div class="texteGrossi">
@@ -552,64 +537,72 @@ use yasmf\HttpHelper;
 							</div>
 						</div>
 						<?php
-					}
-					?>
+						}
+						?>
 					</div>
 				<?php
 			}
 			if($typeDeRpresentation == 1){
+				// Test s'il y a une humeur à ce jour
+				if ($tableauCountDonught[0] == 0) {
+					// Il n'y a pas d'humeur à ce jour
+					echo '<div class="col-md-12">';
+					echo '<div class="containCadre">';
+					echo '<span class="texteGrossi">Aïe, vous n\'avez pas d\'humeur à ce jour 😅</span>';
+					echo '</div>';
+					echo '</div>';
+
+					
+				} else {
+					// Il y a au moins une humeur à ce jour
 				?>
-				<div class="col-md-6">
-					<div class="donutGraph">
-						<?php
-						echo '<script type="text/javascript">';
-						echo "var dataCountDonught = '".implode(",", $tableauCountDonught)."'.split(',');";
-						echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');";
-						echo 'console.table(dataHumeur);';
-						echo '</script>';
-						if($tableauCountDonught[0] == 0){
-							?>
-							<p class="texteGrossi">Vous n'avez pas d'humeur aujourd'hui</p>
+					<div class="col-md-6">
+						<div class="donutGraph">
 							<?php
-						} else {
+							echo '<script type="text/javascript">';
+							echo "var dataCountDonught = '".implode(",", $tableauCountDonught)."'.split(',');";
+							echo "var dataLibelleDonught = '".implode(",", $tableauLibelleDonught)."'.split(',');";
+							echo 'console.table(dataHumeur);';
+							echo '</script>';
 							?>
+							
 							<div class="nimport">
 								<canvas id="myChart2" class="containGraph"></canvas>
 							</div>
-							<?php
+						</div>
+						
+					</div>
+				
+					<div class = "col-md-6">
+						<?php
+						while($row = $humeursLaPlusFrequenteJour->fetch()){
+							?>
+							<div class=" emojiFrequent">
+								<div class="texteGrossi">
+									<span class>Voici l'humeur qui est revenu le plus ce jour-ci :</span>
+								</div>
+								<br>
+								<span class="emojie emojiGrossi"><?php echo $row['emoji']; ?></span>
+								<br>
+								<div class="emojiFrequentLibelle">
+									<span><?php echo $row['libelle']; ?></span>
+								</div>
+							</div>
+						<?php
 						}
 						?>
 					</div>
-					
-				</div>
-			
-				<div class = "col-md-6">
-					<?php
-					while($row = $humeursLaPlusFrequenteJour->fetch()){
-						?>
-						<div class=" emojiFrequent">
-							<div class="texteGrossi">
-							<span class>Voici l'humeur qui est revenu le plus ce jour-ci :</span>
-							</div>
-							<br>
-							<span class="emojie emojiGrossi"><?php echo $row['emoji']; ?></span>
-							<br>
-							<div class="emojiFrequentLibelle">
-								<span><?php echo $row['libelle']; ?></span>
-							</div>
-						</div>
-						<?php
-					}
-					?>
-				</div>
 				
 				<?php
+				}
 			}
 			?>
 		</div>
 	</div>
 	<button onclick="scrollToBottom()" id="top-button" title="Go to bottom"><i class="fa fa-arrow-down"></i></button>
-	
+	<?php
+	}
+	?>
 	<script>
 		window.onscroll = function() {scrollFunction()};
 
@@ -637,9 +630,5 @@ use yasmf\HttpHelper;
         <script src="script/script.js"></script>
         <script src="script/scriptjs2.js"></script>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <?php
-    }
-	include("footer.php");
-    ?>
     </body>
 </html>

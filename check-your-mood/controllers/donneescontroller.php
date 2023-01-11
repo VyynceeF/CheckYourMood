@@ -103,25 +103,6 @@ class DonneesController {
 
         return $view;
     }
-
-
-    //TODO : Modification des données personnelles
-    public function updateData($pdo){
-        $tab['identifiant'] = htmlspecialchars(HttpHelper::getParam('identifiant'));
-        $tab['nom'] = htmlspecialchars(HttpHelper::getParam('nom'));
-        $tab['prenom'] = htmlspecialchars(HttpHelper::getParam('prenom'));
-        $tab['mail'] = htmlspecialchars(HttpHelper::getParam('mail'));
-        $util = $_SESSION['util'];
-
-        $modificationInformationOk = $this->DonneesService->updateData($pdo,$tab,$util);
-
-        $view = $this->viewModification($pdo);
-        // Modification des Informations (hors mot de passe) 
-        $view->setVar('tentativeModificationInformation',true);
-        $view->setVar('modificationInformationOk',$modificationInformationOk);
-
-		return $view;
-    }
 	
 	/**
 	 * Permet la modification du contexte d'une humeur

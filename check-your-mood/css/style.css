@@ -15,6 +15,16 @@ body, html{
     background-color: rgba(226, 246, 255, 0.55);
 }
 
+.contain {
+    width: 100%;
+}
+
+/* Ajout taille de la navBar */
+.page {
+    padding-top: 64px;
+    justify-content: center;
+}
+
 /*Images*/
 .logo {
     width: 20vw;
@@ -65,8 +75,6 @@ body, html{
     align-items: center;
 }
 
-
-
 .login{
     width: 55%;
     height: 100%;
@@ -79,7 +87,7 @@ body, html{
 }
 
 .loginVisu{
-    width: 55%;
+    width: 60%;
     height: 100%;
     border-radius: 40px;
 
@@ -189,10 +197,6 @@ input{
     cursor: pointer;
 }
 
-.bG{
-	background-color:rgba(226, 246, 255, 0.55);
-}
-
 .btnVisu{
     color: rgba(5, 150, 214, 0.95);
     background-color: white;
@@ -229,7 +233,7 @@ input{
 
 .btnVisu2{
     color: darkblue;
-	background-color:rgba(226, 246, 255, 0.55);
+    background: none;
     width: 40vh;
     height: 9vh;
     padding: 1vh;
@@ -869,10 +873,8 @@ select::-webkit-scrollbar-thumb {
 }
 
 .texteGrossi {
-    font-size: 2vw;
+    font-size: 20px;
     color : darkblue; 
-    text-shadow:  0px -4px 10px rgba(33, 165, 253, 0.300);
-
 }
 
 .boutonEye {
@@ -892,9 +894,6 @@ tr:nth-child(2n) .boutonEye {
 .boutonEye:hover {
     transform: scale(1.03)!important;
 }
-
-
-
 
 .fa-pencil {
     color: #008CC9;
@@ -918,7 +917,6 @@ input[type=checkbox] {
     width : auto; 
     max-width: 17vw;
 }
-
 
 .containerPopup {
 	background: white;

@@ -50,22 +50,24 @@
 }
 
 .navvbar a{
-    color: #444;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease-in-out;
+    color: #444!important;
+    text-decoration: none!important;
+    font-weight: 500!important;
+    font-size: 1.05vw;
+    font-family: 'Montserrat', sans-serif!important;
+    transition: color 0.2s ease-in-out!important;
 }
 
 .navvbar a:hover{
-    color: #00aeff;
-    transition: color 0.3s ease-in-out;
+    color: #00aeff!important;
+    transition: color 0.3s ease-in-out!important    ;
 }
 
 @media (max-width: 768px){
     .navvbar{
         opacity: 0.95;
     }
-
+    
     .navvbar-container input[type="checkbox"],
     .navvbar-container .hamburger-lines{
         display: block;
@@ -143,7 +145,7 @@
 
     .navvbar .menu-items li{
         margin-bottom: 1.8rem;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         font-weight: 500;
     }
 

@@ -20,10 +20,10 @@
             </ul>
         <?php } else { ?>
             <ul class="menu-items">
-                <li><a href="#">Accueil</a></li>
+                <li><a href="/check-your-mood?controller=home&action=index"">Accueil</a></li>
                 <li><a href="/check-your-mood?controller=donnees&action=changementPage">Humeur</a></li>
                 <li><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></li>
-                <li><a href="#">Profil</a></li>
+                <li><a href="/check-your-mood?controller=donnees&action=viewModification"">Profil</a></li>
                 <li><a href="/check-your-mood?controller=deconnexion">Déconnexion</a></li>
             </ul>
         <?php } ?>

@@ -1,17 +1,12 @@
-<?php 
-    // Test si on est bien connecté (session existante et bon numéro de session)
-	if(!isset($_SESSION['id']) || !isset($_SESSION['mdp']) || !isset($_SESSION['numeroSession']) || $_SESSION['numeroSession']!=session_id()) {
-		// Renvoi vers la page de connexion
-  		header("Location: /check-your-mood/index.php");
-        exit();
-	}
-?>
+<?php include("session.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta HTTP-EQUIV="Pragma" content="no-cache">
+<meta HTTP-EQUIV="Expires" content="-1">
     <title>Check Your Mood - Humeurs</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
@@ -78,27 +73,14 @@ spl_autoload_register();
 use yasmf\HttpHelper;
 ?>
 
-    <div class="head">
-        <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
-        <form action="index.php" method="post">
-            <input type="hidden" name="deconnexion" value = "1">
-            <button class='btn-deco' type="submit">Se deconnecter</button>
-        </form>
-    </div>
-
-    <div class="contain">
-        <div class="menu">
-            <div><a href="#">Humeurs</a></div>
-            <div><a href="/check-your-mood?controller=donnees&action=goToMood&namepage=visualisation">Visualisation</a></div>
-            <div><a href="/check-your-mood?controller=donnees&action=viewModification&namepage=modification">Parametre</a></div>
-        </div>
+    <div class="contain page">
         <div id="contain-contenu" class="contain-mood">
 
             <div class="head-mood">
 
                 <!-- Ligne d'ajout d'une humeur -->
                 <p>Humeurs</p>
-                <button onclick="openForm()">+</button>
+                <button onclick="openForm()" class="btn-ajout">Ajouter une humeur +</button>
 
                 <!-------------------------------->
                 <!-- Popup d'ajout d'une humeur -->
@@ -201,10 +183,8 @@ use yasmf\HttpHelper;
 			</div>
 
         </div>
-      </div>
-	  <?php
-    
-	include("footer.php");
-    ?>
+    </div>
 </body>
+
+
 </html>

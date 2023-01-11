@@ -24,11 +24,12 @@ use yasmf\HttpHelper;
 
                     <p class="login-text">Connexion</p>
 
-                    <?php if(!$errData){?>
+                    <?php if(isset($_POST['premiereCo'])){?>
                         <p class = "err">Mot de passe ou identifiant incorrecte</p>
                     <?php } ?>
 
                     <form action="index.php" method="post">
+                        <input type="hidden" name="premiereCo" value="1">
                         <input type="hidden" name="action" value="login">
                         <div class="logoInput">
                             <span class="glyphicon glyphicon-user logoConnexion"></span>
@@ -37,7 +38,7 @@ use yasmf\HttpHelper;
                         <div class="contain-mdp">
                             <div class="logoInput">
                                 <span class="glyphicon glyphicon-lock logoConnexion"></span>
-                                <input class="form-control" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput"><br>
+                                <input class="form-control" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput">
                             </div>
                             <div class="contain-revele">
                                 <input class="checkInput" type="checkbox" name="revele" onclick="myFunction()">
@@ -51,7 +52,7 @@ use yasmf\HttpHelper;
                     <hr>
 
                     <div class="contain-bottom">    
-                        <p>Vous n'avez pas de compte ? <a href="/check-your-mood?action=goTo&namepage=inscription">Inscrivez-vous</a></p>    
+                        <p>Vous n'avez pas de compte ? <a href="/check-your-mood?controller=home&action=goTo&namepage=inscription">Inscrivez-vous</a></p>    
                     </div>
                     
                 </div>
