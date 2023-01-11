@@ -21,9 +21,11 @@
     <title>Check Your Mood - Humeurs</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
+	<link rel="stylesheet" href="/check-your-mood/css/header.css">
 </head>
 <body>
-	
+	<?php include("header.php"); ?>
+
 	<?php
 		// Permet de récupérer le nombre d'humeur en JS
 		echo '<script>var nbHumeur = '.$humeurs->rowCount().'</script>'

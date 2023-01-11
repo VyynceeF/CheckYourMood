@@ -16,7 +16,7 @@ body, html{
 }
 
 /*Images*/
-.logo{
+.logo {
     width: 20vw;
     height: auto;
 }
@@ -369,6 +369,7 @@ body{
 .table-mood{
     width: 80%;
     font-family: 'Montserrat', sans-serif;
+    
 
 }
 
@@ -505,6 +506,8 @@ a{
     padding-left: 10px;
     padding-right: 10px;
     font-size: medium;
+    margin-bottom: 1vh;
+    margin-right: 1vw;
 }
 
 .annuler:hover{
@@ -732,9 +735,8 @@ textarea {
     filter: blur(10px);
 }
 
-.noFlou {
-    filter:none!important; 
-}
+
+
 /* bouton pour aller en haut de la page */ 
 #top-button {
     display: none;
@@ -790,6 +792,7 @@ textarea {
     border: 1px black solid;
     border-radius: 12px;
     padding-left: 0.3vw;
+    margin-right: 0.8vw;
     
 }
 
@@ -891,17 +894,7 @@ tr:nth-child(2n) .boutonEye {
 }
 
 
-.popupContexte {
-	background: white;
-	display: none;
-	position: fixed;
-	left: 50%;
-	top: 30%;
-    width: 40vw;
-	transform: translate(-45%, 5%);
-	z-index: 9;
-    border : 1px solid black; 
-}
+
 
 .fa-pencil {
     color: #008CC9;
@@ -926,3 +919,73 @@ input[type=checkbox] {
     max-width: 17vw;
 }
 
+
+.containerPopup {
+	background: white;
+	display: none;
+	position: absolute;
+    top:5%; 
+    left: 5%;
+    width: 90%;
+    height: 70vh;
+	z-index: 10!important;
+    border : 5px solid #00c3ff; 
+    border-radius: 10px;
+    
+}
+
+fieldset legend {
+    color: #00c3ff;
+    background-color: #fff;
+    padding: 5px 10px ;
+    font-size: 32px;
+    border-radius: 5px;
+    width: 70%;
+    box-shadow: 0 0 0 5px #00c3ff;
+}
+
+.contextePopup {
+    word-wrap: break-word;
+    border-radius: 10px;
+    padding-right: 3vw;
+    padding-left: 3vw; 
+    background-color: rgb(244, 244, 244);
+    margin-left: 3vw;
+    margin-right: 3vw;
+    max-height: 85%;
+    border : 1px solid black ;
+    overflow: auto;
+}
+
+.contextePopup::-webkit-scrollbar {
+    width: 16px;
+    height: 5px;
+  }
+  
+.contextePopup::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+
+}
+
+.contextePopup::-webkit-scrollbar-thumb {
+    background-color:#00c3ff;
+    border-radius: 100px;
+}
+
+.annulerPopup {
+    font-family: 'Varela Round', sans-serif;
+    position: absolute;
+    bottom : 0; 
+    background-color: white;
+    color: red;
+    border: red solid 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: medium;
+    margin-bottom: 1vh;
+    margin-right: 1vw;
+}

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckYourMood - Connexion</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/check-your-mood//css/style.css">
+    <link rel="stylesheet" href="/check-your-mood/css/style.css">
 </head>
 <?php
 spl_autoload_extensions(".php");

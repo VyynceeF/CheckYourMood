@@ -74,17 +74,22 @@
 <body>
 
 <script>	 
+	let popupIsActive = false;
+	
     function openPopupContexte(id) {
+		popupIsActive = true; 
 		document.getElementById("popupContexte" + id).style.display = "block";
-		document.getElementById("popupContexte" + id).classList.add("noFlou");
-		
+		document.querySelector(".table-mood").classList.add("flou");
 	}
+
 	function closePopupContexte(id) {
 		document.getElementById("popupContexte" + id).style.display = "none";
-		document.querySelector("body").classList.remove("flou");
+		document.querySelector(".table-mood").classList.remove("flou");
+
+		
 
 	}
-    </script>
+</script>
 
 <?php
 spl_autoload_extensions(".php");
@@ -192,7 +197,7 @@ use yasmf\HttpHelper;
 
 
 		?>
-		<div class="container-fluid">
+		<div class="container-fluid" id="testPourLeFlou">
 			<div class="col-md-12 bG sansCadre">
 				<span class="enBleu"><i class="fa-sharp fa-solid fa-face-smile-beam enBleu"> Vous pouvez modifier l'annee ou le temps </i></span> <i class="enBleu fa-sharp fa-solid fa-face-smile-beam"></i>
 			</div>
@@ -407,19 +412,20 @@ use yasmf\HttpHelper;
 									echo "<td>".$row['emoji']."</td>";
 									echo "<td>".$row['libelle']."</td>";
 									echo "<td>".$row['heure']."</td>";
-									echo "<td class = 'last-column'>".$row['contexte']."<button onclick=\"openPopupContexte(".$i.")\"  class=\"form-control btn btn-info boutonEye\" name=\"AddMedoc\" value=\"AddMedoc\" /><span
+									echo "<td class = 'last-column'><button onclick=\"openPopupContexte(".$i.")\"  class=\"form-control btn btn-info boutonEye\"/><span
 									class='fas fa-solid fa-eye'></button></td>";
 									echo "</tr>";
 									$ancienneDate = $row['jourDeLaSemaine'];
-
-									echo '<div id="popupContexte'.$i.'" class="popupContexte">';
-										echo '<span class="title">Contexte</span><br/>';
-										echo '<span>'. $row["contexte"] . '</span>';
+									?>
+									<?php
+									echo '<fieldset id="popupContexte'.$i.'" class="containerPopup">';
+										echo '<legend class="title ">Contexte de l\'humeur</legend><br/>';
+										echo '<div class="contextePopup">'. $row["contexte"] . '</div>';
 
 										echo '<div class="btnNav">';
-											echo '<button type="button" class="annuler" onclick="closePopupContexte('.$i.')">Fermer</button>';
+											echo '<button type="button" class="annulerPopup" onclick="closePopupContexte('.$i.')">Fermer</button>';
 										echo '</div>';
-									echo '</div>';
+									echo '</fieldset>';
 									$i++; 
 								}
 
@@ -510,7 +516,7 @@ use yasmf\HttpHelper;
 										}
 									}
 									?>
-								</select>
+								</select> 
 
 								<select id="humeurDigrammeBatton" name="humeurDigrammeBatton">
 								<?php
@@ -525,7 +531,7 @@ use yasmf\HttpHelper;
 									}
 								?>
 								</select>
-								<button type="submit">OK</button>
+								<button type="submit" class="btn-ajout"><span class="text">OK</span></button>
 							</form>
 						<div id="chartconteneur" style="height: 370px; width: 100%;"></div>
 					</div>

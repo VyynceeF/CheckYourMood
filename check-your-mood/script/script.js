@@ -36,7 +36,7 @@ const ctx = document.getElementById('myChart');
 new Chart(ctx, {
   type: 'radar',
 data: data,
-options: {
+options: {  
   scale: {
     min: 0,
   },
@@ -46,7 +46,6 @@ options: {
      }
    }
   },
-  
 });
 
 

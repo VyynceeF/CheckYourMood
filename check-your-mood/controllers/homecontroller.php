@@ -83,8 +83,7 @@ class HomeController {
 
     public function index() {
 
-        $view = new View("check-your-mood/views/connexion");
-        $view->setVar('errData',true);
+        $view = new View("check-your-mood/views/accueil");
         return $view;
     }
 
