@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckYourMood - Inscription</title>
-    <link rel="stylesheet" href="/check-your-mood/css/style.css">
+    <link rel="stylesheet" href="/check-your-mood/css/inscription.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
 </head>
 
 <?php
@@ -17,46 +19,59 @@ use yasmf\HttpHelper;
 ?>
 
     <body class="backgroundBleu">
-        <div class="conteneur-main">
-            <div class="conteneur">
-                <!---Cadre de connexion-->
-                <div class="login inscription">
+        <div class="bigContainer">
+        <div class="container">
+            <div class="row ligne">
+                <div class="col-md-6 bigLeft">
+                    <div class="wrapper">
+                        <form action="index.php" method="post">
+                            <span class="titre"><h1>Inscription</h1></span>
+                            <div class="wrapperForm">
+                                <div class="formulaireCo">
+                                    <input type="hidden" name="controller" value="inscription">
+                                    <input type="hidden" name="action" value="signin">
+                                    <div class="logoInput">
+                                        <span class="glyphicon glyphicon-user logoConnexion"></span>
+                                        <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="prenom" placeholder="Prénom*">
+                                        <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="nom" placeholder="Nom*">
 
-                    <p class="login-text">Inscription</p>
-                    <form action="index.php" method="post">
-                        <input type="hidden" name="controller" value="inscription">
-                        <input type="hidden" name="action" value="signin">
-                        <input type="hidden" name="premiereCo" value="1">
+                                    </div>
+                                    <div class="logoInput">
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                        <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="email" name="mail" placeholder="Email*">
+                                    </div>
+                                    <div class="logoInput">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="identifiant" placeholder="Identifiant*">
+                                    </div>
 
-                        <div class="contain-double-data">
-                            <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="prenom" placeholder="Prénom*">
-                            <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="nom" placeholder="Nom*">
-                        </div>
+                                    <div class="contain-mdp">
+                                        <div class="logoInput">
+                                            <span class="glyphicon glyphicon-lock logoConnexion"></span>
+                                            <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput">
+                                        </div>
+                                    </div><br>
+                                </div>
+                                <div class="btn-connect">
+                                    <button class="btn" type="submit">S'inscrire</button>
+                                    <span><u>OU</u> &nbsp;&nbsp; <a href="/check-your-mood?action=goTo&namepage=connexion">Se Connecter</a></span> 
+                                </div>
+                            </div>
 
-                        <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="mail" placeholder="Email*">
-
-                        <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="identifiant" placeholder="Identifiant*">
-
-                        <div class="contain-mdp">
-                            <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="motdepasse" placeholder="Mot de passe*">
-                        </div>
-
-                        <!--<input type="text" name="confirmation" placeholder="Confirmation*">-->
-                       
-                        <div class="contain-bottom inscription">
-                            <button class="btn" type="submit">S'inscrire</button>
-                            <p>OU</p>
-                            <a href="/check-your-mood?action=goTo&namepage=connexion">Connectez-vous</a>
-                        </div>
-                    </form>
-                    
+                        </form>
+                    </div>
                 </div>
-
-                <div class="login right">
-                    <img class="logo" src="/check-your-mood//images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
+    
+                <div class="col-md-6 bigRight">
+                    <img src="/check-your-mood/images/CheckYourMoodLogo.png" alt="logo">
                 </div>
-
             </div>
         </div>
+    </div>
+
+
+
+
+
     </body>
 </html>

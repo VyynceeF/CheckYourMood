@@ -174,7 +174,7 @@ use yasmf\HttpHelper;
                                     </select>
                                 </div>
                             <br>
-                            <input type="submit" value ="Valider😉" class = "btnVisu">
+                            <input type="submit" value ="Valider" class = "btnVisu">
                         </form>
                     </div>
                 </div>
@@ -312,7 +312,7 @@ use yasmf\HttpHelper;
 						}
 						?>
 						<div class="<?php echo $typeDeRpresentation == 1 ? "col-md-4 sansCadre": "col-md-3 sansCadre"; ?>">
-							<input type="submit" value ="Valider😉" class = "btnVisu2">
+							<input type="submit" value ="Valider" class = "btnVisu2">
 						</div>
 					</form>
 				</div>

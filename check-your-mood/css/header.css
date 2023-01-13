@@ -59,8 +59,10 @@
 
 .navvbar a:hover{
     color: #00aeff!important;
-    transition: color 0.3s ease-in-out!important    ;
+    text-decoration: #00aeff underline!important ;
+    transition: 0.3s ease-in-out!important    ;
 }
+
 
 @media (max-width: 768px){
     .navvbar{

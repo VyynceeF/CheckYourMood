@@ -7,6 +7,7 @@
     <title>CheckYourMood - Connexion</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/connexion.css">
+
 </head>
 <?php
 spl_autoload_extensions(".php");
@@ -17,48 +18,52 @@ use yasmf\HttpHelper;
 ?>
     <body class="backgroundBleu">
     <script src="script\script.js"></script>
-
         <div class="bigContainer">
-        <div class="container">
-            <div class="row ligne">
-                <div class="col-md-6 bigLeft">
-                    <div class="wrapper">
-                        <form action="" method="post">
-                            <span class="titre"><h1>Connexion</h1></span>
-                            <div class="wrapperForm">
-                                <div class="formulaireCo">
-                                    <input type="hidden" name="premiereCo" value="1">
-                                    <input type="hidden" name="action" value="login">
-                                    <div class="logoInput">
-                                        <span class="glyphicon glyphicon-user logoConnexion"></span>
-                                        <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="identifiant" placeholder="Identifiant">
-                                    </div>
-                                    <div class="contain-mdp">
+            <div class="container">
+                <div class="row ligne">
+                    <div class="col-md-6 bigLeft">
+                        <div class="wrapper">
+                            <form action="index.php" method="post">
+                                <span class="titre"><h1>Connexion</h1></span>
+                                <div class="wrapperForm">
+                                    <div class="formulaireCo">
+                                        <input type="hidden" name="premiereCo" value="1">
+                                        <input type="hidden" name="action" value="login">
                                         <div class="logoInput">
-                                            <span class="glyphicon glyphicon-lock logoConnexion"></span>
-                                            <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput">
+                                            <span class="glyphicon glyphicon-user logoConnexion"></span>
+                                            <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="identifiant" placeholder="Identifiant">
                                         </div>
-                                        <div class="contain-revele">
-                                            <input class="checkInput" type="checkbox" name="revele" onclick="myFunction()">
-                                            <span class="revelerMDP">Révéler mot de passe</span>
-                                        </div>
-                                    </div><br>
+                                        <div class="contain-mdp">
+                                            <div class="logoInput">
+                                                <span class="glyphicon glyphicon-lock logoConnexion"></span>
+                                                <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput">
+                                            </div>
+              
+                                            <div class="checkbox-wrapper-13">
+                                                <label>
+                                                    <input id="c1-13" class="checkInput" type="checkbox" name="revele" onclick="myFunction()">
+                                                    <label for="c1-13" style="font-weight:300;">Révéler mot de passe</label>
+                                                </label>
+                                            </div>
+                                            
+                                            
+                                        </div><br>
+                                    </div>
+                                    <div class="btn-connect">
+                                        <button class="btn" type="submit">Se connecter</button>
+                                        <span><u>OU</u>&nbsp;&nbsp;<a href="/check-your-mood?action=goTo&namepage=inscription"> S'Inscrire</a></span> 
+                                    </div>
                                 </div>
-                                <div class="btn-connect">
-                                    <button class="btn" type="submit">Se connecter</button>
-                                    <span>Ou&nbsp;<a href="/check-your-mood?action=goTo&namepage=inscription"> s'inscrire</a></span> 
-                                </div>
-                            </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-    
-                <div class="col-md-6 bigRight">
-                    <img clas="img-responsive" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="logo">
+        
+                    <div class="col-md-6 bigRight">
+                        <img clas="img-responsive" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="logo">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </body>
 </html>

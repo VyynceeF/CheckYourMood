@@ -38,13 +38,6 @@ body, html{
 
 }
 
-.revelerMDP {
-    font-family: 'Signika Negative', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-}
-
-
 /*Cadre connexion*/
 .conteneur-main{
     display: flex;
@@ -54,20 +47,6 @@ body, html{
     align-items: center;
 }
 
-.errDonnees {
-    border : 1px red solid!important; 
-}
-
-
-.conteneur{
-    border-radius: 40px;
-    height: 68vh;
-    width: 62vw;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
 .conteneurVisu{
     height: 68vh;
@@ -80,16 +59,6 @@ body, html{
     align-items: center;
 }
 
-.login{
-    width: 55%;
-    height: 100%;
-    border-radius: 40px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .loginVisu{
     width: 60%;
@@ -102,41 +71,6 @@ body, html{
     align-items: center;
 }
 
-.loginVisu.left{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.login.right{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: linear-gradient(203deg, #008CC9 0%, rgba(0, 164, 217, 0.75) 23.65%, rgba(12, 193, 237, 0.5) 57.56%, rgba(105, 222, 255, 0.25) 97.64%, rgba(105, 222, 255, 0.25) 100%);
-    width: 45%;
-    border-radius: 40px;
-}
-
-.login form{
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    gap: 2vh;
-}
-
-.login p{
-    font-family: 'Varela Round', sans-serif;
-    font-size: 1.05vw;
-}
-
-.login .login-text{
-    font-family: 'Varela Round', sans-serif;
-    font-size: 2.5vw;
-    margin-bottom: 3vh;
-    color: #008CC9;
-}
 
 .loginVisu .login-textVisu{
     font-family: 'Varela Round', sans-serif;
@@ -166,12 +100,6 @@ body, html{
     height: 85vh;
 }
 
-/*Contain Mdp*/
-.contain-mdp{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
 
 
 
@@ -267,10 +195,6 @@ hr{
     border: none;
 }
 
-.rouge{
-    background-color: red;
-}
-
 .sansCadre{
     border-width:0px!important;
     width: 100%;
@@ -279,62 +203,12 @@ hr{
 .row-btn{
     padding-right: 5vw;
 }
-/*Checkbox revele*/
-
-.contain-revele{
-    font-family: 'Hind Siliguri', sans-serif;
-    font-size: 12px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    gap: 5px;
-
-}
-
-.logoInput {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-
-.logoConnexion {
-    font-size: large;
-}
-
-/*INSCRIPTION*/
-
-
-.contain-double-data{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.contain-double-data input{
-    width: 11vw;
-}
-
-.login.inscription input{
-    padding-left: 1vw;
-}
-
 
 /*Navbar*/
 body{
     margin: 0px;
 }
 
-.head{
-    background-color:rgba(226, 246, 255, 0.55);
-    padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
-}
-
-.head img{
-    width: 7vw;
-}
 
 .contain{
     display: flex;
@@ -343,11 +217,7 @@ body{
     background-color: white;
 }
 
-.menu-left{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 
 /*TITRE ET BUTTON*/
 .head-mood{
@@ -402,7 +272,7 @@ body{
 .card {
     border-radius: .9em 0 0 .9em;
     border: black 1px solid;
-    height: 77vh;
+    height: 78vh;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
 }
@@ -492,6 +362,7 @@ a{
     width: 40vw;
 	transform: translate(-45%, 5%);
 	z-index: 9;
+    border-radius: 10px;
 }
 
 .ajoutHumeurForm {
@@ -689,7 +560,8 @@ a{
 	align-items: center;
 	width: 100%;
 	height: auto;
-    border: 1px solid black;
+    border : 2px solid rgb(0, 157, 255); 
+    background-color:  rgba(0, 157, 255, 0.279);
 	border-radius: 10px;
 	margin-top: 2vw;
 	margin-bottom: 0;
@@ -706,14 +578,15 @@ a{
 	align-items: center;
 	width: 100%;
 	height: auto;
-    border: 1px solid black;
+    border : 2px solid rgb(0, 157, 255); 
+    background-color:  rgba(0, 157, 255, 0.279);
 	border-radius: 10px;
 }
 
 .containCadre span {
     font-family: 'Signika Negative', sans-serif;
     font-size: 18px;
-	color:darkblue;
+	color:rgb(0, 0, 0);
 }
 
 .containCadre .title {
@@ -736,14 +609,24 @@ textarea {
 
 /* Activation du button pour la pagination */
 .active {
-    background-color: black;
+    background-color: rgb(38, 0, 255)!important;
     color: whitesmoke;
 }
 
 .bt-pagination {
     width: 40px;
     height: 30px;
+    margin: 4px!important; 
+    border : 2px solid rgb(0, 157, 255); 
+    background-color:  rgba(0, 157, 255, 0.279);
+    border-radius: 5px;
 }
+
+.bt-pagination:hover {
+    transform: scale(1.05);
+}
+
+
 
 /* Classes pour flouter l'arrière plan */
 .flou{
@@ -805,9 +688,10 @@ textarea {
     color: rgba(5, 150, 214, 0.95);
     background-color: white;
     border: 1px black solid;
-    border-radius: 12px;
+    border-radius: 10px;
     padding-left: 0.3vw;
     margin-right: 0.8vw;
+    height: 3rem;
     
 }
 
