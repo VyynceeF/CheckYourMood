@@ -23,26 +23,22 @@ use yasmf\HttpHelper;
                 <div class="login inscription">
 
                     <p class="login-text">Inscription</p>
-
-                    <?php if(!$errData){?>
-                        <p class = "err">Une ou plusieurs données incorrectes</p>
-                    <?php } ?>
-
                     <form action="index.php" method="post">
                         <input type="hidden" name="controller" value="inscription">
                         <input type="hidden" name="action" value="signin">
+                        <input type="hidden" name="premiereCo" value="1">
 
                         <div class="contain-double-data">
-                            <input type="text" name="prenom" placeholder="Prénom*">
-                            <input type="text" name="nom" placeholder="Nom*">
+                            <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="prenom" placeholder="Prénom*">
+                            <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="nom" placeholder="Nom*">
                         </div>
 
-                        <input type="text" name="mail" placeholder="Email*">
+                        <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="mail" placeholder="Email*">
 
-                        <input type="text" name="identifiant" placeholder="Identifiant*">
+                        <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="identifiant" placeholder="Identifiant*">
 
                         <div class="contain-mdp">
-                            <input type="text" name="motdepasse" placeholder="Mot de passe*">
+                            <input class="<?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="motdepasse" placeholder="Mot de passe*">
                         </div>
 
                         <!--<input type="text" name="confirmation" placeholder="Confirmation*">-->

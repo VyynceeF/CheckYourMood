@@ -5,7 +5,10 @@ font-family: 'Hind Siliguri', sans-serif;
 font-family: 'Montserrat', sans-serif;
 font-family: 'Varela Round', sans-serif;
 */
+body {
+    background-color: rgb(206, 233, 255);
 
+}
 .bigContainer {
     width: 100%;
     background-color: rgb(206, 233, 255);
@@ -25,6 +28,7 @@ h1 {
 }
 
 .ligne {
+    display: flex;
     border-radius: 40px;
     height: 70vh;
 }
@@ -35,9 +39,6 @@ h1 {
 
 }
 
-.reveleMDP {
-    color : red!important; 
-}
 
 .bigLeft {
     display: flex;
@@ -64,18 +65,12 @@ h1 {
 .bigRight {
     display: flex;
     justify-content: center;  
+    align-items: center;
     height: 100%;  
-    padding: 9vw; 
     border-radius: 40px;
     background: linear-gradient(203deg, #008CC9 0%, rgba(0, 164, 217, 0.75) 23.65%, rgba(12, 193, 237, 0.5) 57.56%, rgba(105, 222, 255, 0.25) 97.64%, rgba(105, 222, 255, 0.25) 100%);
 }
 
-img {
-    max-width: 85%;
-    max-height: 85%;
-    height: auto;
-    width: auto;
-}
 
 .titre {
     margin-bottom: 2vh;
@@ -119,6 +114,19 @@ input{
 
 }
 
+.err {
+    color : red; 
+}
+
+img {
+    width: 69%;
+    height: fit-content;
+}
+
+.errDonnees {
+    border: 1px solid red; 
+}
+
 .btn-connect span {
     display: flex;
     align-items: center;
@@ -129,7 +137,7 @@ input{
     color: white;
     background-color: rgba(5, 150, 214, 0.95);
     border: none;
-    border-radius: 40px;
+    border-radius: 10px;
     width: 17vh;
     padding: 1.5vh;
     font-size: 2vh!important;
@@ -145,11 +153,19 @@ input{
 
 }
 
+@media (max-width: 1200px) {
+
+    img {
+        width: 49%;
+        height: fit-content;
+    }
+
+}
 @media (max-width: 992px) {
     .ligne {
         display: flex;
         justify-content: space-between;
-        flex-direction: column;
+        flex-direction: column-reverse;
         border-radius: 40px;
         height: 80vh;
     }
@@ -174,22 +190,20 @@ input{
         justify-content: center;  
         align-items: center;
         height: 50%;
-        padding-top: 4vh;
+        padding: 9%; 
         text-align: center ;
     }
 
     img {
-        max-width: 50%;
-        max-height: 50%;
-        height: auto;
-        width: auto;
+        width: 60%;
+        height: fit-content;
     }
 
     .btn{
         color: white;
         background-color: rgba(5, 150, 214, 0.95);
         border: none;
-        border-radius: 40px;
+        border-radius: 10px;
         width: 17vh;
         padding: 1.05vh;
         font-size: 1.1em!important;

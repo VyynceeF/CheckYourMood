@@ -30,7 +30,6 @@ class HomeController {
         if($infos['util'] == 0){
             
             $view = new View("check-your-mood/views/connexion");
-            $view->setVar('errData',false);
             return $view;
         }
 			
@@ -78,7 +77,6 @@ class HomeController {
     public function goTo(){
         $namepage = HttpHelper::getParam('namepage');
         $view = new View("check-your-mood/views/".$namepage);
-        $view->setVar('errData',true);
         return $view;
     }
 

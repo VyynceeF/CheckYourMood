@@ -46,7 +46,6 @@
 .menu-items li{
     list-style: none;
     margin-left: 1.5rem;
-    font-size: 1.3rem;
 }
 
 .navvbar a{
@@ -172,10 +171,21 @@
         transform: rotate(-45deg);
     }
 
+    .navvbar a{
+        font-size: 2rem!important;
+
+    }
+    
+
 }
 
 @media (max-width: 500px){
     .navvbar-container input[type="checkbox"]:checked ~ .logo{
         display: none;
+    }
+
+    .navvbar a{
+        font-size: 1.3vw;
+
     }
 }

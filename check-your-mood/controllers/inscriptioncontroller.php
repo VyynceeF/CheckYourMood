@@ -31,12 +31,10 @@ class InscriptionController {
 
         if($insertOk == "nOk"){
             $view = new View("check-your-mood/views/inscription");
-            $view->setVar('errData',false);
             return $view;
         }
 
         $view = new View("check-your-mood/views/connexion");
-        $view->setVar('errData',true);
         return $view;
     }
 

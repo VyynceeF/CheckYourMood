@@ -79,7 +79,7 @@ use yasmf\HttpHelper;
             <div class="head-mood">
 
                 <!-- Ligne d'ajout d'une humeur -->
-                <p>Humeurs</p>
+                <span class="humeurTitre">Humeurs</span>
                 <button onclick="openForm()" class="btn-ajout">Ajouter une humeur +</button>
 
                 <!-------------------------------->
@@ -159,9 +159,9 @@ use yasmf\HttpHelper;
 						echo '</div>';
 						$i++;
 					}
-
 				?>
 				</div>
+
 				<!-- Numéro de pagination -->
 				<div class="row">
 					<form action = "index.php" method="post" class="col-xs-12">

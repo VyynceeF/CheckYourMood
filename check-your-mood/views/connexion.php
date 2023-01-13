@@ -17,50 +17,48 @@ use yasmf\HttpHelper;
 ?>
     <body class="backgroundBleu">
     <script src="script\script.js"></script>
-        <div class="bigContainer">
-            <div class="container">
-                <div class="row ligne">
-                    <div class="col-md-6 bigLeft">
-                        <div class="wrapper">
-                            <form action="" method="post">
-                                <span class="titre"><h1>Connexion</h1></span>
-                                <?php if(isset($_POST['premiereCo'])){?>
-                                    <p class = "err">Mot de passe ou identifiant incorrecte</p>
-                                <?php } ?>
-                                <div class="wrapperForm">
-                                    <div class="formulaireCo">
-                                        <input type="hidden" name="premiereCo" value="1">
-                                        <input type="hidden" name="action" value="login">
-                                        <div class="logoInput">
-                                            <span class="glyphicon glyphicon-user logoConnexion"></span>
-                                            <input class="form-control" type="text" name="identifiant" placeholder="Identifiant" value="<?php echo HttpHelper::getParam('identifiant'); ?>">
-                                        </div>
-                                        <div class="contain-mdp">
-                                            <div class="logoInput">
-                                                <span class="glyphicon glyphicon-lock logoConnexion"></span>
-                                                <input class="form-control" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput">
-                                            </div>
-                                            <div class="contain-revele">
-                                                <input class="checkInput" type="checkbox" name="revele" onclick="myFunction()">
-                                                <span class="revelerMDP">Révéler mot de passe</span>
-                                            </div>
-                                        </div><br>
-                                    </div>
-                                    <div class="btn-connect">
-                                        <button class="btn" type="submit">Se connecter</button>
-                                        <span>Ou&nbsp;<a href="/check-your-mood?controller=home&action=goTo&namepage=inscription"> s'inscrire</a></span> 
-                                    </div>
-                                </div>
 
-                            </form>
-                        </div>
+        <div class="bigContainer">
+        <div class="container">
+            <div class="row ligne">
+                <div class="col-md-6 bigLeft">
+                    <div class="wrapper">
+                        <form action="" method="post">
+                            <span class="titre"><h1>Connexion</h1></span>
+                            <div class="wrapperForm">
+                                <div class="formulaireCo">
+                                    <input type="hidden" name="premiereCo" value="1">
+                                    <input type="hidden" name="action" value="login">
+                                    <div class="logoInput">
+                                        <span class="glyphicon glyphicon-user logoConnexion"></span>
+                                        <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="text" name="identifiant" placeholder="Identifiant">
+                                    </div>
+                                    <div class="contain-mdp">
+                                        <div class="logoInput">
+                                            <span class="glyphicon glyphicon-lock logoConnexion"></span>
+                                            <input class="form-control <?php if(isset($_POST['premiereCo'])) echo "errDonnees"; ?>" type="password" name="motdepasse" placeholder="Mot de passe" id="myInput">
+                                        </div>
+                                        <div class="contain-revele">
+                                            <input class="checkInput" type="checkbox" name="revele" onclick="myFunction()">
+                                            <span class="revelerMDP">Révéler mot de passe</span>
+                                        </div>
+                                    </div><br>
+                                </div>
+                                <div class="btn-connect">
+                                    <button class="btn" type="submit">Se connecter</button>
+                                    <span>Ou&nbsp;<a href="/check-your-mood?action=goTo&namepage=inscription"> s'inscrire</a></span> 
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
-        
-                    <div class="col-md-6 bigRight">
-                        <img class="logo" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
-                    </div>
+                </div>
+    
+                <div class="col-md-6 bigRight">
+                    <img clas="img-responsive" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="logo">
                 </div>
             </div>
         </div>
+    </div>
     </body>
 </html>
