@@ -39,7 +39,7 @@ class HomeController {
             $_SESSION["$key"] = $value;
         }
 
-		$_SESSION['id'] = $id;		
+		$_SESSION['id'] = $infos["util"];		
 		$_SESSION['numeroSession']=session_id();// Stockage numéro de session pour éviter les piratages.
 
         //Libelle disponible
