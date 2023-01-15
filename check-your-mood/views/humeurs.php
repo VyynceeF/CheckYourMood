@@ -9,7 +9,7 @@
 <meta HTTP-EQUIV="Expires" content="-1">
     <title>Check Your Mood - Humeurs</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/check-your-mood/css/style.css">
+    <link rel="stylesheet" href="/check-your-mood/css/humeurs.css">
 	<link rel="stylesheet" href="/check-your-mood/css/header.css">
 </head>
 <body>
@@ -116,7 +116,7 @@ use yasmf\HttpHelper;
 						<!-- Boutons d'ajout et d'annulation de l'humeur -->
 						<div class="btnNav">
 							<button type="button" class="annuler" onclick="closeForm()">Annuler</button>
-							<button type="submit" class="btn-ajout">Ajouter</button>
+							<button type="submit" class="confirmerAjout">Ajouter</button>
 						</div>
 					</form>
                 </div>
@@ -141,6 +141,7 @@ use yasmf\HttpHelper;
                 		 * l'utilisateur clique sur  
                 		 * le +                      
 						 */
+
 						echo '<div id="popupHumeur'.$i.'" class="popupHumeur">';
 							echo '<form class="containPopup">';
 								echo '<input type="hidden" name="controller" value="donnees">';

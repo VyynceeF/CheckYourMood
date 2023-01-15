@@ -162,6 +162,7 @@ img {
     }
 
 }
+
 @media (max-width: 992px) {
     .ligne {
         display: flex;

@@ -28,7 +28,7 @@ use yasmf\HttpHelper;
                     <img class="logo" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
                 </div>
                 <div class="big-center-div text-center">
-                    <span>Cette application  permet à un utilisateur enregistré sur la plateforme d’indiquer son humeur à différents moments de la journée afin de pouvoir disposer de visualisations sur son humeur au fil du temps en fonction de différents paramètres comme la période, le type d’humeur, etc.</span>
+                    <span>Cette application vous permet de noter votre humeur au fil de la journée. En enregistrant vos humeurs, vous pourrez ensuite voir comment elles évoluent au fil du temps en fonction de différents facteurs tels que la période (jour, semaine ou année) ou le type d'humeur.</span>
                 </div>
             </div>
         </div>

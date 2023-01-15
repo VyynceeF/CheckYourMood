@@ -51,7 +51,7 @@ use yasmf\HttpHelper;
                                     </div>
                                     <div class="btn-connect">
                                         <button class="btn" type="submit">Se connecter</button>
-                                        <span><u>OU</u>&nbsp;&nbsp;<a href="/check-your-mood?action=goTo&namepage=inscription"> S'Inscrire</a></span> 
+                                        <span><u>OU</u>&nbsp;&nbsp;<a href="/check-your-mood?action=goTo&namepage=inscription"> S'inscrire</a></span> 
                                     </div>
                                 </div>
 
