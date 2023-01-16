@@ -246,7 +246,7 @@ class DonneesController {
 
             /* Controle que le nouveau mot est valide */
             if (strlen($nouveauMDP) != 0 && $nouveauMDP == $confirmationNouveauMDP) {
-                $this->DonneesService->updateMDP($pdo, $_SESSION['util'], md5($nouveauMDP));
+                $this->DonneesService->updateMDP($pdo, $_SESSION['util'], $nouveauMDP);
                 $mdpNouveauOk = true;
                 $modificationMDPOk = true;
             } else {

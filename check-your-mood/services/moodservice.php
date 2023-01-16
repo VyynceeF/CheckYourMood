@@ -8,7 +8,9 @@ use PDOException;
 class MoodService
 {
     /**
-     * @param $pdo \PDO the pdo object
+     * Cette fonction permet de visualisé l'ensemble des humeurs
+     * @param pdo 
+     * @param idUtil 
      * @return \PDOStatement the statement referencing the result set
      */
     public function viewMoods($pdo, $idUtil)
@@ -19,14 +21,25 @@ class MoodService
         $searchStmt->execute();
         return $searchStmt;
     }
-
+    /**
+     * Cette fonction récuperer l'ensemble des libelles
+     * @param pdo 
+     * @return searchStmt PDO Object qui stock tout les libelles d'humeur
+     */
     public function libelles($pdo){
         $sql = "SELECT codeLibelle, libelleHumeur, emoji FROM Libelle ORDER BY libelleHumeur";
         $searchStmt = $pdo->prepare($sql);
         $searchStmt->execute();
         return $searchStmt;
     }
-
+    /**
+     * Cette fonction permet d'inserer une humeur en fonction des paramètres
+     * @param code code de l'humeur
+     * @param date
+     * @param heure
+     * @param contexte contexte de l'humeur
+     * @param util id de l'utilisateur
+     */
     public function insertMood($pdo, $code, $date, $heure, $contexte, $util){
 
         try{
@@ -44,7 +57,6 @@ class MoodService
         }catch(PDOException $e){
             return "nOk";
         }
-        
     }
 
 

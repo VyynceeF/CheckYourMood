@@ -8,8 +8,13 @@ use PDOException;
 class InscriptionService
 {
     /**
-     * Inscription d'un utilisateur
-     * @param $pdo \PDO the pdo object
+     * Inscription d'un utilisateur 
+     * @param pdo 
+     * @param id identifiant de l'utilisateur
+     * @param mdp mot de passe de l'utilisateur
+     * @param mail mail de l'utilisateur
+     * @param prenom 
+     * @param nom
      * @return \PDOStatement the statement referencing the result set
      */
     public function inscription($pdo, $id, $mdp, $mail, $nom, $prenom)
@@ -17,7 +22,6 @@ class InscriptionService
         try{
 
             $mdp = md5($mdp);
-
             $searchStmt = $pdo->prepare("INSERT INTO utilisateur(prenom,nom,identifiant,mail,motdePasse) VALUES(:prenom,:nom,:id,:mail,:mdp);" );
             $searchStmt->bindParam('id', $id);
             $searchStmt->bindParam('mdp', $mdp);
@@ -25,9 +29,7 @@ class InscriptionService
             $searchStmt->bindParam('nom', $nom);
             $searchStmt->bindParam('prenom', $prenom);
             $searchStmt->execute();
-
             return "ok";
-
         }catch(PDOException $e){
             return "nOk";
         }
