@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta HTTP-EQUIV="Pragma" content="no-cache">
-<meta HTTP-EQUIV="Expires" content="-1">
+	<meta HTTP-EQUIV="Expires" content="-1">
     <title>Check Your Mood - Humeurs</title>
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="/check-your-mood/css/header.css">
 	<!-- Police Font Awesome pour les icônes -->
 	<link href="fontawesome-free-6.2.1-web/css/all.css" rel="stylesheet">
+	<link rel="icon" href="/check-your-mood/images/YeuxLogo.png">
+
 
     <?php
     $ChoixTypeDeRepresentation = ['Choissez votre représentation','Jour','Semaine','Année']
@@ -100,13 +102,12 @@ use yasmf\HttpHelper;
         ?>
         <div class="conteneur-main">
             <div class="conteneurVisu">
-                <div class="loginVisu left">
+                <div class="loginVisu left col-md-6 col-sm-12 hidden-xs">
                     <img class="logo" src="/check-your-mood/images/visualisation.png" alt="Logo Check Your Mood">
                 </div>
-                <div class="loginVisu ">
+                <div class="loginVisu col-md-6 col-sm-12">
                     <div class="row">
-                        <p class="login-textVisu">Prêt à visualiser vos données ?</p>
-                        <p class="login-textVisuBis">Veuillez d'abord choisir l'année dont vous voulez visualiser vos données et le temps</p>
+                        <span class="login-textVisu">Prêt à visualiser vos données ?</span>
                     </div>
                     <div class="row-btn">
                         <form action="index.php" method="post">
@@ -124,21 +125,21 @@ use yasmf\HttpHelper;
                                             if(isset($_POST['anneeChoisi'])){
                                                 if($_POST['anneeChoisi'] == $nbr){
                                                     ?>
-                                                    <option value="<?php echo $_POST['anneeChoisi'];?>" selected><?php echo $_POST['anneeChoisi'];?></option>
+                                                    <option class="form-control" value="<?php echo $_POST['anneeChoisi'];?>" selected><?php echo $_POST['anneeChoisi'];?></option>
                                                     <?php
                                                 } else {
                                                     ?>
-                                                    <option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
+                                                    <option class="form-control" value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
                                                     <?php
                                                 }
                                             } else {
                                                 if($anneeActuelle == $nbr){
                                                     ?>
-                                                    <option value="<?php echo $anneeActuelle;?>" selected><?php echo $anneeActuelle ;?></option>
+                                                    <option class="form-control" value="<?php echo $anneeActuelle;?>" selected><?php echo $anneeActuelle ;?></option>
                                                     <?php
                                                 } else {
                                                     ?>
-                                                    <option value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
+                                                    <option class="form-control" value="<?php echo $nbr;?>"><?php echo $nbr;?></option>
                                                     <?php
                                                 }
                                             }
@@ -547,7 +548,7 @@ use yasmf\HttpHelper;
 				if ($tableauCountDonught[0] == 0) {
 					// Il n'y a pas d'humeur à ce jour
 					echo '<div class="col-md-12">';
-					echo '<div class="containCadre">';
+					echo '<div class="container containCadre">';
 					echo '<span class="texteGrossi">Aïe, vous n\'avez pas d\'humeur à ce jour 😅</span>';
 					echo '</div>';
 					echo '</div>';

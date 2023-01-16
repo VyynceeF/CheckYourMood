@@ -37,7 +37,9 @@ body, html{
     font-size: large;
 }
 
-
+.pager {
+    margin-top: 8em;
+}
 /* Ajout taille de la navBar */
 .page {
     padding-top: 64px;

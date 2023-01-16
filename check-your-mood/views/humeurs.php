@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/humeurs.css">
 	<link rel="stylesheet" href="/check-your-mood/css/header.css">
+	<link rel="icon" href="/check-your-mood/images/YeuxLogo.png">
+
 </head>
 <body>
 	<?php include("header.php"); ?>
@@ -121,7 +123,7 @@ use yasmf\HttpHelper;
 					</form>
                 </div>
             </div>
-            <div class="container"> 
+            <div class="container-fluid"> 
 				<div class="row">
 				<?php
 					$i = 0;
@@ -154,7 +156,7 @@ use yasmf\HttpHelper;
 								echo '<input type="textarea" class="form-control" name="contexte" value="'.$row['contexte'].'">';
 								echo '<div class="btnNav">';
 									echo '<button type="button" class="annuler" onclick="closePopupHumeur('.$i.')">Fermer</button>';
-									echo '<button type="submit" class="btn-ajout">Modifier</button>';
+									echo '<button type="submit" class="confirmerAjout">Modifier</button>';
 								echo '</div>';
 							echo '</form>';
 						echo '</div>';

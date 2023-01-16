@@ -1,3 +1,6 @@
+
+<meta HTTP-EQUIV="Pragma" content="no-cache">
+<meta HTTP-EQUIV="Expires" content="-1">
 <?php
 ini_set('display_errors', 'on');
 

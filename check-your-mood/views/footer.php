@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="/check-your-mood/css/footer.css">
     <link href="fontawesome-free-6.2.1-web/css/all.css" rel="stylesheet">
 
+
     <title>Document</title>
 </head>
 <body>

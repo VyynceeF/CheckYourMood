@@ -5,8 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckYourMood - Connexion</title>
+    <meta HTTP-EQUIV="Pragma" content="no-cache">
+    <meta HTTP-EQUIV="Expires" content="-1">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/connexion.css">
+    <link rel="icon" href="/check-your-mood/images/YeuxLogo.png">
+
 
 </head>
 <?php
@@ -51,7 +55,7 @@ use yasmf\HttpHelper;
                                     </div>
                                     <div class="btn-connect">
                                         <button class="btn" type="submit">Se connecter</button>
-                                        <span><u>OU</u>&nbsp;&nbsp;<a href="/check-your-mood?action=goTo&namepage=inscription"> S'inscrire</a></span> 
+                                        <span><u>OU</u>&nbsp;&nbsp;<a href="/check-your-mood?action=goTo&namepage=inscription"> s'inscrire</a></span> 
                                     </div>
                                 </div>
 

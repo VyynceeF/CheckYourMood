@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/check-your-mood/css/style.css">
 	<link rel="stylesheet" href="/check-your-mood/css/header.css">
+    <link rel="icon" href="/check-your-mood/images/YeuxLogo.png">
+
 </head>
 
 <?php
@@ -23,25 +25,13 @@ use yasmf\HttpHelper;
     <script>	 
     function openForm() {
 		document.getElementById("popupFormModification").style.display = "block";
-		// Ajout du flou sur toutes les humeurs
-		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
-			document.getElementById("containHumeur" + noId).classList.add("flou");
-		}
+		
 	}
 	function closeForm() {
 		document.getElementById("popupFormModification").style.display = "none";
-		// Suppression du flou sur toutes les humeurs
-		for (let noId = 0 ; noId <= nbHumeur ; noId++) {
-			document.getElementById("containHumeur" + noId).classList.remove("flou");
-		}
-	}
-		
-		
-	function closeForm() {
-		document.getElementById("popupFormModification").style.display = "none";
-		
 		
 	}
+		
 	function openFormSupprimerCompte() {
 		document.getElementById("popupSupprimer").style.display = "block";
 	}
@@ -71,7 +61,7 @@ use yasmf\HttpHelper;
 						<!-- Boutons d'ajout et d'annulation de l'humeur -->
 						<div class="btnNav">
 							<div class = " col-xs-12 col-md-6">
-								<button type="button" class="annuler" onclick="closeFormSupprimerCompte()">Annuler</button>
+								<button type="button" class="btn-annuler" onclick="closeFormSupprimerCompte()">Annuler</button>
 							</div>
 							<div class = "col-xs-12 col-md-6">
 								<button type="submit" class="btn-ajout">Confirmer</button>
@@ -87,12 +77,12 @@ use yasmf\HttpHelper;
                     }   
                     // Vérifie s'il y a une tentative de modification réussite de mot de passe
                     if ($tentativeModificationInformation && $modificationInformationOk) {
-                        echo '<span class="ok">Modification des informations effectuées</span>' ;
+                        echo '<span class="ok">Modification des informations effectuée</span>' ;
                     }  
                 ?>
                 <div class="row">
                     <div class="col-xs-12">
-                    <img src="/check-your-mood/images/pencil.png" alt="Logo Pencil" class="logoModifier">
+                        <i class="glyphicon glyphicon-pencil"></i>
                     </div>
                     <div class="col-xs-12">
                         <span class="textModifier">Modifier</span>
@@ -101,7 +91,7 @@ use yasmf\HttpHelper;
 
                 <div class="row">
                     <form action="index.php" method="post">
-                        <div>
+                        <div class="formModif">
                             <input type="hidden" name="controller" value="donnees">
                             <input type="hidden" name="action" value="updateData">
 
@@ -121,19 +111,21 @@ use yasmf\HttpHelper;
                                 <span>&nbsp;&nbsp;Identifiant</span>
                                 <input class="form-control" type="text" name="identifiant" placeholder="Identifiant*" value="<?php echo $identifiant ?>">
                             </div>
-                            <div class="col-xs-12 col-md-4 containModification">
+
+                            <div class="col-xs-12 col-md-6 containModification btnModifMdp">
                                 <button class="btn-ajout" type="submit" form="rien" onclick="openForm()">Modifier le mot de passe</button>
                             </div>
-							<div class="col-md-4">
-								<button type="button" class="btn-ajout" onclick="openFormSupprimerCompte()">Supprimer mon compte</button>
-							</div>
+                            
+                            <div class="col-xs-12 containModificationEnregistrer">
+                                <a class="annuler" href="/check-your-mood?controller=donnees&action=viewModification&namepage=modification">Annuler</a>
+                                <button class="btn-ajout" type="submit">Enregistrer</button>
+                            </div>
                         </div>
-                        <div class="col-xs-12 containModificationEnregistrer">
-                            <a class="annuler" href="/check-your-mood?controller=donnees&action=viewModification&namepage=modification">Annuler</a>
-                            <button class="btn-ajout" type="submit" onclick="openForm()">Enregistrer</button>
+                        <div class="col-md-12">
+                            <button type="button" class="btnSupprimerCompte" onclick="openFormSupprimerCompte()">Supprimer mon compte</button>
                         </div>
-						
                     </form>
+                    
                     <div id="popupFormModification">
                         <?php
                             // Vérifie s'il y a une tentative de modification de mot de passe
@@ -166,7 +158,7 @@ use yasmf\HttpHelper;
 									</div>
 									<!-- Boutons d'ajout et d'annulation de l'humeur -->
 									<div class="btnNav">
-										<button type="button" class="annuler" onclick="closeForm()">Annuler</button>
+										<button type="button" class="btn-annuler" onclick="closeForm()">Annuler</button>
 										<button type="submit" class="btn-ajout">Confirmer</button>
 									</div>
 							</form>
@@ -175,9 +167,5 @@ use yasmf\HttpHelper;
 				</div>
 			</div>
 		</div>
-        <?php
-    
-	include("footer.php");
-    ?>
     </body>
 </html>

@@ -1,0 +1,136 @@
+/*Polices*/
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Montserrat&family=Varela+Round&display=swap');
+/*
+font-family: 'Hind Siliguri', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Varela Round', sans-serif;
+*/
+
+
+body, html{
+    height: 100%;
+}
+
+
+/*Cadre connexion*/
+.conteneur-main{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.conteneurVisu{
+    height: 68vh;
+    width: 62vw;
+    background: linear-gradient(203deg, #008CC9 0%, rgba(0, 164, 217, 0.75) 23.65%, rgba(12, 193, 237, 0.5) 57.56%, rgba(105, 222, 255, 0.25) 97.64%, rgba(105, 222, 255, 0.25) 100%);
+    width: 45%;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.loginVisu{
+    width: 60%;
+    height: 100%;
+    border-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.loginVisu .login-textVisu{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 2.5vw;
+    margin-bottom: 2vw;
+    color: whitesmoke;
+}
+
+.loginVisu .login-textVisuBis{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1vw;
+    margin-bottom: 1vw;
+    color: whitesmoke;
+}
+
+/*Images*/
+.logo {
+    width: 20vw;
+    height: auto;
+}
+
+.loginVisu{
+    width: 60%;
+    height: 100%;
+    border-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.loginVisu .login-textVisu{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 2.5vw;
+    margin-bottom: 2vw;
+    color: whitesmoke;
+}
+
+.loginVisu .login-textVisuBis{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1vw;
+    margin-bottom: 1vw;
+    color: whitesmoke;
+}
+
+.row-btn{
+    padding-right: 5vw;
+}
+
+.btn-connect{
+    display: flex;
+    justify-content: center;
+}
+
+.btnVisu2{
+    color: darkblue;
+    background: none;
+    width: 40vh;
+    height: 9vh;
+    padding: 1vh;
+    font-size: 5vh;
+	text-align: center;
+    border: none;
+    outline: none;
+    border-radius: 0!important;
+}
+
+
+.btnVisu2:hover{
+	background-color:rgb(145, 196, 219);
+    transition : 0.2s; 
+    
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+
+.btnVisu{
+    color: rgba(5, 150, 214, 0.95);
+    background-color: white;
+    border: none;
+    border-radius: 40px;
+    width: 13vh;
+    height: 5vh;
+    padding: 1vh;
+    font-size: 2vh;
+}

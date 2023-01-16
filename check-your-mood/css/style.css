@@ -17,6 +17,10 @@ body, html{
 
 .contain {
     width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Ajout taille de la navBar */
@@ -49,14 +53,14 @@ body, html{
 
 
 .conteneurVisu{
-    height: 68vh;
-    width: 62vw;
+
     background: linear-gradient(203deg, #008CC9 0%, rgba(0, 164, 217, 0.75) 23.65%, rgba(12, 193, 237, 0.5) 57.56%, rgba(105, 222, 255, 0.25) 97.64%, rgba(105, 222, 255, 0.25) 100%);
-    width: 45%;
     border-radius: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    padding: 5em;
 }
 
 
@@ -64,11 +68,12 @@ body, html{
     width: 60%;
     height: 100%;
     border-radius: 40px;
-
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 3rem;
 }
 
 
@@ -201,9 +206,14 @@ hr{
 }
 
 .row-btn{
-    padding-right: 5vw;
+    display: flex;
+    justify-content: center!important;
+    align-items: center!important;
 }
 
+.row-btn input:hover {
+    transform: scale(1.05);
+}
 /*Navbar*/
 body{
     margin: 0px;
@@ -270,9 +280,10 @@ body{
 
 
 .card {
+    margin-top: 4.3em;
     border-radius: .9em 0 0 .9em;
     border: black 1px solid;
-    height: 78vh;
+    height: 71.3vh;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
 }
@@ -393,6 +404,7 @@ a{
     padding-left: 10px;
     padding-right: 10px;
     font-size: medium;
+
 }
 
 .annuler:hover{
@@ -401,6 +413,9 @@ a{
     border: red solid 1px;
 }
 
+.containModificationEnregistrer a {
+    text-decoration: none!important;
+}
 .btn-ajout{
     font-family: 'Varela Round', sans-serif;
     background-color: #008CC9;
@@ -415,18 +430,55 @@ a{
     margin-bottom: 1vh;
     margin-right: 1vw;
 
+
 }
 
+.btn-annuler {
+    font-family: 'Varela Round', sans-serif;
+    background-color: white;
+    color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: medium;
+    margin-bottom: 1vh;
+    margin-right: 1vw; 
+    border : 1px solid red; 
+}
+
+.containModificationEnregistrer a {
+    text-decoration: none!important;
+    color : red; 
+}
+
+.containModificationEnregistrer .annuler:hover {
+    color :white; 
+}
+
+.btn-annuler:hover {
+    background-color: red;
+    color: white;
+}
 .confirmerAjout:hover {
     background-color: white;
     border: #008CC9 1px solid;
     color: #008CC9;
 }
 
-.btn-ajout{
+
+.btn-ajout:hover{
+    background-color: white;
+    border: #008CC9 1px solid;
+    color: #008CC9;
+}
+
+.btnSupprimerCompte {
     font-family: 'Varela Round', sans-serif;
-    background-color: #008CC9;
-    color: white;
+    background-color: red;
+    color : white; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -436,10 +488,8 @@ a{
     font-size: medium;  
 }
 
-.btn-ajout:hover{
-    background-color: white;
-    border: #008CC9 1px solid;
-    color: #008CC9;
+.btnSupprimerCompte:hover {
+    transform: scale(1.05);
 }
 
 .btnNav {
@@ -530,21 +580,22 @@ a{
 }
 
 .containModification {
-
-    text-align: left;    
     color: #008CC9;
     font-family: 'Varela Round', sans-serif;
     font-size: large;
+    text-align: left;
 }
 
+.btnModifMdp {
+    margin-top: 2rem; 
+}
 .containModification input {
 
     margin-bottom: 10px;
 }
 
-.containModificationEnregistrer {
-    text-align: right;   
-}
+
+
 
 
 /* Taille du logo (crayon) */
@@ -554,7 +605,6 @@ a{
 }
 
 #popupFormModification {
-	background: white;
 	display: none;
 	position: fixed;
 	left: 50%;
@@ -564,14 +614,13 @@ a{
 	border: 1px solid lightgray;
 	z-index: 9;
 	padding: 15px;
+    border : 2px solid rgb(0, 157, 255); 
+    background-color:  rgb(170, 222, 255);
 	border-radius: 10px;
-
-    color: #008CC9;
     font-family: 'Varela Round', sans-serif;
 }
 
 #popupSupprimer {
-	background: white;
 	display: none;
 	position: fixed;
 	left: 50%;
@@ -581,9 +630,9 @@ a{
 	border: 1px solid lightgray;
 	z-index: 9;
 	padding: 15px;
+    border : 2px solid rgb(0, 157, 255); 
+    background-color:  rgb(170, 222, 255);
 	border-radius: 10px;
-
-    color: #008CC9;
     font-family: 'Varela Round', sans-serif;
 }
 
@@ -767,9 +816,8 @@ select::-webkit-scrollbar-thumb {
 }
 
 .card::-webkit-scrollbar-thumb {
-    background-color: #0086ce;
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
+    background-color: #00a6ff;
+    
 }
 
 
@@ -931,4 +979,16 @@ fieldset legend {
 	transform: translate(-45%, 5%);
 	z-index: 9;
     border : 1px solid black; 
+}
+
+@media (max-width: 992px) {
+
+    .rowVisualisation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap : 5em; 
+    }
+
+
 }
