@@ -838,6 +838,7 @@ select::-webkit-scrollbar-thumb {
     font-family: 'Varela Round', sans-serif;
 }
 
+
 .borderTop {
     padding-top: 3.5vh;
     margin-bottom: 2vh;
@@ -987,8 +988,44 @@ fieldset legend {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap : 5em; 
+
     }
 
+    .emojiFrequent {
+        height: 55vh;
+
+    }
+
+    .emojie {
+        font-size: 30vh;
+
+    }
+    
+
+    .nimport {
+        height: 79%;
+    }
+
+    th {
+        font-size: 4rem;
+    }
+    
+    .emojiFrequentLibelle {
+        font-size: 2rem;
+    }
+
+    .card {
+        height: 55vh;
+    }
+
+}
+
+
+
+@media (max-width: 1300px) {
+    .emoji { 
+        font-size: 30vh;
+    
+    }
 
 }
