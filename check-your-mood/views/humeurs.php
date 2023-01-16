@@ -1,3 +1,4 @@
+<?php header( 'Cache-Control: max-age=900' );?>
 <?php include("session.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -111,7 +112,7 @@ use yasmf\HttpHelper;
 							<!-- Date de l'humeur -->
 							<input type="date" name="dateHumeur" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
 							<!-- Heure de l'humeur -->
-							<input type="time" class="form-control" name="heure" value="<?php echo date('H:i'); ?>" required /><br/>
+							<input type="time" class="form-control" name="heure" value="<?php echo date('H:i:s'); ?>" required /><br/>
 						</div>
 						<!-- Contexte de l'humeur -->
 						<input type="textarea" name="contexte" class="form-control" placeholder="Contexte...">
@@ -123,13 +124,13 @@ use yasmf\HttpHelper;
 					</form>
                 </div>
             </div>
-            <div class="container-fluid"> 
+            <div class="container"> 
 				<div class="row">
 				<?php
 					$i = 0;
 					while($row = $humeurs->fetch()){
 
-						echo '<div class="col-md-4 col-xs-12" id="containHumeur'.$i.'">';
+						echo '<div class="col-md-4 col-xs-12 cadreHumeur" id="containHumeur'.$i.'">';
 							echo '<button class="containCadre" onclick="openPopupHumeur('.$i.')">';
 								echo '<span>'.$row['emoji'].'  '.$row['libelleHumeur'].'</span><br/>';
 								echo '<span>'.$row['dateHumeur'].'  '.$row['heure'].'</span>';

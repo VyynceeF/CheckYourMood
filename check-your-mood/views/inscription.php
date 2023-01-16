@@ -22,7 +22,7 @@ use yasmf\HttpHelper;
 
 ?>
 
-    <body class="backgroundBleu">
+    <body>
         <div class="bigContainer">
         <div class="container">
             <div class="row ligne">

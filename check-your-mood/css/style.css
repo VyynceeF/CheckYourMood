@@ -1029,3 +1029,14 @@ fieldset legend {
     }
 
 }
+
+.glyphicon-pencil {
+    color :rgb(0, 119, 255);
+    font-size: 3rem;
+}
+
+#chartconteneur {
+    height: 370px;
+    width: 80%;
+    text-align: center;
+}

@@ -20,7 +20,7 @@ spl_autoload_register();
 use yasmf\HttpHelper;
 
 ?>
-    <body class="backgroundBleu">
+    <body>
     <script src="script\script.js"></script>
         <div class="bigContainer">
             <div class="container">

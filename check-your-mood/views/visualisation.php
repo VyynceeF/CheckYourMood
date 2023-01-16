@@ -459,9 +459,10 @@ use yasmf\HttpHelper;
 			if($typeDeRpresentation == 3){
 				?>
 			<!-- carré du bas à droite -->
+					
 					<div class="col-md-6">
 
-							<span>Choisissez l'annee à comparer</span>
+							<span>Choisissez l'année à comparer</span>
 							<form action="index.php" method="post">
 							<?php
 								if($typeDeRpresentation == 2){
@@ -476,7 +477,7 @@ use yasmf\HttpHelper;
 								<input type="hidden" name="controller" value="donnees">
 								<input type="hidden" name="action" value="goToMood">
 								<input type="hidden" name="namepage" value="visualisation">
-								<select name="anneeAComparer" >
+								<select name="anneeAComparer"  class="selectAutoWidth selectFormGraph">
 									<?php
 									for($nbr = 2021; $nbr <= $anneeActuelle; $nbr ++){
 										if(isset($_POST['anneeAComparer'])){
@@ -504,7 +505,7 @@ use yasmf\HttpHelper;
 									?>
 								</select> 
 
-								<select id="humeurDigrammeBatton" name="humeurDigrammeBatton">
+								<select class="selectAutoWidth selectFormGraph" id="humeurDigrammeBatton" name="humeurDigrammeBatton">
 								<?php
 									while($row = $libellesRadar->fetch()){
 										if(isset($_POST['humeurDigrammeBatton']) && $_POST['humeurDigrammeBatton'] == $row['codeLibelle']){
@@ -519,7 +520,7 @@ use yasmf\HttpHelper;
 								</select>
 								<button type="submit" class="btn-ajout"><span class="text">OK</span></button>
 							</form>
-						<div id="chartconteneur" style="height: 370px; width: 100%;"></div>
+						<div id="chartconteneur"></div>
 					</div>
 
 					<div class = "col-md-6">

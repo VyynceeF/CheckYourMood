@@ -68,9 +68,29 @@ h1 {
     align-items: center;
     height: 100%;  
     border-radius: 40px;
-    background: linear-gradient(203deg, #008CC9 0%, rgba(0, 164, 217, 0.75) 23.65%, rgba(12, 193, 237, 0.5) 57.56%, rgba(105, 222, 255, 0.25) 97.64%, rgba(105, 222, 255, 0.25) 100%);
+    background-image: linear-gradient(203deg, rgb(27, 16, 252) 0%, rgb(62, 82, 255) 23%, rgba(0,212,255,1) 55%, rgba(175,241,255,1) 95%);   
+    background-size: 100% 400%;
+    -webkit-animation: degradAnime 10s ease infinite;
+    -moz-animation: degradAnime 10s ease infinite;
+    animation: degradAnime 10s ease-in-out infinite; 
+
 }
 
+@-webkit-keyframes degradAnime {
+  0%{background-position:0% 19%}
+  50%{background-position:100% 82%}
+  100%{background-position:0% 19%}
+}
+@-moz-keyframes degradAnime {
+  0%{background-position:0% 19%}
+  50%{background-position:100% 82%}
+  100%{background-position:0% 19%}
+}
+@keyframes degradAnime {
+  0%{background-position:0% 19%}
+  50%{background-position:100% 82%}
+  100%{background-position:0% 19%}
+}
 
 .titre {
     margin-bottom: 2vh;

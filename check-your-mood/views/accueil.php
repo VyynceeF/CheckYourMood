@@ -20,10 +20,10 @@ spl_autoload_register();
 use yasmf\HttpHelper;
 
 ?>
-    <body class="backgroundBleu">
+    <body class="css-selector">
         <?php include("header.php"); ?>
         <div class="container bigContain">
-            <div class="conteneur">
+            <div class="conteneur css-selector">
                 <div>
                     <img class="logo" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
                 </div>
