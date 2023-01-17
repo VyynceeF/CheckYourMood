@@ -9,6 +9,8 @@ class HomeService
 {
     /**
      * Connexion d'un utilisateur
+     * @param $idUtil id de l'utilisateur
+     * @param $mdpUtil mot de passe de l'utilisateur
      * @param $pdo \PDO the pdo object
      * @return \PDOStatement the statement referencing the result set
      */
