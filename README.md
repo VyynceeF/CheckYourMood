@@ -44,3 +44,5 @@ sprint. Ces retours permettent d’améliorer le produit.</br></p>
   <li>lien vers le drive => https://drive.google.com/drive/folders/19DsVFWXLmuwtKa9MBTuknUWmm_kkX3rl?usp=sharing</li>
   <li>lien vers le zenhub => https://github.com/VyynceeF/CheckYourMood#workspaces/checkyourmood-634435fa9e69d4bdc803957d/board</li>
  </ul>
+ 
+ Attention pour exécuter le code sur Uwamp il est nécessaire de récuperer le dossier check-your-mood et de le mettre dans www/ de Uwamp sinon une erreur s'affiche.
