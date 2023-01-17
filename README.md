@@ -33,5 +33,5 @@ sprint. Ces retours permettent d’améliorer le produit.</br></p>
   <li>Documents ressources => Google Drive, GitHub</li>
   <li>Suivi de projet => Zenhub, GanttProject</li>
   <li>lien vers le drive => https://drive.google.com/drive/folders/19DsVFWXLmuwtKa9MBTuknUWmm_kkX3rl?usp=sharing</li>
-  <li>lien vers le zenhub => https://github.com/VyynceeF/CheckYourMood/issues/labels#workspaces/checkyourmood-634435fa9e69d4bdc803957d/board</li>
+  <li>lien vers le zenhub =>  https://github.com/VyynceeF/CheckYourMood#workspaces/checkyourmood-634435fa9e69d4bdc803957d/board</li>
   </ul>
