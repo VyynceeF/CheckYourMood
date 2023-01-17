@@ -1,3 +1,5 @@
+<?php header( 'Cache-Control: max-age=900' );?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

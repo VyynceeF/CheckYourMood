@@ -1,3 +1,4 @@
+<?php header( 'Cache-Control: max-age=900' );?>
 <?php include("session.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">

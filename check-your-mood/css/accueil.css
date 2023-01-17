@@ -29,10 +29,10 @@ body, html{
     border-radius: 10px;
     padding: 3vw;
     background-image: linear-gradient(203deg, rgb(27, 16, 252) 0%, rgb(62, 82, 255) 23%, rgba(0,212,255,1) 55%, rgba(175,241,255,1) 95%);   
-    background-size: 100% 400%;
-    -webkit-animation: degradAnime 10s ease infinite;
-    -moz-animation: degradAnime 10s ease infinite;
-    animation: degradAnime 10s ease-in-out infinite; 
+    background-size: 200% 400%;
+    -webkit-animation: degradAnime 8s ease infinite;
+    -moz-animation: degradAnime 8s ease infinite;
+    animation: degradAnime 8s ease-in-out infinite; 
 }
 
 @-webkit-keyframes degradAnime {

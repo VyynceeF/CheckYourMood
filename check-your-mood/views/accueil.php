@@ -20,18 +20,20 @@ spl_autoload_register();
 use yasmf\HttpHelper;
 
 ?>
-    <body class="css-selector">
-        <?php include("header.php"); ?>
-        <div class="container bigContain">
-            <div class="conteneur css-selector">
-                <div>
-                    <img class="logo" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
-                </div>
-                <div class="big-center-div text-center">
-                    <span>Cette application vous permet de noter votre humeur au fil de la journée. En enregistrant vos humeurs, vous pourrez ensuite voir comment elles évoluent au fil du temps en fonction de différents facteurs tels que la période (jour, semaine ou année) ou le type d'humeur.</span>
-                </div>
+<body class="css-selector">
+    <?php include("header.php"); ?>
+    <div class="container bigContain">
+        <div class="conteneur css-selector">
+            <div>
+                <img class="logo" src="/check-your-mood/images/CheckYourMoodLogo.png" alt="Logo Check Your Mood">
+            </div>
+            <div class="big-center-div text-center">
+                <span>Cette application vous permet de noter votre humeur au fil de la journée. En enregistrant vos
+                    humeurs, vous pourrez ensuite voir comment elles évoluent au fil du temps en fonction de différents
+                    facteurs tels que la période (jour, semaine ou année) ou le type d'humeur.</span>
             </div>
         </div>
+</div>
 
-    </body>
+</body>
 </html>
