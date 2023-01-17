@@ -32,11 +32,6 @@ sprint. Ces retours permettent d’améliorer le produit.</br></p>
   <li>Communication => Discord, Gmail</li>
   <li>Documents ressources => Google Drive, GitHub</li>
   <li>Suivi de projet => Zenhub, GanttProject</li>
-<<<<<<< HEAD
-  <li>lien vers le drive => https://drive.google.com/drive/folders/19DsVFWXLmuwtKa9MBTuknUWmm_kkX3rl?usp=sharing</li>
-  <li>lien vers le zenhub =>  https://github.com/VyynceeF/CheckYourMood#workspaces/checkyourmood-634435fa9e69d4bdc803957d/board</li>
-=======
->>>>>>> VersionFinaleCheckYourMood
   </ul>
   
  <h3>Les liens</h3>
