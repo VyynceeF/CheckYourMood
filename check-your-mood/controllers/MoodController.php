@@ -44,12 +44,12 @@ class MoodController {
     }
 
     //Insertion d'une humeur
-    //TODO : Verifier que la date Entree est valide
+    //Verifier que la date Entree est valide
     public function index($pdo){
         $code = (int) HttpHelper::getParam('humeur');
         $date  = HttpHelper::getParam('dateHumeur');
         $heure  = HttpHelper::getParam('heure');
-        $contexte = HttpHelper::getParam('contexte');
+        $contexte = htmlspecialchars(HttpHelper::getParam('contexte'));
         $util = $_SESSION['util'];
 
         $insertion = $this->MoodService->insertMood($pdo, $code, $date, $heure, $contexte, $util);

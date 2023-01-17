@@ -33,7 +33,6 @@ class HomeController {
             return $view;
         }
 			
-        //TODO : Inserer toutes les infos utilisateurs dans la session
 		// Stockage dans la session //
         foreach($infos as $key => $value){
             $_SESSION["$key"] = $value;

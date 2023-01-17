@@ -21,7 +21,6 @@ class DonneesController {
         $this->visualisationService = VisualisationService::getDefaultVisualisationService();
     }
 
-    //TODO : Etablir l'utilité -> Potentiellement separer en plusieur fonction et resitué dans le bon controller
     public function goToMood($pdo){
 
         $anneeAComparer = (int) HttpHelper::getParam('anneeChoisi') ?: 2023; 
@@ -123,12 +122,11 @@ class DonneesController {
     }
 
     //Insertion d'une humeur
-    //TODO : Verifier que la date Entree est valide
     public function insertHumeur($pdo){
         $code = (int) HttpHelper::getParam('humeur');
         $date  = HttpHelper::getParam('dateHumeur');
         $heure  = HttpHelper::getParam('heure');
-        $contexte = HttpHelper::getParam('contexte');
+        $contexte = htmlspecialchars(HttpHelper::getParam('contexte'));
         $util = $_SESSION['util'];
 
         $insertion = $this->MoodService->insertMood($pdo, $code, $date, $heure, $contexte, $util);
@@ -183,7 +181,7 @@ class DonneesController {
         return $view;
     }
 
-    //TODO : Modification des données personnelles
+    // Modification des données personnelles
     public function updateData($pdo){
         $tab['identifiant'] = htmlspecialchars(HttpHelper::getParam('identifiant'));
         $tab['nom'] = htmlspecialchars(HttpHelper::getParam('nom'));
@@ -234,14 +232,14 @@ class DonneesController {
      */
     public function updateMDP($pdo) {
 
-        $MDP = HttpHelper::getParam('ancienMDP');
+        $MDP = htmlspecialchars(HttpHelper::getParam('ancienMDP'));
 
         /* Controle que le mot de passe est bon */
         if ($this->DonneesService->mdp($pdo, $_SESSION['util'])->fetchAll()[0]['motDePasse'] == md5($MDP)) {
             
             $mdpOk = true;
-            $nouveauMDP = HttpHelper::getParam('nouveauMDP');
-            $confirmationNouveauMDP = HttpHelper::getParam('confirmationNouveauMDP');
+            $nouveauMDP = htmlspecialchars(HttpHelper::getParam('nouveauMDP'));
+            $confirmationNouveauMDP = htmlspecialchars(HttpHelper::getParam('confirmationNouveauMDP'));
 
             /* Controle que le nouveau mot est valide */
             if (strlen($nouveauMDP) != 0 && $nouveauMDP == $confirmationNouveauMDP) {
