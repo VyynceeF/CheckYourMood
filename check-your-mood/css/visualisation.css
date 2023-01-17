@@ -506,3 +506,23 @@ thead {
     padding: 15px;
     border-radius: 4px;
   }
+
+fieldset legend {
+    color: #00c3ff;
+    background-color: #fff;
+    padding: 5px 10px ;
+    font-size: 32px;
+    border-radius: 5px;
+    width: 70%;
+    box-shadow: 0 0 0 5px #00c3ff;
+}
+
+fieldset legend {
+    color: #00c3ff;
+    background-color: #fff;
+    padding: 5px 10px ;
+    font-size: 32px;
+    border-radius: 5px;
+    width: 70%;
+    box-shadow: 0 0 0 5px #00c3ff;
+}
