@@ -32,6 +32,7 @@ sprint. Ces retours permettent d’améliorer le produit.</br></p>
   <li>Communication => Discord, Gmail</li>
   <li>Documents ressources => Google Drive, GitHub</li>
   <li>Suivi de projet => Zenhub, GanttProject</li>
+  </ul>
   
  <h3>Les liens</h3>
  <ul>
