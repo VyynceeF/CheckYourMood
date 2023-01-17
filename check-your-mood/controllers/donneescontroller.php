@@ -136,7 +136,8 @@ class DonneesController {
         $humeurs = $this->MoodService->viewMoods($pdo,$util);
         $libelles = $this->MoodService->libelles($pdo);
 
-        return $this->changementPage($pdo);
+        /* pour ne pas que quand on actualise la page, la requête se re éxécute et remette une nouvelle humeur */
+        header('Location: index.php?controller=donnees&action=changementPage');
     }
 
     /**

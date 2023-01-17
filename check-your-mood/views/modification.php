@@ -10,7 +10,7 @@
 <meta HTTP-EQUIV="Expires" content="-1">
     <title>CheckYourMood - Inscription</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/check-your-mood/css/style.css">
+    <link rel="stylesheet" href="/check-your-mood/css/modification.css">
 	<link rel="stylesheet" href="/check-your-mood/css/header.css">
     <link rel="icon" href="/check-your-mood/images/YeuxLogo.png">
 

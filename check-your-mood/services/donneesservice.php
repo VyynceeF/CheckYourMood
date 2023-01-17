@@ -156,13 +156,11 @@ class DonneesService
 			$searchStmt = $pdo->prepare($sql);
 			$searchStmt->bindParam('id',$idUtil);
 			$searchStmt->execute();
-			var_dump($sql);
 			$sql = "DELETE FROM utilisateur WHERE codeUtil = :id ";
 			$searchStmt = $pdo->prepare($sql);
 			$searchStmt->bindParam('id',$idUtil);
 			$searchStmt->execute();
 			
-			var_dump($idUtil);
 			
 			$pdo->commit();
 			return "ok";

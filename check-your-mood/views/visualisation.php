@@ -9,7 +9,7 @@
 	<meta HTTP-EQUIV="Pragma" content="no-cache">
 	<meta HTTP-EQUIV="Expires" content="-1">
     <title>Check Your Mood - Humeurs</title>
-    <link rel="stylesheet" href="/check-your-mood/css/style.css">
+    <link rel="stylesheet" href="/check-your-mood/css/visualisation.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="/check-your-mood/css/header.css">
 	<!-- Police Font Awesome pour les icônes -->
@@ -353,13 +353,13 @@ use yasmf\HttpHelper;
 							?>
 							</select>
 							
-							<button type="submit" class="btn-ajout"><span class="text">OK</span></button>
+							<button type="submit" class="btn-ajout"><span>OK</span></button>
 						</form>
 						<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
 						<!-- fin de la partie du formulaire pour le graphe radar  -->
 						<!-- affichage du graphe radar -->
 						<br>
-						<div class="nimport">
+						<div class="grapheConteneur">
 							<canvas id="myChart" ></canvas>
 						</div>
 					</div>
@@ -432,7 +432,7 @@ use yasmf\HttpHelper;
 							<span>Voici l'humeur qui est revenu le plus cette semaine :</span>
 							</div>
 							<br>
-							<span class="emojie emojiGrossi "><?php echo $row['emoji'] ; ?></span>
+							<span class="emojie emojiGrossi"><?php echo $row['emoji'] ; ?></span>
 							<br>
 							<div class="emojiFrequentLibelle">
 								<span><?php echo $row['libelle']; ?></span>
@@ -569,7 +569,7 @@ use yasmf\HttpHelper;
 							echo '</script>';
 							?>
 							
-							<div class="nimport">
+							<div class="grapheConteneur">
 								<canvas id="myChart2" class="containGraph"></canvas>
 							</div>
 						</div>
