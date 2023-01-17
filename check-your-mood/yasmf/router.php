@@ -28,12 +28,12 @@ class Router
         session_start();
         // Test si on est bien connecté (session existante et bon numéro de session)
         
-            // set the controller to enrole
-            $controllerName = HttpHelper::getParam('controller') ?: 'Home';
-            $controllerQualifiedName = "controllers\\" . $controllerName . "Controller";
-            $controller = new $controllerQualifiedName();
-            // set the action to trigger
-            $action = HttpHelper::getParam('action') ?: 'index';
+        // set the controller to enrole
+        $controllerName = HttpHelper::getParam('controller') ?: 'Home';
+        $controllerQualifiedName = "controllers\\" . $controllerName . "Controller";
+        $controller = new $controllerQualifiedName();
+        // set the action to trigger
+        $action = HttpHelper::getParam('action') ?: 'index';
       
         // trigger the appropriate action and get the resulted view
         if ($dataSource != null) {
